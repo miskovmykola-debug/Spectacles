@@ -1,0 +1,65 @@
+- !<AssetImportMetadata/d46f72bd-f7fa-4aa5-8135-7ca735956426>
+  ImportedAssetIds:
+    ObjectPrefab: !<reference> 8299603b-8017-4c16-8af5-377f6aac40f2
+  ImporterName: ObjectPrefabImporter
+  PrimaryAsset: !<reference> 8299603b-8017-4c16-8af5-377f6aac40f2
+  PackageType: NotAPackage
+  LegacyPackagePolicy: ~
+  ExtraData:
+    {}
+  AssetDataMap:
+    ObjectPrefab: !<own> 37bf1921-6194-4ff3-8de1-40991975b7e0
+  DependentFiles:
+    []
+  ImporterSettings: !<AssetImporterSettings>
+    {}
+  CompressionSettings: !<own> 00000000-0000-0000-0000-000000000000
+- !<ScriptComponent/226df85f-fe4c-4c25-77cc-f15ccf93af68>
+  PrefabRemaps:
+    []
+  Name: InputHandles
+  Enabled: true
+  ScriptAsset: !<reference> 01d8afb2-f087-43be-babb-b91556e2ee65
+  ScriptInputsDefault:
+    rotationAxis: true
+    dropDuration: true
+  ScriptTypesDefault:
+    {}
+  ScriptInputs:
+    "":
+      cam: !<reference.Camera> 00000000-0000-0065-0000-000000000065
+      trackSources: !<reference.SceneObject[]>
+        - !<reference> d483effa-0b94-40f3-821d-adba14253f6a
+      trackPrefabs: !<reference.ObjectPrefab[]>
+        - !<reference> 827ca0fa-9738-49e4-916d-1f8833657b0c
+      trackPadding: !<float> 0.000000
+      trackManualScale: 0.062300
+      switchName: grid
+      rotationAxis: 1
+      baseRotation: !<Vec3> {x: -90.000000, y: 180.000000, z: 0.000000}
+      dropHeight: !<float> 100.000000
+      dropDuration: 0.400000
+      trackSwitchName: blocks
+  ScriptTypes:
+    "":
+      {}
+- !<ObjectPrefabAssetData/37bf1921-6194-4ff3-8de1-40991975b7e0>
+  Prototype: !<ObjectOwner/b9fef53a-b924-4bea-9b8f-c25673aef932>
+    PackagePath: ""
+    objects:
+      - !<own> fb2ff7df-ff6d-45e3-4efa-286385e3231e
+- !<SceneObject/fb2ff7df-ff6d-45e3-4efa-286385e3231e>
+  PrefabRemaps:
+    []
+  Name: InputHandles
+  Enabled: true
+  Layers: 1
+  LocalTransform: !<TransformEntity>
+    Position: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Rotation: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Scale: {x: 1.000000, y: 1.000000, z: 1.000000}
+    HasSegmentScaleCompensation: false
+  Children:
+    []
+  Components:
+    - !<own> 226df85f-fe4c-4c25-77cc-f15ccf93af68

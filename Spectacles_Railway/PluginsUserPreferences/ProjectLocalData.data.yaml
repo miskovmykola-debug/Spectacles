@@ -1,0 +1,14 @@
+data:
+  externalSources:
+    - 0001c961-fe8a-40cf-9b20-5f7d15b283ed: /Applications/Lens Studio_Spectacles.app/Contents/JsPlugins/PresetsRegistry/Assets/Resources/Base.png
+    - 3295f0d6-846b-4e99-86cc-c0d7cf3fd89f: /Applications/Lens Studio_Spectacles.app/Contents/JsPlugins/PresetsRegistry/Assets/Script/Resources/Untitled JavaScript.js
+    - 4d4bb186-48e1-45ea-9901-c5a36da63598: /Applications/Lens Studio_Spectacles.app/Contents/JsPlugins/PresetsRegistry/Assets/Script/Resources/Untitled JavaScript.js
+    - 513ec26f-6ff5-4175-8bd4-cf12b184e39c: /Users/mmiskov/Library/Preferences/Snap/Lens Studio Internal/LibraryComponents/Utilities@1.0.0/Utilities.lspkg
+    - 5d97b412-545f-45ce-b19e-863746510e8f: /Users/mmiskov/Local Projects 2026/FND-11919_Railway_Mainline/studio/Spectacles_Railway/Assets/Arrows.png
+    - a5321352-6655-40d4-96af-ea4f985403aa: /Applications/Lens Studio_Spectacles.app/Contents/JsPlugins/PresetsRegistry/Assets/TypeScript/Resources/Untitled TypeScript.ts
+    - a872c211-84cc-4aa7-9c0e-6ec3151a9f78: /Users/mmiskov/Local Projects 2026/FND-11919_Railway_Mainline/studio/Spectacles_Railway/Assets/Unlit_Simple/.hidden/Unlit_Simple.ss_graph
+    - bcb198c2-2b2b-44d5-932c-ba7c1ff1a0e9: /Applications/Lens Studio_Spectacles.app/Contents/JsPlugins/PresetsRegistry/Assets/PBRMaterial/Resources/pbr.ss_graph
+    - c4900a0d-d03c-4ad5-bba1-cd82b3019cf6: /Applications/Lens Studio_Spectacles.app/Contents/JsPlugins/PresetsRegistry/Assets/Resources/Normal.png
+    - c8600924-9bff-45a7-9341-9cebf0f382b3: /Applications/Lens Studio_Spectacles.app/Contents/JsPlugins/PresetsRegistry/Assets/Resources/MaterialParams.png
+    - c89357f7-4553-4092-a823-6cfd6f0ec46b: /Users/mmiskov/Local Projects 2026/FND-11919_Railway_Mainline/textures/UV.png
+    - d2878ee7-e40e-4d42-8aa9-c00df1d44b52: /Users/mmiskov/Library/Preferences/Snap/Lens Studio Internal/LibraryComponents/SnapDecorators@1.0.0/SnapDecorators.lspkg

@@ -1,0 +1,97 @@
+- !<AssetImportMetadata/c5c2ad21-728f-4aa8-a4f5-438e299e8146>
+  ImportedAssetIds:
+    464dc041652f386e: !<reference> 1e69fa71-c719-4243-9379-0916328f6627
+    66780cf3a4dcb2b8: !<reference> ba69fae2-ae6c-443b-ac16-66e0a788f7f4
+    Meshes/Tile_Plane: !<reference> c99f260c-5807-4cbb-a9bd-1a34b2874d86
+    Scene: !<reference> a5a89587-21bd-49aa-9b8b-fa650df80ed1
+    f97ee9f9ce42e4f2: !<reference> 6a174e73-eb9e-4c37-891c-38c92ba4ad7e
+  ImporterName: FbxImporter
+  PrimaryAsset: !<reference> a5a89587-21bd-49aa-9b8b-fa650df80ed1
+  PackageType: LegacyPackage
+  LegacyPackagePolicy: CanBeUnpackedTransparent
+  ExtraData:
+    {}
+  AssetDataMap:
+    Scene: !<own> eb7f184f-b6e6-4921-a74a-447cdc20483a
+  DependentFiles:
+    []
+  ImporterSettings: !<FbxImporterSettings>
+    UseLegacyImporter: false
+    WithMaterials: true
+    NamingConvention: ByCategorySanitizeV2
+    PersistentIdGenerationAlgorithm: DescriptorBased
+    AnimationCurveOptimization: true
+    CustomAnimationSamplingRate: 30.000000
+    ImportVertexColor: true
+    ImportTangentsAndBinormals: true
+    RegenerateTangentsAndBinormals: false
+    RegenerateNormalsForSkinnedMeshes: true
+    ImportBlendShapeAnimation: true
+    ImportVertexAnimation: true
+    GeneratePivots: true
+    TriangulateNURBS: true
+    UseLegacyFbxLoader: false
+  CompressionSettings: !<ComplexCompressionSettings>
+    Presets:
+      None Compression: !<SingleCompressionSettings>
+        CompressorName: None
+        CompressionSettings: !<own> 00000000-0000-0000-0000-000000000000
+    ExtensionMappings:
+      mesh: None Compression
+    Overrides:
+      {}
+- !<SceneObject/00c5951d-661c-432d-41a0-312c4174f789>
+  PrefabRemaps:
+    []
+  Name: Plane
+  Enabled: true
+  Layers: 1
+  LocalTransform: !<TransformEntity>
+    Position: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Rotation: {x: -90.000000, y: -0.000000, z: 0.000000}
+    Scale: {x: 100.000000, y: 100.000000, z: 100.000000}
+    HasSegmentScaleCompensation: false
+  Children:
+    []
+  Components:
+    - !<own> 3653d3d2-38eb-46af-7fd6-9c7bcb24ad26
+- !<RenderMeshVisual/3653d3d2-38eb-46af-7fd6-9c7bcb24ad26>
+  PrefabRemaps:
+    []
+  Name: component_0
+  Enabled: true
+  RenderOrder: 0
+  StretchMode: Stretch
+  VerticalAlignment: Center
+  HorizontalAlignment: Center
+  MeshShadowMode: None
+  ShadowColor: {x: 1.000000, y: 1.000000, z: 1.000000, w: 1.000000}
+  ShadowDensity: 1.000000
+  Materials:
+    []
+  Mesh: !<reference> 37611fc1-7d09-470c-a0d4-9d9bf5f0418f
+  Skin: !<reference> 00000000-0000-0000-0000-000000000000
+  BlendShapesEnabled: true
+  BlendNormals: false
+  BlendShapes:
+    {}
+- !<SceneObject/ba69fae2-ae6c-443b-53e9-991f5877080b>
+  PrefabRemaps:
+    []
+  Name: Tile
+  Enabled: true
+  Layers: 1
+  LocalTransform: !<TransformEntity>
+    Position: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Rotation: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Scale: {x: 1.000000, y: 1.000000, z: 1.000000}
+    HasSegmentScaleCompensation: false
+  Children:
+    - !<own> 00c5951d-661c-432d-41a0-312c4174f789
+  Components:
+    []
+- !<ObjectPrefabAssetData/eb7f184f-b6e6-4921-a74a-447cdc20483a>
+  Prototype: !<ObjectOwner/972b8215-026d-4156-97d6-c3225a8bce7e>
+    PackagePath: ""
+    objects:
+      - !<own> ba69fae2-ae6c-443b-53e9-991f5877080b

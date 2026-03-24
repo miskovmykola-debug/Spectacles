@@ -1,0 +1,97 @@
+- !<AssetImportMetadata/f2038dc7-91f5-4e44-9cb1-ac4e94bdf85f>
+  ImportedAssetIds:
+    66780cf3a4dcb2b8: !<reference> 0c236950-6fc0-46e3-8fc3-059affeb5c09
+    Meshes/Rails: !<reference> ea552088-2d50-4cfd-b90c-2aa5ba3488f4
+    Scene: !<reference> 861a8db1-545d-476d-a8ae-acbda12e447e
+    adb68855b9dce878: !<reference> 50d33967-7756-4412-ba15-fa4ea028a08c
+    d77e1e4adca0e545: !<reference> 043c0672-34e1-47cf-8349-34a84792419f
+  ImporterName: FbxImporter
+  PrimaryAsset: !<reference> 861a8db1-545d-476d-a8ae-acbda12e447e
+  PackageType: LegacyPackage
+  LegacyPackagePolicy: CanBeUnpackedTransparent
+  ExtraData:
+    {}
+  AssetDataMap:
+    Scene: !<own> d6c06e15-01c4-4906-a014-0966f33f690d
+  DependentFiles:
+    []
+  ImporterSettings: !<FbxImporterSettings>
+    UseLegacyImporter: false
+    WithMaterials: true
+    NamingConvention: ByCategorySanitizeV2
+    PersistentIdGenerationAlgorithm: DescriptorBased
+    AnimationCurveOptimization: true
+    CustomAnimationSamplingRate: 30.000000
+    ImportVertexColor: true
+    ImportTangentsAndBinormals: true
+    RegenerateTangentsAndBinormals: false
+    RegenerateNormalsForSkinnedMeshes: true
+    ImportBlendShapeAnimation: true
+    ImportVertexAnimation: true
+    GeneratePivots: true
+    TriangulateNURBS: true
+    UseLegacyFbxLoader: false
+  CompressionSettings: !<ComplexCompressionSettings>
+    Presets:
+      None Compression: !<SingleCompressionSettings>
+        CompressorName: None
+        CompressionSettings: !<own> 00000000-0000-0000-0000-000000000000
+    ExtensionMappings:
+      mesh: None Compression
+    Overrides:
+      {}
+- !<SceneObject/0c236950-6fc0-46e3-703c-fa650014a3f6>
+  PrefabRemaps:
+    []
+  Name: rails
+  Enabled: true
+  Layers: 1
+  LocalTransform: !<TransformEntity>
+    Position: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Rotation: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Scale: {x: 1.000000, y: 1.000000, z: 1.000000}
+    HasSegmentScaleCompensation: false
+  Children:
+    - !<own> f0fdfe05-7dc3-4dd4-45bc-8da85b21918a
+  Components:
+    []
+- !<RenderMeshVisual/67a1f00a-e275-435b-68cb-c70e9587fa28>
+  PrefabRemaps:
+    []
+  Name: component_0
+  Enabled: true
+  RenderOrder: 0
+  StretchMode: Stretch
+  VerticalAlignment: Center
+  HorizontalAlignment: Center
+  MeshShadowMode: None
+  ShadowColor: {x: 1.000000, y: 1.000000, z: 1.000000, w: 1.000000}
+  ShadowDensity: 1.000000
+  Materials:
+    []
+  Mesh: !<reference> 32cf8a96-1572-4e8a-b836-ca5ee2d968f6
+  Skin: !<reference> 00000000-0000-0000-0000-000000000000
+  BlendShapesEnabled: true
+  BlendNormals: false
+  BlendShapes:
+    {}
+- !<ObjectPrefabAssetData/d6c06e15-01c4-4906-a014-0966f33f690d>
+  Prototype: !<ObjectOwner/5e3565ad-c20b-4b52-a9d2-ede9ed0b382d>
+    PackagePath: ""
+    objects:
+      - !<own> 0c236950-6fc0-46e3-703c-fa650014a3f6
+- !<SceneObject/f0fdfe05-7dc3-4dd4-45bc-8da85b21918a>
+  PrefabRemaps:
+    []
+  Name: Tile_Plane
+  Enabled: true
+  Layers: 1
+  LocalTransform: !<TransformEntity>
+    Position: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Rotation: {x: -90.000000, y: -0.000000, z: 0.000000}
+    Scale: {x: 1.000000, y: 1.000000, z: 1.000000}
+    HasSegmentScaleCompensation: false
+  Children:
+    []
+  Components:
+    - !<own> 67a1f00a-e275-435b-68cb-c70e9587fa28
