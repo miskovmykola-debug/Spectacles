@@ -218,23 +218,43 @@ overview: `
 <h1>Огляд</h1>
 <p class="subtitle">Внутрішня документація проєкту Railway Mainline для Spectacles. Довідник по компонентах, скриптах, темах та робочих нотатках.</p>
 
-<div class="callout callout-tip"><span class="callout-icon">💡</span><p>Цей сайт захищений паролем. Поділіться посиланням та паролем з членами команди.</p></div>
+<div class="callout callout-tip"><span class="callout-icon">💡</span><p>Цей сайт захищений паролем. Поділіться посиланням та паролем з членами команди для спільного доступу.</p></div>
+
+<h2>Про проєкт</h2>
+<p><strong>FND-11919 Railway Mainline</strong> — AR-досвід для Snap Spectacles, який створюється в Lens Studio. Проєкт використовує просторовий інтерфейс з кнопками, контейнерами та інтерактивними 3D елементами, керованими жестами рук (pinch, drag, hover).</p>
+<p>Проєкт знаходиться у папці <code>studio/UI/Spectacles_v01/</code> і побудований на двох основних фреймворках від Snap.</p>
 
 <h2>Архітектура</h2>
-<p>Проєкт використовує два основні фреймворки від Snap:</p>
+<p>Проєкт використовує два фреймворки, які працюють разом:</p>
 <table>
 <tr><th>Фреймворк</th><th>Призначення</th><th>Ключові компоненти</th></tr>
-<tr><td><strong>SpectaclesUIKit</strong></td><td>Візуальні UI компоненти</td><td>RoundButton, CapsuleButton, RectangleButton, теми, градієнти</td></tr>
-<tr><td><strong>SpectaclesInteractionKit (SIK)</strong></td><td>Обробка взаємодії</td><td>PinchButton, ToggleButton, Slider, Interactable, трекінг рук</td></tr>
+<tr><td><strong>SpectaclesUIKit</strong></td><td>Візуальні UI компоненти — зовнішній вигляд кнопок, градієнти, теми</td><td>RoundButton, CapsuleButton, RectangleButton, Frame, Colors, Gradients</td></tr>
+<tr><td><strong>SpectaclesInteractionKit (SIK)</strong></td><td>Обробка введення — жести рук, натискання, перетягування</td><td>PinchButton, ToggleButton, Slider, ScrollView, Container, Interactable</td></tr>
 </table>
+<p>UIKit відповідає за те <strong>як виглядає</strong> кнопка (колір, градієнт, анімація станів), а SIK — за те <strong>як працює</strong> взаємодія (pinch пальцями, hover поглядом, drag рукою).</p>
+
+<h2>Що вже зроблено</h2>
+<ul>
+<li>Налаштовано сцену з UIKit кнопками (SIK Examples)</li>
+<li>Створено скрипт <a href="#" onclick="showPage('scripts');return false">SpawnCubeOnPress</a> — спавн кубика по натисканню кнопки через Callback систему</li>
+<li>Досліджено <a href="#" onclick="showPage('theming');return false">систему кольорів</a> — Colors.ts, градієнти, стилі кнопок, прозорість</li>
+<li>Вивчено <a href="#" onclick="showPage('events');return false">систему подій</a> — onTriggerUp/Down, onButtonPinched, onStateChanged</li>
+</ul>
 
 <h2>Швидкі посилання</h2>
-<ul>
-<li><a href="#" onclick="showPage('scripts');return false">Скрипт SpawnCubeOnPress</a> — створення об'єктів по натисканню кнопки</li>
-<li><a href="#" onclick="showPage('buttons');return false">Довідник кнопок</a> — UIKit vs SIK, події кнопок</li>
-<li><a href="#" onclick="showPage('theming');return false">Кольори та стилі</a> — як налаштувати зовнішній вигляд кнопок</li>
-<li><a href="#" onclick="showPage('events');return false">Довідник подій</a> — всі доступні події</li>
-</ul>
+<table>
+<tr><th>Розділ</th><th>Опис</th></tr>
+<tr><td><a href="#" onclick="showPage('spectacles');return false">Що таке Spectacles</a></td><td>Огляд пристрою, його можливостей та архітектури розробки</td></tr>
+<tr><td><a href="#" onclick="showPage('start');return false">Початок розробки</a></td><td>Як створити новий проєкт, налаштувати Lens Studio, додати пакети</td></tr>
+<tr><td><a href="#" onclick="showPage('buttons');return false">Кнопки</a></td><td>Повний довідник UIKit та SIK кнопок, порівняння подій</td></tr>
+<tr><td><a href="#" onclick="showPage('scripts');return false">SpawnCubeOnPress</a></td><td>Готовий скрипт + покрокова інструкція підключення до кнопки</td></tr>
+<tr><td><a href="#" onclick="showPage('theming');return false">Кольори та стилі</a></td><td>HSVtoRGB формат, 5 стилів кнопок, прозорість, градієнти</td></tr>
+<tr><td><a href="#" onclick="showPage('events');return false">Довідник подій</a></td><td>Всі події UIKit, SIK Interactable та UI компонентів</td></tr>
+<tr><td><a href="#" onclick="showPage('sik');return false">Interaction Kit</a></td><td>Система взаємодії: руки, курсори, Interactable, Container</td></tr>
+<tr><td><a href="#" onclick="showPage('uikit');return false">UI Kit</a></td><td>Візуальні компоненти: кнопки, теми SnapOS 2.0, callback система</td></tr>
+<tr><td><a href="#" onclick="showPage('features');return false">Можливості Spectacles</a></td><td>Hand Tracking, Spatial Anchors, SnapML, Connected Lenses</td></tr>
+<tr><td><a href="#" onclick="showPage('links');return false">Корисні посилання</a></td><td>Офіційна документація Snap, GitHub зразки, спільнота</td></tr>
+</table>
 
 <div class="page-footer">
 <span></span>
@@ -333,7 +353,25 @@ start: `
 setup: `
 <div class="breadcrumb">SpectaclesUIKit <span>›</span> Початок роботи</div>
 <h1>Структура проєкту</h1>
-<p class="subtitle">Розташування файлів та папок у проєкті Lens Studio.</p>
+<p class="subtitle">Розташування файлів та папок у проєкті Lens Studio та що за що відповідає.</p>
+
+<h2>Розташування проєкту</h2>
+<p>Проєкт знаходиться у Git репозиторії <code>studio/</code>, шлях до робочих файлів:</p>
+<div class="code-block"><div class="code-header"><span class="code-tab active">Шлях</span></div>
+<div class="code-body"><pre><code>studio/UI/Spectacles_v01/Assets/</code></pre></div></div>
+
+<h2>Ключові файли та папки</h2>
+<table>
+<tr><th>Файл / Папка</th><th>Що робить</th></tr>
+<tr><td><code>SpawnCubeOnPress.ts</code></td><td>Користувацький скрипт — спавнить кубик по натисканню кнопки</td></tr>
+<tr><td><code>SpectaclesUIKit.lspkg/</code></td><td>Пакет візуальних UI компонентів (кнопки, теми, градієнти)</td></tr>
+<tr><td><code>SpectaclesInteractionKit.lspkg/</code></td><td>Пакет взаємодії (руки, pinch, drag, Interactable)</td></tr>
+<tr><td><code>Colors.ts</code></td><td>Визначення кольорів для тем кнопок (HSVtoRGB)</td></tr>
+<tr><td><code>Gradients/</code></td><td>Градієнти для фону та бордерів кнопок у різних станах</td></tr>
+<tr><td><code>Styles/</code></td><td>Параметри стилів: RoundButton, CapsuleButton, RectangleButton</td></tr>
+<tr><td><code>BaseButton.ts</code></td><td>Базовий абстрактний клас для всіх UIKit кнопок</td></tr>
+<tr><td><code>Element.ts</code></td><td>Базовий клас для всіх інтерактивних елементів (події, стани)</td></tr>
+</table>
 
 <h2>Дерево файлів</h2>
 <div class="code-block"><div class="code-header"><span class="code-tab active">Структура проєкту</span></div>
@@ -367,10 +405,27 @@ setup: `
 buttons: `
 <div class="breadcrumb">SpectaclesUIKit <span>›</span> Компоненти</div>
 <h1>Кнопки</h1>
-<p class="subtitle">У проєкті є дві системи кнопок: UIKit (візуальні) та SIK (взаємодія).</p>
+<p class="subtitle">У проєкті є дві системи кнопок: UIKit (візуальні) та SIK (взаємодія). Вони можуть працювати разом або окремо.</p>
+
+<h2>Коротко: яку кнопку обрати</h2>
+<table>
+<tr><th>Задача</th><th>Використовуйте</th></tr>
+<tr><td>Красива стилізована кнопка з темою SnapOS</td><td><strong>UIKit</strong> (RoundButton, CapsuleButton, RectangleButton)</td></tr>
+<tr><td>Проста кнопка "натиснув — спрацювало"</td><td><strong>SIK</strong> PinchButton</td></tr>
+<tr><td>Перемикач увімк/вимк</td><td><strong>SIK</strong> ToggleButton або <strong>UIKit</strong> з toggle режимом</td></tr>
+<tr><td>Регулятор значення (гучність, масштаб)</td><td><strong>SIK</strong> Slider</td></tr>
+<tr><td>Кнопка без коду (через Inspector)</td><td><strong>UIKit</strong> з Callback системою</td></tr>
+</table>
+
+<h2>Два способи підключення дій до кнопки</h2>
+<h3>Спосіб 1: Callback (без коду)</h3>
+<p>На UIKit кнопці увімкнути <strong>Add Callbacks</strong> в Inspector → вказати скрипт та функцію. Не потрібні імпорти, не потрібен код підписки.</p>
+
+<h3>Спосіб 2: Код (підписка на подію)</h3>
+<p>Отримати компонент кнопки через <code>getComponent()</code> та підписатись на подію через <code>.add()</code>. Дає більше контролю, але потребує імпорт типу.</p>
 
 <h2>UIKit Кнопки</h2>
-<p>Візуальні компоненти кнопок з градієнтними темами. Всі три типи мають однакові параметри:</p>
+<p>Візуальні компоненти кнопок з градієнтними темами. Всі три типи мають однакові параметри та 5 візуальних стилів (<a href="#" onclick="showPage('theming');return false">детальніше про стилі</a>):</p>
 <table>
 <tr><th>Компонент</th><th>Форма</th><th>Файл</th></tr>
 <tr><td><code>RoundButton</code></td><td>Круг</td><td>Button/RoundButton.ts</td></tr>
@@ -466,7 +521,16 @@ export class SpawnCubeOnPress extends BaseScriptComponent {
 theming: `
 <div class="breadcrumb">SpectaclesUIKit <span>›</span> Оформлення</div>
 <h1>Кольори та стилі</h1>
-<p class="subtitle">Як визначаються кольори, градієнти та прозорість кнопок у файлі <code>Colors.ts</code>.</p>
+<p class="subtitle">Як визначаються кольори, градієнти та прозорість кнопок у файлі <code>Colors.ts</code>. Це головний файл, який контролює вигляд усіх UIKit кнопок.</p>
+
+<h2>Як влаштована система тем</h2>
+<p>Візуальна система UIKit складається з трьох рівнів:</p>
+<ol>
+<li><strong>Colors.ts</strong> — базові кольори як константи (HSVtoRGB)</li>
+<li><strong>Gradients/</strong> — градієнти, що використовують кольори для фону та бордерів у різних станах (default, hover, triggered)</li>
+<li><strong>Styles/</strong> — параметри кнопок, що посилаються на градієнти + визначають розмір бордеру, масштаб, позицію</li>
+</ol>
+<p>Щоб змінити вигляд кнопки — найпростіше змінити значення у <code>Colors.ts</code>. Зміна одного кольору автоматично оновить усі градієнти та стилі, які його використовують.</p>
 
 <h2>Формат кольорів</h2>
 <p>Всі кольори використовують <code>HSVtoRGB(Hue, Saturation, Value, Alpha)</code>:</p>
@@ -523,7 +587,32 @@ toggle: `
 <p class="subtitle">Кнопка-перемикач, яка запам'ятовує свій стан увімк/вимк. Кожне натискання змінює стан на протилежний.</p>
 
 <h2>Як це працює</h2>
-<p>На відміну від <strong>PinchButton</strong> (одноразова дія), ToggleButton зберігає внутрішній стан. Як вимикач світла: натиснув — увімкнулось, натиснув ще раз — вимкнулось. Поточний стан передається через подію <code>onStateChanged</code> як <code>boolean</code>.</p>
+<p>На відміну від <strong>PinchButton</strong> (одноразова дія), ToggleButton зберігає внутрішній стан. Як вимикач світла: натиснув — увімкнулось, натиснув ще раз — вимкнулось. Поточний стан передається через подію <code>onStateChanged</code> як <code>boolean</code> (true = увімкнено, false = вимкнено).</p>
+
+<h2>Порівняння з PinchButton</h2>
+<table>
+<tr><th></th><th>PinchButton</th><th>ToggleButton</th></tr>
+<tr><td><strong>Тип</strong></td><td>Одноразова дія</td><td>Перемикач зі станом</td></tr>
+<tr><td><strong>Аналогія</strong></td><td>Кнопка дзвінка — натиснув і забув</td><td>Вимикач світла — увімк/вимк</td></tr>
+<tr><td><strong>Подія</strong></td><td><code>onButtonPinched</code> (void)</td><td><code>onStateChanged</code> (boolean)</td></tr>
+<tr><td><strong>Стан</strong></td><td>Не зберігає</td><td>Зберігає true/false</td></tr>
+<tr><td><strong>Використання</strong></td><td>Відкрити меню, запустити анімацію</td><td>Увімкнути звук, показати/сховати об'єкт</td></tr>
+</table>
+
+<h2>Де використовувати</h2>
+<ul>
+<li><strong>Увімкнути/вимкнути звук</strong> — mute/unmute</li>
+<li><strong>Показати/сховати UI елемент</strong> — toggle visibility</li>
+<li><strong>Перемикання режимів</strong> — день/ніч, редагування/перегляд</li>
+<li><strong>Налаштування</strong> — будь-які on/off опції</li>
+</ul>
+
+<h2>Налаштування в Lens Studio</h2>
+<ol>
+<li>Додайте <code>ToggleButton</code> компонент на SceneObject (потрібен також <code>Interactable</code> та <code>Collider</code>)</li>
+<li>Або використайте готовий prefab з SpectaclesInteractionKit</li>
+<li>Підпишіться на подію <code>onStateChanged</code> у скрипті</li>
+</ol>
 
 <h3>Приклад коду</h3>
 <div class="code-block"><div class="code-header"><span class="code-tab active">TypeScript</span><button class="code-copy" onclick="copyCode(this)">Копіювати</button></div>
@@ -555,7 +644,41 @@ slider: `
 <p class="subtitle">Повзунок, який передає значення від 0 до 1 при перетягуванні.</p>
 
 <h2>Як це працює</h2>
-<p>Slider дозволяє користувачу встановити значення, перетягуючи повзунок по доріжці. Подія <code>onValueUpdate</code> спрацьовує безперервно при русі. Корисно для гучності, яскравості або будь-якого плавного параметра.</p>
+<p>Slider дозволяє користувачу встановити значення, перетягуючи повзунок по доріжці. Подія <code>onValueUpdate</code> спрацьовує <strong>безперервно</strong> при кожному русі — не один раз, а десятки разів на секунду поки палець рухається.</p>
+
+<h2>Параметри</h2>
+<table>
+<tr><th>Параметр</th><th>Тип</th><th>Опис</th></tr>
+<tr><td><strong>value</strong></td><td>number</td><td>Поточне значення повзунка (від 0.0 до 1.0)</td></tr>
+<tr><td><strong>min / max</strong></td><td>number</td><td>Мінімальне та максимальне значення (за замовчуванням 0 і 1)</td></tr>
+<tr><td><strong>step</strong></td><td>number</td><td>Крок зміни (0 = плавний без кроків)</td></tr>
+</table>
+
+<h2>Де використовувати</h2>
+<ul>
+<li><strong>Гучність</strong> — плавне регулювання звуку</li>
+<li><strong>Яскравість / прозорість</strong> — зміна візуальних параметрів у реальному часі</li>
+<li><strong>Масштаб об'єкта</strong> — тягнеш повзунок — об'єкт збільшується/зменшується</li>
+<li><strong>Швидкість анімації</strong> — контроль швидкості відтворення</li>
+<li><strong>Колір</strong> — наприклад, Hue слайдер для вибору кольору</li>
+</ul>
+
+<h2>Різниця з ScrollBar</h2>
+<table>
+<tr><th></th><th>Slider</th><th>ScrollBar</th></tr>
+<tr><td><strong>Призначення</strong></td><td>Вибір значення (input)</td><td>Індикатор прокрутки (navigation)</td></tr>
+<tr><td><strong>Взаємодія</strong></td><td>Тягнеш повзунок</td><td>Тягнеш або клацаєш</td></tr>
+<tr><td><strong>Значення</strong></td><td>Повертає число (0–1)</td><td>Прив'язаний до ScrollView</td></tr>
+<tr><td><strong>Подія</strong></td><td><code>onValueUpdate</code></td><td>Автоматично через ScrollView</td></tr>
+</table>
+
+<h2>Налаштування в Lens Studio</h2>
+<ol>
+<li>Додайте <code>Slider</code> компонент на SceneObject (потрібен також <code>Interactable</code> та <code>Collider</code>)</li>
+<li>Або використайте готовий prefab з SpectaclesInteractionKit</li>
+<li>Налаштуйте початкове значення, мін/макс, крок в Inspector</li>
+<li>Підпишіться на <code>onValueUpdate</code> у скрипті для отримання значення</li>
+</ol>
 
 <h3>Приклад коду</h3>
 <div class="code-block"><div class="code-header"><span class="code-tab active">TypeScript</span><button class="code-copy" onclick="copyCode(this)">Копіювати</button></div>
@@ -584,9 +707,18 @@ export class SliderExample extends BaseScriptComponent {
 events: `
 <div class="breadcrumb">SpectaclesUIKit <span>›</span> Ресурси</div>
 <h1>Довідник подій</h1>
-<p class="subtitle">Повний список подій, доступних на інтерактивних компонентах.</p>
+<p class="subtitle">Повний список подій, доступних на інтерактивних компонентах. Подія — це сигнал, який компонент надсилає коли щось відбувається.</p>
+
+<h2>Як працюють події</h2>
+<p>Кожна подія має <strong>PublicApi</strong> інтерфейс з двома основними методами:</p>
+<ul>
+<li><code>.add(callback)</code> — підписатись на подію. Повертає функцію для відписки</li>
+<li><code>.remove(callback)</code> — відписатись від події вручну</li>
+</ul>
+<p><strong>Payload</strong> — це дані, які передаються у callback. Наприклад, <code>boolean</code> для toggle стану або <code>number</code> для значення слайдера. <code>void</code> означає що дані не передаються — просто "подія відбулась".</p>
 
 <h2>Події UIKit кнопок (Element)</h2>
+<p>Ці події доступні на <strong>всіх</strong> UIKit компонентах (RoundButton, CapsuleButton, RectangleButton та інших), бо вони наслідуються від класу <code>Element</code>:</p>
 <table>
 <tr><th>Подія</th><th>Payload</th><th>Опис</th></tr>
 <tr><td><code>onTriggerDown</code></td><td>void</td><td>Початок взаємодії (pinch починається)</td></tr>
@@ -600,6 +732,7 @@ events: `
 </table>
 
 <h2>Події SIK Interactable</h2>
+<p>Низькорівневі події від <code>Interactable</code> компонента. Дають більше інформації через <code>InteractorEvent</code> — можна дізнатись яка рука, де саме торкнулись, тип інтерактора тощо:</p>
 <table>
 <tr><th>Подія</th><th>Payload</th><th>Опис</th></tr>
 <tr><td><code>onTriggerStart</code></td><td>InteractorEvent</td><td>Низькорівневий початок взаємодії</td></tr>
@@ -611,6 +744,7 @@ events: `
 </table>
 
 <h2>Події SIK UI компонентів</h2>
+<p>Спеціалізовані події конкретних UI компонентів — простіші за Interactable, підходять для більшості задач:</p>
 <table>
 <tr><th>Компонент</th><th>Подія</th><th>Payload</th></tr>
 <tr><td>PinchButton</td><td><code>onButtonPinched</code></td><td>void</td></tr>
