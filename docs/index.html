@@ -3,242 +3,326 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SpectaclesUIKit — Project Notes</title>
+<title>SpectaclesUIKit — Документація</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 :root{
-  --bg:#0d1117;--surface:#161b22;--surface2:#21262d;--border:#30363d;
-  --text:#e6edf3;--text2:#8b949e;--accent:#58a6ff;--accent2:#1f6feb;
-  --green:#3fb950;--red:#f85149;--yellow:#d29922;--radius:12px;
+  --bg:#fff;--bg2:#f6f8fa;--bg3:#f0f2f5;--surface:#fff;
+  --border:#e1e4e8;--border2:#d0d7de;
+  --text:#1f2328;--text2:#656d76;--text3:#8b949e;
+  --accent:#FFFC00;--accent-dark:#e6e300;--accent-bg:rgba(255,252,0,.08);
+  --snap-yellow:#FFFC00;--snap-black:#1c1c1c;
+  --code-bg:#f6f8fa;--code-border:#e1e4e8;
+  --green:#1a7f37;--blue:#0969da;--purple:#8250df;--orange:#bc4c00;
+  --red:#cf222e;
+  --sidebar-w:280px;--topbar-h:56px;--radius:8px;
 }
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;
-  background:var(--bg);color:var(--text);min-height:100vh;line-height:1.6}
-button{cursor:pointer;font-family:inherit;font-size:inherit}
-input,textarea,select{font-family:inherit;font-size:inherit}
-
-/* PASSWORD GATE */
-#gate{display:flex;align-items:center;justify-content:center;min-height:100vh;
-  background:linear-gradient(135deg,#0d1117 0%,#161b22 50%,#0d1117 100%)}
-.gate-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;
-  padding:48px;max-width:400px;width:90%;text-align:center;
-  box-shadow:0 16px 48px rgba(0,0,0,.4)}
-.gate-card h1{font-size:1.4rem;margin-bottom:8px;font-weight:600}
-.gate-card p{color:var(--text2);margin-bottom:24px;font-size:.9rem}
-.gate-card .logo{font-size:2.4rem;margin-bottom:16px;display:block}
-.gate-input{width:100%;padding:12px 16px;background:var(--bg);border:1px solid var(--border);
-  border-radius:8px;color:var(--text);font-size:1rem;outline:none;transition:.2s}
-.gate-input:focus{border-color:var(--accent)}
-.gate-btn{width:100%;padding:12px;background:var(--accent2);color:#fff;border:none;
-  border-radius:8px;font-size:1rem;font-weight:600;margin-top:12px;transition:.2s}
-.gate-btn:hover{background:var(--accent)}
-.gate-error{color:var(--red);font-size:.85rem;margin-top:8px;display:none}
-
-/* APP LAYOUT */
-#app{display:none;height:100vh;overflow:hidden}
-.topbar{display:flex;align-items:center;gap:16px;padding:12px 24px;
-  background:var(--surface);border-bottom:1px solid var(--border);flex-shrink:0}
-.topbar h1{font-size:1.1rem;font-weight:600;flex:1}
-.topbar-actions{display:flex;gap:8px}
-.btn{padding:8px 16px;border-radius:8px;border:1px solid var(--border);
-  background:var(--surface2);color:var(--text);font-size:.85rem;transition:.15s}
-.btn:hover{border-color:var(--accent);color:var(--accent)}
-.btn.primary{background:var(--accent2);border-color:var(--accent2);color:#fff}
-.btn.primary:hover{background:var(--accent)}
-.btn.danger{color:var(--red);border-color:transparent}
-.btn.danger:hover{background:rgba(248,81,73,.1);border-color:var(--red)}
-.btn.small{padding:4px 10px;font-size:.8rem}
-
-.main{display:flex;flex:1;overflow:hidden}
-
-/* SIDEBAR */
-.sidebar{width:280px;background:var(--surface);border-right:1px solid var(--border);
-  display:flex;flex-direction:column;flex-shrink:0}
-.sidebar-header{padding:16px;border-bottom:1px solid var(--border);display:flex;gap:8px}
-.sidebar-search{flex:1;padding:8px 12px;background:var(--bg);border:1px solid var(--border);
-  border-radius:8px;color:var(--text);outline:none;font-size:.85rem}
-.sidebar-search:focus{border-color:var(--accent)}
-.sidebar-list{flex:1;overflow-y:auto;padding:8px}
-.sidebar-list::-webkit-scrollbar{width:6px}
-.sidebar-list::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
-.note-item{padding:12px;border-radius:8px;cursor:pointer;transition:.15s;margin-bottom:2px}
-.note-item:hover{background:var(--surface2)}
-.note-item.active{background:var(--surface2);border-left:3px solid var(--accent)}
-.note-item h3{font-size:.9rem;font-weight:600;margin-bottom:2px;
-  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.note-item .meta{font-size:.75rem;color:var(--text2);display:flex;gap:8px;align-items:center}
-.note-item .category-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
-
-/* EDITOR */
-.editor-area{flex:1;display:flex;flex-direction:column;overflow:hidden}
-.editor-toolbar{padding:12px 24px;border-bottom:1px solid var(--border);
-  display:flex;align-items:center;gap:12px;flex-wrap:wrap}
-.editor-title{flex:1;padding:8px 0;background:transparent;border:none;
-  color:var(--text);font-size:1.2rem;font-weight:600;outline:none;min-width:200px}
-.editor-title::placeholder{color:var(--text2)}
-.category-select{padding:6px 12px;background:var(--bg);border:1px solid var(--border);
-  border-radius:6px;color:var(--text);outline:none}
-.editor-content{flex:1;padding:24px;overflow-y:auto}
-.editor-content textarea{width:100%;height:100%;background:transparent;border:none;
-  color:var(--text);font-size:.95rem;line-height:1.8;outline:none;resize:none}
-.editor-content textarea::placeholder{color:var(--text2)}
-
-/* EMPTY STATE */
-.empty-state{flex:1;display:flex;align-items:center;justify-content:center;
-  flex-direction:column;color:var(--text2)}
-.empty-state .icon{font-size:3rem;margin-bottom:16px;opacity:.5}
-.empty-state p{font-size:.95rem}
-
-/* MODAL */
-.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;
-  align-items:center;justify-content:center;z-index:100}
-.modal-overlay.show{display:flex}
-.modal{background:var(--surface);border:1px solid var(--border);border-radius:16px;
-  padding:32px;max-width:480px;width:90%;box-shadow:0 16px 48px rgba(0,0,0,.5)}
-.modal h2{font-size:1.1rem;margin-bottom:16px}
-.modal textarea{width:100%;height:200px;background:var(--bg);border:1px solid var(--border);
-  border-radius:8px;color:var(--text);padding:12px;outline:none;resize:vertical;font-size:.85rem}
-.modal .btn-row{display:flex;gap:8px;margin-top:16px;justify-content:flex-end}
-
-/* CATEGORIES */
-.cat-general{background:#58a6ff}.cat-ui{background:#d29922}
-.cat-scripting{background:#3fb950}.cat-bug{background:#f85149}
-.cat-idea{background:#bc8cff}.cat-asset{background:#f78166}
-
-/* RESPONSIVE */
-@media(max-width:768px){
-  .sidebar{width:100%;position:absolute;z-index:50;height:calc(100vh - 52px);
-    transform:translateX(-100%);transition:.3s}
-  .sidebar.open{transform:translateX(0)}
-  .topbar .menu-toggle{display:block}
+body{font-family:'Inter',system-ui,-apple-system,sans-serif;color:var(--text);
+  line-height:1.7;font-size:15px;background:var(--bg)}
+a{color:var(--blue);text-decoration:none}
+a:hover{text-decoration:underline}
+button{cursor:pointer;font-family:inherit}
+code{font-family:'JetBrains Mono',monospace;font-size:0.88em}
+#gate{display:flex;align-items:center;justify-content:center;min-height:100vh;background:var(--snap-black)}
+.gate-card{background:#fff;border-radius:16px;padding:48px 40px;max-width:380px;width:90%;text-align:center;box-shadow:0 24px 80px rgba(0,0,0,.3)}
+.gate-logo{width:64px;height:64px;background:var(--snap-yellow);border-radius:16px;display:inline-flex;align-items:center;justify-content:center;font-size:1.8rem;margin-bottom:20px}
+.gate-card h1{font-size:1.3rem;font-weight:700;margin-bottom:4px;color:var(--snap-black)}
+.gate-card p{color:var(--text2);font-size:.9rem;margin-bottom:24px}
+.gate-input{width:100%;padding:12px 16px;border:2px solid var(--border);border-radius:10px;font-size:1rem;outline:none;transition:.2s;text-align:center;letter-spacing:2px}
+.gate-input:focus{border-color:var(--snap-black)}
+.gate-btn{width:100%;padding:12px;background:var(--snap-black);color:#fff;border:none;border-radius:10px;font-size:.95rem;font-weight:600;margin-top:12px;transition:.15s}
+.gate-btn:hover{background:#333}
+.gate-error{color:var(--red);font-size:.85rem;margin-top:10px;display:none}
+#app{display:none}
+.topbar{position:fixed;top:0;left:0;right:0;height:var(--topbar-h);background:var(--snap-black);display:flex;align-items:center;padding:0 24px;z-index:100;gap:16px}
+.topbar-logo{display:flex;align-items:center;gap:10px;color:#fff;font-weight:700;font-size:1rem}
+.topbar-logo .logo-icon{width:32px;height:32px;background:var(--snap-yellow);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.95rem}
+.topbar-nav{display:flex;gap:4px;margin-left:32px}
+.topbar-nav a{color:rgba(255,255,255,.7);padding:8px 14px;border-radius:6px;font-size:.85rem;font-weight:500;transition:.15s;text-decoration:none}
+.topbar-nav a:hover,.topbar-nav a.active{color:#fff;background:rgba(255,255,255,.1)}
+.topbar-right{margin-left:auto;display:flex;align-items:center;gap:12px}
+.topbar-badge{background:var(--snap-yellow);color:var(--snap-black);padding:3px 10px;border-radius:20px;font-size:.75rem;font-weight:600}
+.topbar-logout{color:rgba(255,255,255,.5);background:none;border:none;font-size:.8rem;padding:6px 12px;border-radius:6px;transition:.15s}
+.topbar-logout:hover{color:#fff;background:rgba(255,255,255,.1)}
+.menu-toggle{display:none;color:#fff;background:none;border:none;font-size:1.3rem;padding:4px 8px}
+.layout{display:flex;margin-top:var(--topbar-h)}
+.sidebar{width:var(--sidebar-w);height:calc(100vh - var(--topbar-h));position:fixed;top:var(--topbar-h);left:0;overflow-y:auto;background:var(--bg2);border-right:1px solid var(--border);padding:20px 0;flex-shrink:0;z-index:50}
+.sidebar::-webkit-scrollbar{width:5px}
+.sidebar::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
+.sidebar-section{margin-bottom:8px}
+.sidebar-title{font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--text3);padding:8px 20px 4px;user-select:none}
+.sidebar-link{display:flex;align-items:center;gap:8px;padding:7px 20px 7px 28px;font-size:.87rem;color:var(--text2);cursor:pointer;transition:.1s;border-left:3px solid transparent;text-decoration:none;line-height:1.4}
+.sidebar-link:hover{color:var(--text);background:var(--bg3);text-decoration:none}
+.sidebar-link.active{color:var(--text);font-weight:600;border-left-color:var(--snap-yellow);background:var(--accent-bg)}
+.sidebar-link .dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.dot-green{background:var(--green)}.dot-blue{background:var(--blue)}.dot-purple{background:var(--purple)}.dot-orange{background:var(--orange)}.dot-red{background:var(--red)}
+.content{margin-left:var(--sidebar-w);flex:1;min-height:calc(100vh - var(--topbar-h));padding:40px 48px 80px}
+.content-inner{max-width:820px}
+.breadcrumb{font-size:.82rem;color:var(--text3);margin-bottom:8px;display:flex;gap:6px;align-items:center}
+.breadcrumb span{color:var(--text2)}
+h1{font-size:2rem;font-weight:700;margin-bottom:8px;letter-spacing:-.02em;line-height:1.2}
+h2{font-size:1.4rem;font-weight:700;margin:40px 0 16px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+h3{font-size:1.1rem;font-weight:600;margin:28px 0 12px}
+.subtitle{font-size:1.05rem;color:var(--text2);margin-bottom:32px;line-height:1.6}
+p{margin-bottom:16px}
+ul,ol{margin-bottom:16px;padding-left:24px}
+li{margin-bottom:6px}
+strong{font-weight:600}
+.code-block{background:var(--code-bg);border:1px solid var(--code-border);border-radius:var(--radius);margin:16px 0 24px;overflow:hidden}
+.code-header{display:flex;align-items:center;padding:8px 16px;background:var(--bg3);border-bottom:1px solid var(--code-border);gap:8px}
+.code-tab{padding:4px 12px;font-size:.78rem;font-weight:500;border-radius:5px;border:none;background:transparent;color:var(--text2);cursor:pointer}
+.code-tab.active{background:#fff;color:var(--text);box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.code-copy{margin-left:auto;padding:4px 10px;font-size:.75rem;border:1px solid var(--border);border-radius:5px;background:#fff;color:var(--text2);cursor:pointer;transition:.15s}
+.code-copy:hover{border-color:var(--text2);color:var(--text)}
+.code-body{padding:16px;overflow-x:auto;font-size:.85rem;line-height:1.7}
+.code-body pre{margin:0;white-space:pre}
+.code-body code{color:var(--text)}
+:not(pre)>code{background:var(--code-bg);border:1px solid var(--code-border);padding:2px 6px;border-radius:4px;font-size:.85em}
+.callout{padding:16px 20px;border-radius:var(--radius);margin:20px 0;border-left:4px solid;display:flex;gap:12px}
+.callout-info{background:#ddf4ff;border-color:var(--blue)}
+.callout-warn{background:#fff8c5;border-color:var(--orange)}
+.callout-tip{background:#dafbe1;border-color:var(--green)}
+.callout-icon{font-size:1.1rem;flex-shrink:0;margin-top:1px}
+.callout p{margin:0;font-size:.9rem}
+table{width:100%;border-collapse:collapse;margin:16px 0 24px;font-size:.9rem}
+th{text-align:left;padding:10px 16px;background:var(--bg2);border:1px solid var(--border);font-weight:600;font-size:.82rem;text-transform:uppercase;letter-spacing:.04em;color:var(--text2)}
+td{padding:10px 16px;border:1px solid var(--border)}
+tr:hover td{background:var(--bg2)}
+.steps{counter-reset:step;list-style:none;padding-left:0;margin:20px 0}
+.steps li{counter-increment:step;position:relative;padding:12px 0 12px 48px;border-left:2px solid var(--border);margin-left:15px}
+.steps li:last-child{border-left-color:transparent}
+.steps li::before{content:counter(step);position:absolute;left:-16px;top:10px;width:30px;height:30px;background:var(--snap-yellow);color:var(--snap-black);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem}
+.page-footer{margin-top:48px;padding-top:24px;border-top:1px solid var(--border);display:flex;justify-content:space-between;font-size:.85rem;color:var(--text3)}
+.page-footer a{color:var(--text2);text-decoration:none;display:flex;align-items:center;gap:4px}
+.page-footer a:hover{color:var(--blue)}
+@media(max-width:900px){
+  .sidebar{transform:translateX(-100%);transition:.3s;background:#fff}
+  .sidebar.open{transform:translateX(0);box-shadow:4px 0 20px rgba(0,0,0,.1)}
+  .content{margin-left:0;padding:24px 20px 60px}
+  .menu-toggle{display:block}
+  .topbar-nav{display:none}
 }
-@media(min-width:769px){.topbar .menu-toggle{display:none}}
 </style>
 </head>
 <body>
 
-<!-- PASSWORD GATE -->
 <div id="gate">
   <div class="gate-card">
-    <span class="logo">👓</span>
+    <div class="gate-logo">👓</div>
     <h1>SpectaclesUIKit</h1>
-    <p>Project notes — enter password to continue</p>
-    <input type="password" class="gate-input" id="pwInput" placeholder="Password" autofocus>
-    <button class="gate-btn" id="pwBtn">Enter</button>
-    <div class="gate-error" id="pwError">Wrong password</div>
+    <p>Внутрішня документація проєкту</p>
+    <input type="password" class="gate-input" id="pwInput" placeholder="••••••" autofocus>
+    <button class="gate-btn" id="pwBtn">Увійти</button>
+    <div class="gate-error" id="pwError">Невірний пароль</div>
   </div>
 </div>
 
-<!-- MAIN APP -->
 <div id="app">
   <div class="topbar">
-    <button class="btn menu-toggle" onclick="toggleSidebar()">☰</button>
-    <h1>👓 SpectaclesUIKit Notes</h1>
-    <div class="topbar-actions">
-      <button class="btn" onclick="exportNotes()" title="Export">↓ Export</button>
-      <button class="btn" onclick="showImport()" title="Import">↑ Import</button>
-      <button class="btn danger" onclick="logout()">Logout</button>
+    <button class="menu-toggle" onclick="document.querySelector('.sidebar').classList.toggle('open')">☰</button>
+    <div class="topbar-logo">
+      <div class="logo-icon">👓</div>
+      <span>SpectaclesUIKit</span>
+    </div>
+    <nav class="topbar-nav">
+      <a href="#" class="active" onclick="showPage('overview');return false">Документація</a>
+      <a href="#" onclick="showPage('scripts');return false">Скрипти</a>
+      <a href="#" onclick="showPage('theming');return false">Теми</a>
+      <a href="#" onclick="showPage('notes');return false">Нотатки</a>
+    </nav>
+    <div class="topbar-right">
+      <span class="topbar-badge">v0.1</span>
+      <button class="topbar-logout" onclick="logout()">Вийти</button>
     </div>
   </div>
 
-  <div class="main">
-    <div class="sidebar" id="sidebar">
-      <div class="sidebar-header">
-        <input type="text" class="sidebar-search" id="searchInput" placeholder="Search notes...">
-        <button class="btn primary small" onclick="createNote()">+</button>
+  <div class="layout">
+    <nav class="sidebar" id="sidebar">
+      <div class="sidebar-section">
+        <div class="sidebar-title">Початок роботи</div>
+        <a class="sidebar-link active" onclick="showPage('overview')">Огляд</a>
+        <a class="sidebar-link" onclick="showPage('setup')">Структура проєкту</a>
       </div>
-      <div class="sidebar-list" id="notesList"></div>
-    </div>
-
-    <div class="editor-area" id="editorArea">
-      <div class="empty-state" id="emptyState">
-        <div class="icon">📝</div>
-        <p>Select a note or create a new one</p>
+      <div class="sidebar-section">
+        <div class="sidebar-title">Компоненти</div>
+        <a class="sidebar-link" onclick="showPage('buttons')"><span class="dot dot-blue"></span>Кнопки</a>
+        <a class="sidebar-link" onclick="showPage('toggle')"><span class="dot dot-purple"></span>ToggleButton</a>
+        <a class="sidebar-link" onclick="showPage('slider')"><span class="dot dot-orange"></span>Slider</a>
       </div>
-
-      <div id="editorWrap" style="display:none;flex:1;display:none;flex-direction:column">
-        <div class="editor-toolbar">
-          <input type="text" class="editor-title" id="noteTitle" placeholder="Note title...">
-          <select class="category-select" id="noteCategory">
-            <option value="general">General</option>
-            <option value="ui">UI / Design</option>
-            <option value="scripting">Scripting</option>
-            <option value="bug">Bug</option>
-            <option value="idea">Idea</option>
-            <option value="asset">Asset</option>
-          </select>
-          <button class="btn danger small" onclick="deleteNote()">Delete</button>
-        </div>
-        <div class="editor-content">
-          <textarea id="noteBody" placeholder="Write your notes here..."></textarea>
-        </div>
+      <div class="sidebar-section">
+        <div class="sidebar-title">Скрипти</div>
+        <a class="sidebar-link" onclick="showPage('scripts')"><span class="dot dot-green"></span>SpawnCubeOnPress</a>
       </div>
-    </div>
-  </div>
-</div>
+      <div class="sidebar-section">
+        <div class="sidebar-title">Оформлення</div>
+        <a class="sidebar-link" onclick="showPage('theming')"><span class="dot dot-red"></span>Кольори та стилі</a>
+      </div>
+      <div class="sidebar-section">
+        <div class="sidebar-title">Ресурси</div>
+        <a class="sidebar-link" onclick="showPage('events')">Довідник подій</a>
+        <a class="sidebar-link" onclick="showPage('notes')">Нотатки проєкту</a>
+      </div>
+    </nav>
 
-<!-- IMPORT MODAL -->
-<div class="modal-overlay" id="importModal">
-  <div class="modal">
-    <h2>Import Notes (JSON)</h2>
-    <textarea id="importData" placeholder='Paste exported JSON here...'></textarea>
-    <div class="btn-row">
-      <button class="btn" onclick="closeImport()">Cancel</button>
-      <button class="btn primary" onclick="importNotes()">Import</button>
-    </div>
+    <main class="content">
+      <div class="content-inner" id="pageContent"></div>
+    </main>
   </div>
 </div>
 
 <script>
-const STORAGE_KEY = 'railway_notes';
-const SESSION_KEY = 'railway_auth';
 const PW_HASH = 'bdcc12a7a798dca1561aa689f730c868efc20177f622632abe814557e9465c6c';
+const SESSION_KEY = 'spectacles_auth';
 
-let notes = [];
-let activeId = null;
-
-// --- AUTH ---
 async function sha256(str) {
   const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
   return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
 }
-
 async function checkPassword() {
-  const pw = document.getElementById('pwInput').value;
-  const hash = await sha256(pw);
-  if (hash === PW_HASH) {
-    sessionStorage.setItem(SESSION_KEY, '1');
-    showApp();
-  } else {
-    document.getElementById('pwError').style.display = 'block';
-  }
+  const hash = await sha256(document.getElementById('pwInput').value);
+  if (hash === PW_HASH) { sessionStorage.setItem(SESSION_KEY, '1'); showApp(); }
+  else document.getElementById('pwError').style.display = 'block';
 }
-
 function showApp() {
   document.getElementById('gate').style.display = 'none';
-  document.getElementById('app').style.display = 'flex';
-  document.getElementById('app').style.flexDirection = 'column';
-  loadNotes();
-  renderList();
+  document.getElementById('app').style.display = 'block';
+  showPage('overview');
 }
-
-function logout() {
-  sessionStorage.removeItem(SESSION_KEY);
-  location.reload();
-}
-
+function logout() { sessionStorage.removeItem(SESSION_KEY); location.reload(); }
 document.getElementById('pwBtn').onclick = checkPassword;
 document.getElementById('pwInput').onkeydown = e => { if (e.key === 'Enter') checkPassword(); };
-
 if (sessionStorage.getItem(SESSION_KEY)) showApp();
 
-// --- DEFAULT NOTES ---
-const DEFAULT_NOTES = [
-  {
-    id: 'spawn-cube-001',
-    title: 'SpawnCubeOnPress — Script + Instructions',
-    body: `=== CODE: SpawnCubeOnPress.ts ===
+const pages = {
+overview: `
+<div class="breadcrumb">SpectaclesUIKit <span>›</span> Початок роботи</div>
+<h1>Огляд</h1>
+<p class="subtitle">Внутрішня документація проєкту Railway Mainline для Spectacles. Довідник по компонентах, скриптах, темах та робочих нотатках.</p>
+
+<div class="callout callout-tip"><span class="callout-icon">💡</span><p>Цей сайт захищений паролем. Поділіться посиланням та паролем з членами команди.</p></div>
+
+<h2>Архітектура</h2>
+<p>Проєкт використовує два основні фреймворки від Snap:</p>
+<table>
+<tr><th>Фреймворк</th><th>Призначення</th><th>Ключові компоненти</th></tr>
+<tr><td><strong>SpectaclesUIKit</strong></td><td>Візуальні UI компоненти</td><td>RoundButton, CapsuleButton, RectangleButton, теми, градієнти</td></tr>
+<tr><td><strong>SpectaclesInteractionKit (SIK)</strong></td><td>Обробка взаємодії</td><td>PinchButton, ToggleButton, Slider, Interactable, трекінг рук</td></tr>
+</table>
+
+<h2>Швидкі посилання</h2>
+<ul>
+<li><a href="#" onclick="showPage('scripts');return false">Скрипт SpawnCubeOnPress</a> — створення об'єктів по натисканню кнопки</li>
+<li><a href="#" onclick="showPage('buttons');return false">Довідник кнопок</a> — UIKit vs SIK, події кнопок</li>
+<li><a href="#" onclick="showPage('theming');return false">Кольори та стилі</a> — як налаштувати зовнішній вигляд кнопок</li>
+<li><a href="#" onclick="showPage('events');return false">Довідник подій</a> — всі доступні події</li>
+</ul>
+
+<div class="page-footer">
+<span></span>
+<a href="#" onclick="showPage('setup');return false">Далі: Структура проєкту →</a>
+</div>
+`,
+
+setup: `
+<div class="breadcrumb">SpectaclesUIKit <span>›</span> Початок роботи</div>
+<h1>Структура проєкту</h1>
+<p class="subtitle">Розташування файлів та папок у проєкті Lens Studio.</p>
+
+<h2>Дерево файлів</h2>
+<div class="code-block"><div class="code-header"><span class="code-tab active">Структура проєкту</span></div>
+<div class="code-body"><pre><code>Assets/
+├── SpawnCubeOnPress.ts          ← Користувацький скрипт
+├── SpectaclesUIKit.lspkg/
+│   └── Scripts/
+│       ├── Components/
+│       │   └── Button/
+│       │       ├── BaseButton.ts
+│       │       ├── RoundButton.ts
+│       │       ├── CapsuleButton.ts
+│       │       └── RectangleButton.ts
+│       └── Themes/
+│           └── SnapOS-2.0/
+│               ├── Colors.ts            ← Визначення кольорів
+│               ├── Gradients/           ← Градієнти кнопок
+│               └── Styles/              ← Параметри кнопок
+└── SpectaclesInteractionKit.lspkg/
+    └── Components/UI/
+        ├── PinchButton/
+        ├── ToggleButton/
+        └── Slider/</code></pre></div></div>
+
+<div class="page-footer">
+<a href="#" onclick="showPage('overview');return false">← Огляд</a>
+<a href="#" onclick="showPage('buttons');return false">Далі: Кнопки →</a>
+</div>
+`,
+
+buttons: `
+<div class="breadcrumb">SpectaclesUIKit <span>›</span> Компоненти</div>
+<h1>Кнопки</h1>
+<p class="subtitle">У проєкті є дві системи кнопок: UIKit (візуальні) та SIK (взаємодія).</p>
+
+<h2>UIKit Кнопки</h2>
+<p>Візуальні компоненти кнопок з градієнтними темами. Всі три типи мають однакові параметри:</p>
+<table>
+<tr><th>Компонент</th><th>Форма</th><th>Файл</th></tr>
+<tr><td><code>RoundButton</code></td><td>Круг</td><td>Button/RoundButton.ts</td></tr>
+<tr><td><code>CapsuleButton</code></td><td>Капсула / округлений прямокутник</td><td>Button/CapsuleButton.ts</td></tr>
+<tr><td><code>RectangleButton</code></td><td>Прямокутник з округленими кутами</td><td>Button/RectangleButton.ts</td></tr>
+</table>
+
+<h3>Події UIKit кнопок</h3>
+<table>
+<tr><th>Подія</th><th>Коли спрацьовує</th></tr>
+<tr><td><code>onTriggerDown</code></td><td>Початок натискання (pinch)</td></tr>
+<tr><td><code>onTriggerUp</code></td><td>Завершення натискання — основний "клік"</td></tr>
+<tr><td><code>onValueChange</code></td><td>Зміна стану toggle (1 або 0)</td></tr>
+<tr><td><code>onFinished</code></td><td>Анімація зміни стану завершена</td></tr>
+</table>
+
+<h2>SIK Кнопки</h2>
+<p>Компоненти взаємодії зі SpectaclesInteractionKit:</p>
+<table>
+<tr><th>Компонент</th><th>Подія</th><th>Опис</th></tr>
+<tr><td><strong>PinchButton</strong></td><td><code>onButtonPinched</code></td><td>Проста кнопка — стиснув пальці і спрацювала</td></tr>
+<tr><td><strong>ToggleButton</strong></td><td><code>onStateChanged</code></td><td>Перемикач — запам'ятовує стан увімк/вимк</td></tr>
+<tr><td><strong>Slider</strong></td><td><code>onValueUpdate</code></td><td>Повзунок — тягнеш і отримуєш значення (0–1)</td></tr>
+</table>
+
+<h3>Приклад коду SIK</h3>
+<div class="code-block"><div class="code-header"><span class="code-tab active">TypeScript</span><button class="code-copy" onclick="copyCode(this)">Копіювати</button></div>
+<div class="code-body"><pre><code>import { PinchButton } from 'SpectaclesInteractionKit.lspkg/Components/UI/PinchButton/PinchButton'
 
 @component
+export class MyButtonHandler extends BaseScriptComponent {
+  onAwake() {
+    this.createEvent('OnStartEvent').bind(() =&gt; {
+      const btn = this.sceneObject.getComponent(
+        PinchButton.getTypeName()
+      )
+      btn.onButtonPinched.add(() =&gt; {
+        print("Кнопку натиснуто!")
+      })
+    })
+  }
+}</code></pre></div></div>
+
+<div class="page-footer">
+<a href="#" onclick="showPage('setup');return false">← Структура проєкту</a>
+<a href="#" onclick="showPage('scripts');return false">Далі: SpawnCubeOnPress →</a>
+</div>
+`,
+
+scripts: `
+<div class="breadcrumb">SpectaclesUIKit <span>›</span> Скрипти</div>
+<h1>SpawnCubeOnPress</h1>
+<p class="subtitle">Скрипт, який створює 3D кубик (prefab) при натисканні UIKit кнопки.</p>
+
+<h2>Вихідний код</h2>
+<div class="code-block"><div class="code-header"><span class="code-tab active">SpawnCubeOnPress.ts</span><button class="code-copy" onclick="copyCode(this)">Копіювати</button></div>
+<div class="code-body"><pre><code>@component
 export class SpawnCubeOnPress extends BaseScriptComponent {
   @input
   cubePrefab: ObjectPrefab
@@ -252,239 +336,332 @@ export class SpawnCubeOnPress extends BaseScriptComponent {
     cube.getTransform().setLocalScale(new vec3(5, 5, 5))
     print("Cube spawned!")
   }
-}
+}</code></pre></div></div>
 
-=== INSTRUCTIONS ===
+<h2>Інструкція з налаштування</h2>
+<ol class="steps">
+<li><strong>Створіть Box Prefab</strong><br>В Lens Studio: <code>+ &gt; Mesh &gt; Box</code>. Налаштуйте матеріал. Перетягніть з Scene Hierarchy у панель <strong>Resources</strong> щоб створити <code>.prefab</code>. Видаліть оригінал зі сцени.</li>
+<li><strong>Додайте скрипт</strong><br>Створіть файл <code>SpawnCubeOnPress.ts</code> в Assets. Вставте код вище.</li>
+<li><strong>Прикріпіть до SceneObject</strong><br>Додайте скрипт як компонент на будь-який SceneObject. В Inspector встановіть:<br>• <strong>Cube Prefab</strong> = ваш Box .prefab з Resources<br>• <strong>Parent Object</strong> = об'єкт, де мають з'являтись кубики</li>
+<li><strong>Підключіть до кнопки</strong><br>Виберіть UIKit кнопку. Увімкніть <strong>Add Callbacks</strong>. В <strong>On Trigger Up Callbacks</strong> натисніть <code>+</code>:<br>• <strong>Script</strong> = перетягніть компонент SpawnCubeOnPress<br>• <strong>Function Name</strong> = <code>spawnCube</code></li>
+<li><strong>Тестуйте</strong><br>Натисніть Play. Зробіть pinch/клік на кнопку. З'явиться кубик і в Logger буде <code>"Cube spawned!"</code>.</li>
+</ol>
 
-1. Create the script:
-   - Create a new TypeScript file in Assets: SpawnCubeOnPress.ts
-   - Paste the code above
+<div class="callout callout-info"><span class="callout-icon">ℹ️</span><p><code>localPosition(0, 0, -50)</code> розміщує кубик на 50 одиниць попереду. <code>localScale(5, 5, 5)</code> встановлює розмір. Змінюйте ці значення за потребою.</p></div>
 
-2. Create a Box Prefab:
-   - In Lens Studio, add a Box mesh to the scene (+ > Mesh > Box)
-   - Customize material if needed
-   - Drag the Box from Scene Hierarchy into the Resources panel to create a .prefab
-   - Delete the original Box from the scene
+<h2>Чому без імпортів?</h2>
+<p>Цей скрипт не імпортує <code>RoundButton</code> з UIKit пакету, бо Lens Studio не завжди може резолвити крос-пакетні імпорти для користувацьких скриптів. Замість цього використовується вбудована система <strong>Callback</strong> кнопки — кнопка сама викликає <code>spawnCube()</code> напряму, без залежності від типу.</p>
 
-3. Add the script to the scene:
-   - Create an empty SceneObject (or use an existing one)
-   - Add Component > Script > SpawnCubeOnPress
-   - In Inspector, set:
-     * Cube Prefab = your Box .prefab file from Resources
-     * Parent Object = the SceneObject where cubes should appear
+<div class="page-footer">
+<a href="#" onclick="showPage('buttons');return false">← Кнопки</a>
+<a href="#" onclick="showPage('theming');return false">Далі: Кольори та стилі →</a>
+</div>
+`,
 
-4. Connect to a button:
-   - Select your UIKit button in the scene (RoundButton, CapsuleButton, etc.)
-   - In Inspector on the button component, enable "Add Callbacks"
-   - In "On Trigger Up Callbacks", click +
-   - Script = drag the SpawnCubeOnPress component
-   - Function Name = spawnCube
+theming: `
+<div class="breadcrumb">SpectaclesUIKit <span>›</span> Оформлення</div>
+<h1>Кольори та стилі</h1>
+<p class="subtitle">Як визначаються кольори, градієнти та прозорість кнопок у файлі <code>Colors.ts</code>.</p>
 
-5. Test:
-   - Press Play in Lens Studio
-   - Pinch/click the button
-   - A cube should appear and "Cube spawned!" prints in Logger
+<h2>Формат кольорів</h2>
+<p>Всі кольори використовують <code>HSVtoRGB(Hue, Saturation, Value, Alpha)</code>:</p>
+<table>
+<tr><th>Параметр</th><th>Діапазон</th><th>Що контролює</th></tr>
+<tr><td>Hue (Відтінок)</td><td>0–360</td><td>Тон кольору (0=червоний, 50=жовтий, 120=зелений…)</td></tr>
+<tr><td>Saturation (Насиченість)</td><td>0–1</td><td>Інтенсивність кольору (0=сірий, 1=яскравий)</td></tr>
+<tr><td>Value (Яскравість)</td><td>0–1</td><td>Світлість (0=чорний, 1=яскравий)</td></tr>
+<tr><td><strong>Alpha (Прозорість)</strong></td><td>0–1</td><td><strong>Прозорість</strong> (0=невидимий, 1=суцільний)</td></tr>
+</table>
 
-=== NOTES ===
-- localPosition(0, 0, -50) places the cube 50 units in front
-- localScale(5, 5, 5) sets the cube size
-- Change these values to adjust position and size
-- To spawn different objects, swap the prefab in the Inspector`,
-    category: 'scripting',
-    created: '2026-04-03T12:00:00.000Z',
-    updated: '2026-04-03T12:00:00.000Z'
-  },
-  {
-    id: 'button-events-002',
-    title: 'UIKit Button Events Reference',
-    body: `=== BUTTON EVENTS (SpectaclesUIKit) ===
+<h2>Карта стилів кнопок</h2>
+<p>Визначено 5 візуальних стилів, кожен з градієнтними кольорами для кожного стану:</p>
+<table>
+<tr><th>Стиль</th><th>Вигляд</th><th>Використані кольори</th></tr>
+<tr><td><strong>PrimaryNeutral</strong></td><td>Темно-сірий, жовтий бордер при натисканні</td><td>DarkestGray → MediumGray + TriggeredBorderYellow</td></tr>
+<tr><td><strong>Primary</strong></td><td>Жовтий градієнт</td><td>DarkestYellow → BrightYellow</td></tr>
+<tr><td><strong>Secondary</strong></td><td>Теплий сірий</td><td>DarkWarmGray → MediumWarmGray</td></tr>
+<tr><td><strong>Special</strong></td><td>Червоний (деструктивні дії)</td><td>DarkRed → LightRed</td></tr>
+<tr><td><strong>Ghost</strong></td><td>Прозорий, тільки бордер</td><td>Transparent (alpha=0) + MediumGray/BrightYellow бордери</td></tr>
+</table>
 
-All buttons (RoundButton, CapsuleButton, RectangleButton) inherit from BaseButton > Element.
+<div class="callout callout-warn"><span class="callout-icon">⚠️</span><p>Константа <strong>Transparent</strong> (рядок 34) — єдиний колір кнопки з <code>alpha &lt; 1</code>. Всі інші повністю непрозорі. Не використовуються кнопками: <code>TriggeredBorderClearGray</code> (рядок 12), <code>DarkerMediumYellow</code> (рядок 17), всі <code>Switch*</code> кольори (рядки 36–60).</p></div>
 
-Available events:
-  onTriggerDown  — fires when pinch/press starts
-  onTriggerUp    — fires when pinch/press ends (main "click" event)
-  onValueChange  — fires on toggle state change (1 or 0)
-  onFinished     — fires when state animation completes
+<h2>Ключові рядки Colors.ts</h2>
+<div class="code-block"><div class="code-header"><span class="code-tab active">Colors.ts — кольори кнопок</span><button class="code-copy" onclick="copyCode(this)">Копіювати</button></div>
+<div class="code-body"><pre><code>// Сірі (PrimaryNeutral, Secondary)
+export const DarkestGray = HSVtoRGB(0, 0, 0.11, 1)       // рядок 3
+export const DarkerGray = HSVtoRGB(0, 0, 0.14, 1)        // рядок 4
+export const DarkGray = HSVtoRGB(0, 0, 0.2, 1)           // рядок 6
+export const MediumGray = HSVtoRGB(0, 0, 0.4, 1)         // рядок 8
 
-=== TWO WAYS TO CONNECT ===
+// Жовті (Primary)
+export const DarkestYellow = HSVtoRGB(50, 0.45, 0.18, 1) // рядок 14
+export const BrightYellow = HSVtoRGB(45, 0.62, 0.84, 1)  // рядок 21
 
-Method 1: Inspector Callbacks (no code needed)
-  - On the button component, enable "Add Callbacks"
-  - Add entries to On Trigger Up / On Trigger Down Callbacks
-  - Each entry: Script component reference + function name string
+// Червоні (Special)
+export const DarkRed = HSVtoRGB(3, 0.65, 0.3, 1)         // рядок 27
+export const MediumRed = HSVtoRGB(0, 0.7, 0.42, 1)       // рядок 30
 
-Method 2: Code subscription
-  import {RoundButton} from "SpectaclesUIKit.lspkg/Scripts/Components/Button/RoundButton"
+// Прозорість (Ghost)
+export const Transparent = HSVtoRGB(0, 0, 0, 0)          // рядок 34
+//                                           ↑ alpha=0</code></pre></div></div>
 
-  const btn = someObject.getComponent(RoundButton.getTypeName()) as RoundButton
-  btn.onTriggerUp.add(() => {
-    print("Button pressed!")
-  })
+<div class="page-footer">
+<a href="#" onclick="showPage('scripts');return false">← SpawnCubeOnPress</a>
+<a href="#" onclick="showPage('events');return false">Далі: Довідник подій →</a>
+</div>
+`,
 
-=== BUTTON STYLES ===
+toggle: `
+<div class="breadcrumb">SpectaclesUIKit <span>›</span> Компоненти</div>
+<h1>ToggleButton</h1>
+<p class="subtitle">Кнопка-перемикач, яка запам'ятовує свій стан увімк/вимк. Кожне натискання змінює стан на протилежний.</p>
 
-5 visual styles defined in RectangleButtonParameters.ts:
-  PrimaryNeutral — dark gray, yellow border on trigger
-  Primary        — yellow gradient
-  Secondary      — warm gray
-  Special        — red (destructive actions)
-  Ghost          — fully transparent, border only on hover/trigger
+<h2>Як це працює</h2>
+<p>На відміну від <strong>PinchButton</strong> (одноразова дія), ToggleButton зберігає внутрішній стан. Як вимикач світла: натиснув — увімкнулось, натиснув ще раз — вимкнулось. Поточний стан передається через подію <code>onStateChanged</code> як <code>boolean</code>.</p>
 
-Colors are defined in Colors.ts using HSVtoRGB(H, S, V, Alpha).
-Alpha = 1 means opaque, Alpha = 0 means transparent.`,
-    category: 'ui',
-    created: '2026-04-03T12:00:00.000Z',
-    updated: '2026-04-03T12:00:00.000Z'
+<h3>Приклад коду</h3>
+<div class="code-block"><div class="code-header"><span class="code-tab active">TypeScript</span><button class="code-copy" onclick="copyCode(this)">Копіювати</button></div>
+<div class="code-body"><pre><code>import { ToggleButton } from 'SpectaclesInteractionKit.lspkg/Components/UI/ToggleButton/ToggleButton'
+
+@component
+export class ToggleExample extends BaseScriptComponent {
+  onAwake() {
+    this.createEvent('OnStartEvent').bind(() =&gt; {
+      const toggle = this.sceneObject.getComponent(
+        ToggleButton.getTypeName()
+      )
+      toggle.onStateChanged.add((isOn: boolean) =&gt; {
+        print("Перемикач: " + (isOn ? "УВІМК" : "ВИМК"))
+      })
+    })
   }
-];
+}</code></pre></div></div>
 
-// --- NOTES CRUD ---
-function loadNotes() {
-  try { notes = JSON.parse(localStorage.getItem(STORAGE_KEY)) || []; } catch { notes = []; }
-  if (notes.length === 0) {
-    notes = DEFAULT_NOTES.map(n => ({...n}));
-    saveNotes();
+<div class="page-footer">
+<a href="#" onclick="showPage('buttons');return false">← Кнопки</a>
+<a href="#" onclick="showPage('slider');return false">Далі: Slider →</a>
+</div>
+`,
+
+slider: `
+<div class="breadcrumb">SpectaclesUIKit <span>›</span> Компоненти</div>
+<h1>Slider</h1>
+<p class="subtitle">Повзунок, який передає значення від 0 до 1 при перетягуванні.</p>
+
+<h2>Як це працює</h2>
+<p>Slider дозволяє користувачу встановити значення, перетягуючи повзунок по доріжці. Подія <code>onValueUpdate</code> спрацьовує безперервно при русі. Корисно для гучності, яскравості або будь-якого плавного параметра.</p>
+
+<h3>Приклад коду</h3>
+<div class="code-block"><div class="code-header"><span class="code-tab active">TypeScript</span><button class="code-copy" onclick="copyCode(this)">Копіювати</button></div>
+<div class="code-body"><pre><code>import { Slider } from 'SpectaclesInteractionKit.lspkg/Components/UI/Slider/Slider'
+
+@component
+export class SliderExample extends BaseScriptComponent {
+  onAwake() {
+    this.createEvent('OnStartEvent').bind(() =&gt; {
+      const slider = this.sceneObject.getComponent(
+        Slider.getTypeName()
+      )
+      slider.onValueUpdate.add((value: number) =&gt; {
+        print("Значення слайдера: " + value.toFixed(2))
+      })
+    })
   }
+}</code></pre></div></div>
+
+<div class="page-footer">
+<a href="#" onclick="showPage('toggle');return false">← ToggleButton</a>
+<a href="#" onclick="showPage('events');return false">Далі: Довідник подій →</a>
+</div>
+`,
+
+events: `
+<div class="breadcrumb">SpectaclesUIKit <span>›</span> Ресурси</div>
+<h1>Довідник подій</h1>
+<p class="subtitle">Повний список подій, доступних на інтерактивних компонентах.</p>
+
+<h2>Події UIKit кнопок (Element)</h2>
+<table>
+<tr><th>Подія</th><th>Payload</th><th>Опис</th></tr>
+<tr><td><code>onTriggerDown</code></td><td>void</td><td>Початок взаємодії (pinch починається)</td></tr>
+<tr><td><code>onTriggerUp</code></td><td>void</td><td>Кінець взаємодії (pinch відпущено) — основний "клік"</td></tr>
+<tr><td><code>onHoverEnter</code></td><td>void</td><td>Рука/погляд входить в зону елемента</td></tr>
+<tr><td><code>onHoverExit</code></td><td>void</td><td>Рука/погляд виходить із зони елемента</td></tr>
+<tr><td><code>onValueChange</code></td><td>number</td><td>Перемикач: 1 = увімк, 0 = вимк</td></tr>
+<tr><td><code>onFinished</code></td><td>boolean</td><td>Анімація переходу стану завершена</td></tr>
+<tr><td><code>onStateChanged</code></td><td>StateEvent</td><td>Будь-яка зміна стану (default, hovered, triggered…)</td></tr>
+<tr><td><code>onInitialized</code></td><td>void</td><td>Компонент повністю ініціалізований</td></tr>
+</table>
+
+<h2>Події SIK Interactable</h2>
+<table>
+<tr><th>Подія</th><th>Payload</th><th>Опис</th></tr>
+<tr><td><code>onTriggerStart</code></td><td>InteractorEvent</td><td>Низькорівневий початок взаємодії</td></tr>
+<tr><td><code>onTriggerEnd</code></td><td>InteractorEvent</td><td>Низькорівневий кінець взаємодії</td></tr>
+<tr><td><code>onTriggerCanceled</code></td><td>InteractorEvent</td><td>Взаємодію скасовано (рука втрачена тощо)</td></tr>
+<tr><td><code>onHoverEnter</code></td><td>InteractorEvent</td><td>Інтерактор входить у зону hover</td></tr>
+<tr><td><code>onHoverExit</code></td><td>InteractorEvent</td><td>Інтерактор виходить із зони hover</td></tr>
+<tr><td><code>onDragStart</code></td><td>InteractorEvent</td><td>Початок перетягування</td></tr>
+</table>
+
+<h2>Події SIK UI компонентів</h2>
+<table>
+<tr><th>Компонент</th><th>Подія</th><th>Payload</th></tr>
+<tr><td>PinchButton</td><td><code>onButtonPinched</code></td><td>void</td></tr>
+<tr><td>ToggleButton</td><td><code>onStateChanged</code></td><td>boolean</td></tr>
+<tr><td>Slider</td><td><code>onValueUpdate</code></td><td>number (0–1)</td></tr>
+</table>
+
+<h2>Підписка на події</h2>
+<div class="code-block"><div class="code-header"><span class="code-tab active">TypeScript</span><button class="code-copy" onclick="copyCode(this)">Копіювати</button></div>
+<div class="code-body"><pre><code>// Підписатись
+const unsub = button.onTriggerUp.add(() =&gt; {
+  print("натиснуто")
+})
+
+// Відписатись пізніше
+unsub()</code></pre></div></div>
+
+<div class="page-footer">
+<a href="#" onclick="showPage('theming');return false">← Кольори та стилі</a>
+<a href="#" onclick="showPage('notes');return false">Далі: Нотатки →</a>
+</div>
+`,
+
+notes: `
+<div class="breadcrumb">SpectaclesUIKit <span>›</span> Ресурси</div>
+<h1>Нотатки проєкту</h1>
+<p class="subtitle">Спільні нотатки для команди. Зберігаються в localStorage вашого браузера.</p>
+
+<div style="display:flex;gap:8px;margin-bottom:24px">
+<button class="code-copy" style="padding:8px 16px;font-size:.85rem" onclick="createNote()">+ Нова нотатка</button>
+<button class="code-copy" style="padding:8px 16px;font-size:.85rem" onclick="exportNotes()">↓ Експорт JSON</button>
+<button class="code-copy" style="padding:8px 16px;font-size:.85rem" onclick="showImportPrompt()">↑ Імпорт JSON</button>
+</div>
+
+<div id="notesContainer"></div>
+
+<div id="noteEditor" style="display:none;margin-top:24px">
+<input type="text" id="noteTitle" placeholder="Назва нотатки..." style="width:100%;padding:10px 14px;border:2px solid var(--border);border-radius:8px;font-size:1rem;font-weight:600;margin-bottom:8px;outline:none">
+<select id="noteCategory" style="padding:8px 12px;border:1px solid var(--border);border-radius:6px;margin-bottom:8px;font-size:.85rem">
+<option value="general">Загальне</option><option value="ui">UI/Дизайн</option>
+<option value="scripting">Скрипти</option><option value="bug">Баг</option>
+<option value="idea">Ідея</option><option value="asset">Ассет</option>
+</select>
+<textarea id="noteBody" rows="12" placeholder="Пишіть нотатки тут..." style="width:100%;padding:14px;border:2px solid var(--border);border-radius:8px;font-size:.9rem;line-height:1.7;outline:none;resize:vertical;font-family:'JetBrains Mono',monospace"></textarea>
+<div style="display:flex;gap:8px;margin-top:8px">
+<button class="code-copy" style="padding:8px 16px;background:var(--snap-black);color:#fff;border:none;font-weight:600" onclick="saveCurrentNote()">Зберегти</button>
+<button class="code-copy" style="padding:8px 16px" onclick="cancelEdit()">Скасувати</button>
+<button class="code-copy" style="padding:8px 16px;color:var(--red);margin-left:auto" onclick="deleteCurrentNote()">Видалити</button>
+</div>
+</div>
+`
+};
+
+function showPage(id) {
+  document.getElementById('pageContent').innerHTML = pages[id] || pages.overview;
+  document.querySelectorAll('.sidebar-link').forEach(l => l.classList.remove('active'));
+  document.querySelectorAll('.sidebar-link').forEach(l => {
+    if (l.getAttribute('onclick')?.includes("'" + id + "'")) l.classList.add('active');
+  });
+  document.querySelectorAll('.topbar-nav a').forEach(a => a.classList.remove('active'));
+  document.querySelector('.sidebar')?.classList.remove('open');
+  window.scrollTo(0, 0);
+  if (id === 'notes') renderNotes();
 }
 
-function saveNotes() {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(notes));
+function copyCode(btn) {
+  const code = btn.closest('.code-block').querySelector('code').textContent;
+  navigator.clipboard.writeText(code);
+  btn.textContent = 'Скопійовано!';
+  setTimeout(() => btn.textContent = 'Копіювати', 1500);
 }
 
-function createNote() {
-  const note = {
-    id: Date.now().toString(36) + Math.random().toString(36).slice(2, 6),
-    title: 'New Note',
-    body: '',
-    category: 'general',
-    created: new Date().toISOString(),
-    updated: new Date().toISOString()
-  };
-  notes.unshift(note);
-  saveNotes();
-  renderList();
-  selectNote(note.id);
-}
+const NOTES_KEY = 'spectacles_notes';
+let projectNotes = [];
+let editingNoteId = null;
 
-function deleteNote() {
-  if (!activeId) return;
-  if (!confirm('Delete this note?')) return;
-  notes = notes.filter(n => n.id !== activeId);
-  activeId = null;
-  saveNotes();
-  renderList();
-  showEmpty();
+function loadProjectNotes() {
+  try { projectNotes = JSON.parse(localStorage.getItem(NOTES_KEY)) || []; } catch { projectNotes = []; }
 }
+function saveProjectNotes() { localStorage.setItem(NOTES_KEY, JSON.stringify(projectNotes)); }
 
-function selectNote(id) {
-  activeId = id;
-  const note = notes.find(n => n.id === id);
-  if (!note) return;
-  document.getElementById('emptyState').style.display = 'none';
-  const wrap = document.getElementById('editorWrap');
-  wrap.style.display = 'flex';
-  document.getElementById('noteTitle').value = note.title;
-  document.getElementById('noteBody').value = note.body;
-  document.getElementById('noteCategory').value = note.category;
-  renderList();
-}
-
-function showEmpty() {
-  document.getElementById('emptyState').style.display = 'flex';
-  document.getElementById('editorWrap').style.display = 'none';
-}
-
-function updateActive() {
-  if (!activeId) return;
-  const note = notes.find(n => n.id === activeId);
-  if (!note) return;
-  note.title = document.getElementById('noteTitle').value || 'Untitled';
-  note.body = document.getElementById('noteBody').value;
-  note.category = document.getElementById('noteCategory').value;
-  note.updated = new Date().toISOString();
-  saveNotes();
-  renderList();
-}
-
-// --- RENDER ---
-function renderList() {
-  const q = document.getElementById('searchInput').value.toLowerCase();
-  const list = document.getElementById('notesList');
-  const filtered = notes.filter(n =>
-    n.title.toLowerCase().includes(q) || n.body.toLowerCase().includes(q)
-  );
-  list.innerHTML = filtered.map(n => `
-    <div class="note-item${n.id === activeId ? ' active' : ''}" onclick="selectNote('${n.id}')">
-      <h3>${esc(n.title)}</h3>
-      <div class="meta">
-        <span class="category-dot cat-${n.category}"></span>
-        <span>${catLabel(n.category)}</span>
-        <span>· ${timeAgo(n.updated)}</span>
+function renderNotes() {
+  loadProjectNotes();
+  const c = document.getElementById('notesContainer');
+  if (!c) return;
+  if (projectNotes.length === 0) {
+    c.innerHTML = '<div class="callout callout-info"><span class="callout-icon">📝</span><p>Нотаток ще немає. Натисніть <strong>+ Нова нотатка</strong> щоб створити.</p></div>';
+    return;
+  }
+  c.innerHTML = projectNotes.map(n => `
+    <div style="padding:16px;border:1px solid var(--border);border-radius:8px;margin-bottom:8px;cursor:pointer;transition:.15s" onmouseover="this.style.borderColor='var(--border2)'" onmouseout="this.style.borderColor='var(--border)'" onclick="editNote('${n.id}')">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">
+        <strong>${esc(n.title)}</strong>
+        <span style="font-size:.75rem;background:var(--bg2);padding:2px 8px;border-radius:4px;color:var(--text2)">${n.category}</span>
       </div>
+      <div style="font-size:.82rem;color:var(--text3)">${timeAgo(n.updated)}</div>
     </div>
   `).join('');
 }
 
-function esc(s) { const d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
-
-function catLabel(c) {
-  return {general:'General',ui:'UI/Design',scripting:'Scripting',bug:'Bug',idea:'Idea',asset:'Asset'}[c] || c;
+function createNote() {
+  const n = {id: Date.now().toString(36), title:'', body:'', category:'general',
+    created:new Date().toISOString(), updated:new Date().toISOString()};
+  loadProjectNotes(); projectNotes.unshift(n); saveProjectNotes(); editNote(n.id);
 }
-
+function editNote(id) {
+  loadProjectNotes();
+  const n = projectNotes.find(x => x.id === id);
+  if (!n) return;
+  editingNoteId = id;
+  document.getElementById('noteEditor').style.display = 'block';
+  document.getElementById('noteTitle').value = n.title;
+  document.getElementById('noteBody').value = n.body;
+  document.getElementById('noteCategory').value = n.category;
+}
+function saveCurrentNote() {
+  const n = projectNotes.find(x => x.id === editingNoteId);
+  if (!n) return;
+  n.title = document.getElementById('noteTitle').value || 'Без назви';
+  n.body = document.getElementById('noteBody').value;
+  n.category = document.getElementById('noteCategory').value;
+  n.updated = new Date().toISOString();
+  saveProjectNotes(); cancelEdit(); renderNotes();
+}
+function cancelEdit() { editingNoteId = null; document.getElementById('noteEditor').style.display = 'none'; }
+function deleteCurrentNote() {
+  if (!confirm('Видалити цю нотатку?')) return;
+  projectNotes = projectNotes.filter(n => n.id !== editingNoteId);
+  saveProjectNotes(); cancelEdit(); renderNotes();
+}
+function exportNotes() {
+  loadProjectNotes();
+  const blob = new Blob([JSON.stringify(projectNotes, null, 2)], {type:'application/json'});
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob);
+  a.download = 'spectacles-notes-' + new Date().toISOString().slice(0,10) + '.json'; a.click();
+}
+function showImportPrompt() {
+  const json = prompt('Вставте експортований JSON:');
+  if (!json) return;
+  try {
+    const data = JSON.parse(json);
+    if (!Array.isArray(data)) throw 0;
+    loadProjectNotes();
+    const ids = new Set(projectNotes.map(n => n.id));
+    let added = 0;
+    data.forEach(n => { if (n.id && !ids.has(n.id)) { projectNotes.unshift(n); added++; }});
+    saveProjectNotes(); renderNotes();
+    alert('Імпортовано ' + added + ' нотаток');
+  } catch { alert('Невірний JSON формат'); }
+}
+function esc(s) { const d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
 function timeAgo(iso) {
   const d = Math.floor((Date.now() - new Date(iso)) / 1000);
-  if (d < 60) return 'just now';
-  if (d < 3600) return Math.floor(d/60) + 'm ago';
-  if (d < 86400) return Math.floor(d/3600) + 'h ago';
-  return Math.floor(d/86400) + 'd ago';
+  if (d < 60) return 'щойно'; if (d < 3600) return Math.floor(d/60) + ' хв тому';
+  if (d < 86400) return Math.floor(d/3600) + ' год тому'; return Math.floor(d/86400) + ' дн тому';
 }
-
-// --- EXPORT / IMPORT ---
-function exportNotes() {
-  const blob = new Blob([JSON.stringify(notes, null, 2)], {type: 'application/json'});
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = 'railway-notes-' + new Date().toISOString().slice(0,10) + '.json';
-  a.click();
-}
-
-function showImport() { document.getElementById('importModal').classList.add('show'); }
-function closeImport() { document.getElementById('importModal').classList.remove('show'); }
-
-function importNotes() {
-  try {
-    const data = JSON.parse(document.getElementById('importData').value);
-    if (!Array.isArray(data)) throw new Error();
-    const existingIds = new Set(notes.map(n => n.id));
-    let added = 0;
-    data.forEach(n => {
-      if (n.id && n.title && !existingIds.has(n.id)) {
-        notes.unshift(n);
-        added++;
-      }
-    });
-    saveNotes();
-    renderList();
-    closeImport();
-    alert(`Imported ${added} new note(s)`);
-  } catch {
-    alert('Invalid JSON format');
-  }
-}
-
-// --- SIDEBAR MOBILE ---
-function toggleSidebar() { document.getElementById('sidebar').classList.toggle('open'); }
-
-// --- AUTOSAVE ---
-let saveTimer;
-document.getElementById('noteTitle').oninput =
-document.getElementById('noteBody').oninput =
-document.getElementById('noteCategory').onchange = () => {
-  clearTimeout(saveTimer);
-  saveTimer = setTimeout(updateActive, 300);
-};
-document.getElementById('searchInput').oninput = renderList;
 </script>
 </body>
 </html>
