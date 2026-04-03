@@ -143,7 +143,22 @@ tr:hover td{background:var(--bg2)}
       <div class="sidebar-section">
         <div class="sidebar-title">Початок роботи</div>
         <a class="sidebar-link active" onclick="showPage('overview')">Огляд</a>
+        <a class="sidebar-link" onclick="showPage('spectacles')">Що таке Spectacles</a>
+        <a class="sidebar-link" onclick="showPage('start')">Початок розробки</a>
         <a class="sidebar-link" onclick="showPage('setup')">Структура проєкту</a>
+      </div>
+      <div class="sidebar-section">
+        <div class="sidebar-title">Можливості Spectacles</div>
+        <a class="sidebar-link" onclick="showPage('features')">Огляд функцій</a>
+        <a class="sidebar-link" onclick="showPage('design')">Просторовий дизайн</a>
+        <a class="sidebar-link" onclick="showPage('performance')">Оптимізація</a>
+      </div>
+      <div class="sidebar-section">
+        <div class="sidebar-title">Фреймворки</div>
+        <a class="sidebar-link" onclick="showPage('sik')"><span class="dot dot-blue"></span>Interaction Kit</a>
+        <a class="sidebar-link" onclick="showPage('uikit')"><span class="dot dot-purple"></span>UI Kit</a>
+        <a class="sidebar-link" onclick="showPage('synckit')"><span class="dot dot-green"></span>Sync Kit</a>
+        <a class="sidebar-link" onclick="showPage('otherkit')"><span class="dot dot-orange"></span>Інші фреймворки</a>
       </div>
       <div class="sidebar-section">
         <div class="sidebar-title">Компоненти</div>
@@ -162,6 +177,8 @@ tr:hover td{background:var(--bg2)}
       <div class="sidebar-section">
         <div class="sidebar-title">Ресурси</div>
         <a class="sidebar-link" onclick="showPage('events')">Довідник подій</a>
+        <a class="sidebar-link" onclick="showPage('permissions')">Дозволи та приватність</a>
+        <a class="sidebar-link" onclick="showPage('links')">Корисні посилання</a>
         <a class="sidebar-link" onclick="showPage('notes')">Нотатки проєкту</a>
       </div>
     </nav>
@@ -221,6 +238,94 @@ overview: `
 
 <div class="page-footer">
 <span></span>
+<a href="#" onclick="showPage('setup');return false">Далі: Структура проєкту →</a>
+</div>
+`,
+
+spectacles: `
+<div class="breadcrumb">SpectaclesUIKit <span>›</span> Початок роботи</div>
+<h1>Що таке Spectacles</h1>
+<p class="subtitle">Spectacles — це AR-окуляри від Snap, які дозволяють розробникам створювати просторові (spatial) досвіди за допомогою Lens Studio.</p>
+
+<h2>Основна ідея</h2>
+<p>Spectacles — це носимий пристрій з прозорими дисплеями, камерами та сенсорами. Розробники створюють для них <strong>Лінзи (Lenses)</strong> — AR-застосунки, які накладають цифровий контент на реальний світ. Все програмується в <strong>Lens Studio</strong> на TypeScript або JavaScript.</p>
+
+<div class="callout callout-info"><span class="callout-icon">ℹ️</span><p>Spectacles підтримують трекінг рук, голосові команди, просторові якорі та мультикористувацькі (Connected Lenses) сесії.</p></div>
+
+<h2>Що можуть Spectacles</h2>
+<table>
+<tr><th>Можливість</th><th>Опис</th></tr>
+<tr><td><strong>Hand Tracking</strong></td><td>Відслідковування рук та пальців — основний спосіб взаємодії (pinch, drag, hover)</td></tr>
+<tr><td><strong>Spatial Anchors</strong></td><td>Прив'язка об'єктів до реальних поверхонь та місць</td></tr>
+<tr><td><strong>Connected Lenses</strong></td><td>Кілька людей бачать та взаємодіють з одним і тим самим AR-контентом</td></tr>
+<tr><td><strong>SnapML</strong></td><td>Машинне навчання на пристрої для розпізнавання об'єктів, сегментації тощо</td></tr>
+<tr><td><strong>Audio</strong></td><td>Просторовий звук, прив'язаний до об'єктів у сцені</td></tr>
+<tr><td><strong>Snap Cloud</strong></td><td>Хмарне сховище для даних між сесіями</td></tr>
+<tr><td><strong>WebXR</strong></td><td>Підтримка веб-стандарту WebXR для крос-платформних AR-досвідів</td></tr>
+</table>
+
+<h2>Архітектура розробки</h2>
+<p>Snap надає кілька фреймворків, які працюють поверх Lens Studio:</p>
+<table>
+<tr><th>Фреймворк</th><th>Що робить</th></tr>
+<tr><td><a href="#" onclick="showPage('sik');return false">Spectacles Interaction Kit (SIK)</a></td><td>Система взаємодії: рук, курсорів, кнопок, слайдерів</td></tr>
+<tr><td><a href="#" onclick="showPage('uikit');return false">Spectacles UI Kit</a></td><td>Візуальні UI компоненти: кнопки з темами, градієнти</td></tr>
+<tr><td><a href="#" onclick="showPage('synckit');return false">Spectacles Sync Kit</a></td><td>Синхронізація між кількома користувачами</td></tr>
+<tr><td>Auth Kit</td><td>Аутентифікація користувачів через Snapchat</td></tr>
+<tr><td>Navigation Kit</td><td>Навігація та переходи між сценами</td></tr>
+<tr><td>Commerce Kit</td><td>Інтеграція покупок (закрита бета)</td></tr>
+<tr><td>Mobile Kit</td><td>Зв'язок між Spectacles та мобільним додатком</td></tr>
+</table>
+
+<div class="page-footer">
+<a href="#" onclick="showPage('overview');return false">← Огляд</a>
+<a href="#" onclick="showPage('start');return false">Далі: Початок розробки →</a>
+</div>
+`,
+
+start: `
+<div class="breadcrumb">SpectaclesUIKit <span>›</span> Початок роботи</div>
+<h1>Початок розробки</h1>
+<p class="subtitle">Як почати створювати Лінзи для Spectacles з нуля.</p>
+
+<h2>Що потрібно</h2>
+<ol class="steps">
+<li><strong>Завантажте Lens Studio 5</strong><br>Скачайте останню версію з <a href="https://developers.snap.com" target="_blank">developers.snap.com</a>. Spectacles потребують Lens Studio 5+.</li>
+<li><strong>Створіть новий проєкт</strong><br>При створенні проєкту оберіть шаблон <strong>Spectacles</strong>. Він вже включає SIK та базову сцену.</li>
+<li><strong>Додайте потрібні пакети</strong><br>Через Asset Library додайте <strong>SpectaclesInteractionKit</strong> та <strong>SpectaclesUIKit</strong> (якщо потрібні UI компоненти).</li>
+<li><strong>Налаштуйте сцену</strong><br>Додайте камеру, освітлення, та ваші 3D об'єкти. Для взаємодії через руки — додайте <code>Interactable</code> компонент на об'єкти.</li>
+<li><strong>Тестуйте</strong><br>Використовуйте Preview у Lens Studio. Для повного тестування — деплойте на реальні Spectacles через Snapchat.</li>
+</ol>
+
+<h2>Структура типового проєкту</h2>
+<div class="code-block"><div class="code-header"><span class="code-tab active">Типова структура</span></div>
+<div class="code-body"><pre><code>MyProject/
+├── Assets/
+│   ├── Scenes/
+│   │   └── MainScene.scene
+│   ├── Scripts/
+│   │   └── MyScript.ts
+│   ├── Materials/
+│   ├── Textures/
+│   ├── Prefabs/
+│   ├── SpectaclesInteractionKit.lspkg/   ← Взаємодія
+│   └── SpectaclesUIKit.lspkg/            ← UI компоненти
+├── tsconfig.json
+└── project.json</code></pre></div></div>
+
+<h2>Зразки проєктів</h2>
+<p>Snap надає офіційні зразки на GitHub:</p>
+<ul>
+<li><strong>Hand Tracking Demo</strong> — базова демонстрація трекінгу рук</li>
+<li><strong>UI Elements Sample</strong> — приклади кнопок, слайдерів, контейнерів</li>
+<li><strong>Connected Lenses</strong> — мультикористувацький AR-досвід</li>
+<li><strong>SnapML Sample</strong> — машинне навчання на Spectacles</li>
+</ul>
+
+<div class="callout callout-tip"><span class="callout-icon">💡</span><p>Найкраще почати з офіційного шаблону Spectacles в Lens Studio — він вже має правильно налаштовану сцену з камерою та SIK.</p></div>
+
+<div class="page-footer">
+<a href="#" onclick="showPage('spectacles');return false">← Що таке Spectacles</a>
 <a href="#" onclick="showPage('setup');return false">Далі: Структура проєкту →</a>
 </div>
 `,
@@ -542,7 +647,7 @@ notes: `
 
 <div id="notesContainer"></div>
 
-<div id="noteEditor" style="display:none;margin-top:24px">
+<div id="noteEditor" style="display:none;margin-top:24px;">
 <input type="text" id="noteTitle" placeholder="Назва нотатки..." style="width:100%;padding:10px 14px;border:2px solid var(--border);border-radius:8px;font-size:1rem;font-weight:600;margin-bottom:8px;outline:none">
 <select id="noteCategory" style="padding:8px 12px;border:1px solid var(--border);border-radius:6px;margin-bottom:8px;font-size:.85rem">
 <option value="general">Загальне</option><option value="ui">UI/Дизайн</option>
@@ -555,6 +660,409 @@ notes: `
 <button class="code-copy" style="padding:8px 16px" onclick="cancelEdit()">Скасувати</button>
 <button class="code-copy" style="padding:8px 16px;color:var(--red);margin-left:auto" onclick="deleteCurrentNote()">Видалити</button>
 </div>
+</div>
+`,
+
+features: `
+<div class="breadcrumb">Spectacles <span>›</span> Можливості</div>
+<h1>Огляд функцій Spectacles</h1>
+<p class="subtitle">Повний перелік можливостей, доступних розробникам на платформі Spectacles.</p>
+
+<h2>Взаємодія</h2>
+<table>
+<tr><th>Функція</th><th>Опис</th></tr>
+<tr><td><strong>Hand Tracking</strong></td><td>Повний трекінг обох рук — 26 суглобів на руку. Підтримує pinch, grab, poke жести</td></tr>
+<tr><td><strong>Eye Tracking</strong></td><td>Відслідковування напрямку погляду для gaze-based взаємодії</td></tr>
+<tr><td><strong>Mobile Controller</strong></td><td>Використання телефону як контролера через Snapchat додаток</td></tr>
+<tr><td><strong>Voice Commands</strong></td><td>Голосові команди для hands-free управління</td></tr>
+</table>
+
+<h2>Просторові можливості</h2>
+<table>
+<tr><th>Функція</th><th>Опис</th></tr>
+<tr><td><strong>World Mesh</strong></td><td>3D сканування навколишнього середовища для розміщення об'єктів на поверхнях</td></tr>
+<tr><td><strong>Plane Detection</strong></td><td>Автоматичне розпізнавання підлог, стін, столів</td></tr>
+<tr><td><strong>Spatial Anchors</strong></td><td>Прив'язка віртуальних об'єктів до фіксованих місць у реальному світі</td></tr>
+<tr><td><strong>Spatial Audio</strong></td><td>Звук, який "живе" у 3D просторі — стає гучнішим при наближенні</td></tr>
+<tr><td><strong>Passthrough</strong></td><td>Камери передають зображення реального світу + накладають AR контент</td></tr>
+</table>
+
+<h2>Мережа та хмара</h2>
+<table>
+<tr><th>Функція</th><th>Опис</th></tr>
+<tr><td><strong>Connected Lenses</strong></td><td>Кілька людей в одному AR-просторі одночасно — бачать однакові об'єкти</td></tr>
+<tr><td><strong>Snap Cloud</strong></td><td>Хмарне сховище для збереження даних між сесіями</td></tr>
+<tr><td><strong>Auth Kit</strong></td><td>Аутентифікація через Snapchat акаунт</td></tr>
+</table>
+
+<h2>AI та ML</h2>
+<table>
+<tr><th>Функція</th><th>Опис</th></tr>
+<tr><td><strong>SnapML</strong></td><td>Запуск ML-моделей прямо на пристрої. Підтримує класифікацію, сегментацію, об'єктну детекцію</td></tr>
+<tr><td><strong>Custom Models</strong></td><td>Імпорт власних ONNX/TFLite моделей через Lens Studio</td></tr>
+</table>
+
+<h2>Сумісність</h2>
+<div class="callout callout-warn"><span class="callout-icon">⚠️</span><p>Не всі функції Lens Studio доступні на Spectacles. Перевіряйте <a href="https://developers.snap.com/spectacles/spectacles-features/compatibility-list" target="_blank">Compatibility List</a> перед використанням нових API.</p></div>
+
+<div class="page-footer">
+<a href="#" onclick="showPage('spectacles');return false">← Що таке Spectacles</a>
+<a href="#" onclick="showPage('design');return false">Далі: Просторовий дизайн →</a>
+</div>
+`,
+
+design: `
+<div class="breadcrumb">Spectacles <span>›</span> Можливості</div>
+<h1>Просторовий дизайн</h1>
+<p class="subtitle">Основні принципи дизайну AR-досвідів для реального світу.</p>
+
+<h2>Ключові принципи</h2>
+
+<h3>1. Контент у контексті</h3>
+<p>AR-об'єкти повинні виглядати так, ніби вони належать реальному середовищу. Використовуйте освітлення, тіні та масштаб, які відповідають оточенню.</p>
+
+<h3>2. Зона комфорту</h3>
+<p>Розміщуйте основний контент на відстані <strong>0.5–3 метри</strong> від користувача. Надто близькі об'єкти викликають дискомфорт, надто далекі — складно розрізнити.</p>
+
+<h3>3. Ergonomics рук</h3>
+<p>Не змушуйте тримати руки піднятими довго — це втомлює. Розміщуйте інтерактивні елементи на рівні грудей або нижче, в зручній зоні досяжності.</p>
+
+<h3>4. Читабельність</h3>
+<table>
+<tr><th>Параметр</th><th>Рекомендація</th></tr>
+<tr><td>Мінімальний розмір тексту</td><td>~1 см на відстані 1 м (приблизно 0.6° кутового розміру)</td></tr>
+<tr><td>Контраст</td><td>Високий контраст — AR-контент конкурує з реальним фоном</td></tr>
+<tr><td>Кількість тексту</td><td>Мінімум — переважайте іконки та візуальні елементи</td></tr>
+</table>
+
+<h3>5. Зворотній зв'язок</h3>
+<p>Кожна взаємодія повинна мати відповідь:</p>
+<ul>
+<li><strong>Hover</strong> — підсвічення при наведенні руки/погляду</li>
+<li><strong>Trigger</strong> — анімація та/або звук при натисканні</li>
+<li><strong>Completion</strong> — чіткий сигнал що дія завершена</li>
+</ul>
+
+<h3>6. Поступове відкриття</h3>
+<p>Не показуйте всі елементи одразу. Відкривайте інтерфейс поступово — спочатку основне, потім деталі при взаємодії.</p>
+
+<div class="callout callout-tip"><span class="callout-icon">💡</span><p>Більше деталей у офіційному гайді: <a href="https://developers.snap.com/spectacles/best-practices/design-for-spectacles" target="_blank">Design for Spectacles</a></p></div>
+
+<div class="page-footer">
+<a href="#" onclick="showPage('features');return false">← Огляд функцій</a>
+<a href="#" onclick="showPage('performance');return false">Далі: Оптимізація →</a>
+</div>
+`,
+
+performance: `
+<div class="breadcrumb">Spectacles <span>›</span> Можливості</div>
+<h1>Оптимізація продуктивності</h1>
+<p class="subtitle">Spectacles — мобільний пристрій з обмеженими ресурсами. Продуктивність критична для комфорту.</p>
+
+<h2>Чому це важливо</h2>
+<p>Низький FPS в AR = нудота та дискомфорт. Spectacles мають цільову частоту <strong>60 FPS</strong>. Кожен кадр = ~16.6 мс на весь пайплайн.</p>
+
+<h2>Рекомендації</h2>
+
+<h3>Геометрія</h3>
+<table>
+<tr><th>Метрика</th><th>Ліміт</th></tr>
+<tr><td>Полігони на сцену</td><td>Менше 100K трикутників</td></tr>
+<tr><td>Draw calls</td><td>Менше 50</td></tr>
+<tr><td>Кількість матеріалів</td><td>Мінімізувати — кожен унікальний матеріал = окремий draw call</td></tr>
+</table>
+
+<h3>Текстури</h3>
+<ul>
+<li>Максимальний розмір: <strong>1024x1024</strong> (2048 тільки якщо необхідно)</li>
+<li>Використовуйте стиснення (compressed textures)</li>
+<li>Атласи текстур замість багатьох окремих</li>
+</ul>
+
+<h3>Скрипти</h3>
+<ul>
+<li>Уникайте <code>getComponent()</code> у <code>update()</code> — кешуйте результат в <code>onAwake()</code></li>
+<li>Не створюйте нові об'єкти кожен кадр — використовуйте пули (object pooling)</li>
+<li>Замість <code>UpdateEvent</code> кожен кадр — використовуйте <code>DelayedCallbackEvent</code> де можливо</li>
+</ul>
+
+<h3>Шейдери</h3>
+<ul>
+<li>Уникайте прозорості (transparency) — вона дорога на мобільних GPU</li>
+<li>Використовуйте <strong>Unlit</strong> матеріали де можливо замість PBR</li>
+<li>Мінімізуйте кількість реал-тайм світла</li>
+</ul>
+
+<h2>Профайлінг</h2>
+<p>Lens Studio має вбудований <strong>Performance Panel</strong> — показує FPS, draw calls, трикутники, пам'ять. Використовуйте його перед деплоєм.</p>
+
+<div class="callout callout-warn"><span class="callout-icon">⚠️</span><p>Preview в Lens Studio на комп'ютері працює значно швидше ніж реальні Spectacles. Завжди тестуйте на реальному пристрої!</p></div>
+
+<div class="page-footer">
+<a href="#" onclick="showPage('design');return false">← Просторовий дизайн</a>
+<a href="#" onclick="showPage('sik');return false">Далі: Interaction Kit →</a>
+</div>
+`,
+
+sik: `
+<div class="breadcrumb">Spectacles <span>›</span> Фреймворки</div>
+<h1>Spectacles Interaction Kit (SIK)</h1>
+<p class="subtitle">Основний фреймворк для обробки взаємодії користувача з AR-контентом через руки, погляд та контролер.</p>
+
+<h2>Що входить</h2>
+<table>
+<tr><th>Модуль</th><th>Опис</th></tr>
+<tr><td><strong>Interaction System</strong></td><td>Ядро системи — зв'язує Interactor (руку/погляд) з Interactable (об'єктом)</td></tr>
+<tr><td><strong>Hand Tracking</strong></td><td>Трекінг рук, розпізнавання жестів (pinch, grab)</td></tr>
+<tr><td><strong>Mobile Controller</strong></td><td>Альтернативний ввід через телефон</td></tr>
+<tr><td><strong>Cursor</strong></td><td>Візуальний індикатор, куди "дивиться" рука/погляд</td></tr>
+<tr><td><strong>Hand Visualization</strong></td><td>Візуалізація рук (скелет, підсвічення пальців)</td></tr>
+<tr><td><strong>Anchor Dynamics</strong></td><td>Фізикоподібна поведінка для прив'язаних об'єктів</td></tr>
+</table>
+
+<h2>Ключові компоненти</h2>
+
+<h3>Interactable</h3>
+<p>Базовий компонент — робить будь-який SceneObject інтерактивним. Додайте його + Collider на об'єкт, і він почне реагувати на руки.</p>
+
+<h3>UI елементи</h3>
+<table>
+<tr><th>Компонент</th><th>Подія</th><th>Аналогія</th></tr>
+<tr><td><strong>PinchButton</strong></td><td><code>onButtonPinched</code></td><td>Звичайна кнопка — натиснув і спрацювала</td></tr>
+<tr><td><strong>ToggleButton</strong></td><td><code>onStateChanged</code></td><td>Вимикач світла — запам'ятовує стан</td></tr>
+<tr><td><strong>Slider</strong></td><td><code>onValueUpdate</code></td><td>Регулятор гучності — плавне значення</td></tr>
+<tr><td><strong>ScrollView</strong></td><td>—</td><td>Прокручуваний список (як у телефоні)</td></tr>
+<tr><td><strong>Container</strong></td><td>—</td><td>Плаваюче вікно в AR (переміщення, масштаб, закриття)</td></tr>
+</table>
+
+<h3>Приклад використання</h3>
+<div class="code-block"><div class="code-header"><span class="code-tab active">TypeScript</span><button class="code-copy" onclick="copyCode(this)">Копіювати</button></div>
+<div class="code-body"><pre><code>import { PinchButton } from 'SpectaclesInteractionKit.lspkg/Components/UI/PinchButton/PinchButton'
+
+@component
+export class MyInteraction extends BaseScriptComponent {
+  onAwake() {
+    this.createEvent('OnStartEvent').bind(() =&gt; {
+      const btn = this.sceneObject.getComponent(
+        PinchButton.getTypeName()
+      )
+      btn.onButtonPinched.add(() =&gt; {
+        print("Взаємодія!")
+      })
+    })
+  }
+}</code></pre></div></div>
+
+<div class="callout callout-info"><span class="callout-icon">ℹ️</span><p>Повна документація: <a href="https://developers.snap.com/spectacles/spectacles-frameworks/spectacles-interaction-kit/getting-started" target="_blank">SIK Getting Started</a></p></div>
+
+<div class="page-footer">
+<a href="#" onclick="showPage('performance');return false">← Оптимізація</a>
+<a href="#" onclick="showPage('uikit');return false">Далі: UI Kit →</a>
+</div>
+`,
+
+uikit: `
+<div class="breadcrumb">Spectacles <span>›</span> Фреймворки</div>
+<h1>Spectacles UI Kit</h1>
+<p class="subtitle">Візуальний фреймворк для створення стилізованих UI компонентів з темами та градієнтами.</p>
+
+<h2>Чим відрізняється від SIK</h2>
+<table>
+<tr><th></th><th>SIK</th><th>UI Kit</th></tr>
+<tr><td><strong>Фокус</strong></td><td>Взаємодія (input)</td><td>Візуал (output)</td></tr>
+<tr><td><strong>Кнопки</strong></td><td>PinchButton, ToggleButton</td><td>RoundButton, CapsuleButton, RectangleButton</td></tr>
+<tr><td><strong>Events</strong></td><td>onButtonPinched</td><td>onTriggerUp, onTriggerDown</td></tr>
+<tr><td><strong>Теми</strong></td><td>Немає</td><td>SnapOS 2.0 з градієнтами та станами</td></tr>
+<tr><td><strong>Стилі</strong></td><td>Базові</td><td>5 стилів: Primary, PrimaryNeutral, Secondary, Special, Ghost</td></tr>
+</table>
+
+<h2>Компоненти UI Kit</h2>
+<ul>
+<li><strong>BaseButton</strong> — базовий клас для всіх кнопок (abstract)</li>
+<li><strong>RoundButton</strong> — кругла кнопка</li>
+<li><strong>CapsuleButton</strong> — кнопка-капсула</li>
+<li><strong>RectangleButton</strong> — прямокутна кнопка</li>
+<li><strong>RadioButton</strong> — радіо-кнопка (вибір одного з групи)</li>
+<li><strong>Checkbox</strong> — прапорець</li>
+<li><strong>Frame</strong> — контейнер з можливістю переміщення та масштабування</li>
+</ul>
+
+<h2>Система тем</h2>
+<p>UI Kit використовує тему <strong>SnapOS 2.0</strong>. Кольори визначені в <code>Colors.ts</code>, градієнти — в папці <code>Gradients/</code>, параметри кнопок — в <code>Styles/</code>.</p>
+<p><a href="#" onclick="showPage('theming');return false">→ Детальніше про кольори та стилі</a></p>
+
+<h2>Callback система</h2>
+<p>У кожної кнопки є опція <strong>Add Callbacks</strong> в Inspector. Це дозволяє підключати функції з інших скриптів без імпорту типів:</p>
+<ul>
+<li><strong>On Trigger Up Callbacks</strong> — при відпусканні (основний "клік")</li>
+<li><strong>On Trigger Down Callbacks</strong> — при натисканні</li>
+<li><strong>On Value Changed Callbacks</strong> — при зміні стану toggle</li>
+</ul>
+<p><a href="#" onclick="showPage('scripts');return false">→ Приклад: SpawnCubeOnPress</a></p>
+
+<div class="page-footer">
+<a href="#" onclick="showPage('sik');return false">← Interaction Kit</a>
+<a href="#" onclick="showPage('synckit');return false">Далі: Sync Kit →</a>
+</div>
+`,
+
+synckit: `
+<div class="breadcrumb">Spectacles <span>›</span> Фреймворки</div>
+<h1>Spectacles Sync Kit</h1>
+<p class="subtitle">Фреймворк для створення мультикористувацьких (multiplayer) AR-досвідів.</p>
+
+<h2>Що це</h2>
+<p>Sync Kit дозволяє кільком людям бачити та взаємодіяти з одним і тим самим AR-контентом одночасно. Наприклад: двоє людей в окулярах бачать однакову 3D модель на столі і можуть її разом переміщувати.</p>
+
+<h2>Як працює</h2>
+<table>
+<tr><th>Концепт</th><th>Опис</th></tr>
+<tr><td><strong>Connected Lenses</strong></td><td>Базова технологія Snap для мультикористувацьких Лінз</td></tr>
+<tr><td><strong>Session</strong></td><td>Спільна сесія, до якої підключаються всі учасники</td></tr>
+<tr><td><strong>Ownership</strong></td><td>Кожен об'єкт має "власника" — тільки він може його змінювати</td></tr>
+<tr><td><strong>State Sync</strong></td><td>Позиції, ротація, масштаб та кастомні дані синхронізуються між пристроями</td></tr>
+<tr><td><strong>Persistence</strong></td><td>Стан можна зберігати через Snap Cloud для відновлення між сесіями</td></tr>
+</table>
+
+<h2>Типовий сценарій</h2>
+<ol>
+<li>Користувач A створює Лінзу та отримує код/посилання запрошення</li>
+<li>Користувач B приєднується через Snapchat</li>
+<li>Обидва бачать однакову AR-сцену, прив'язану до спільного просторового якоря</li>
+<li>Зміни одного автоматично відображаються у іншого</li>
+</ol>
+
+<div class="callout callout-info"><span class="callout-icon">ℹ️</span><p>Sync Kit побудований поверх Connected Lenses API та потребує активне інтернет-з'єднання.</p></div>
+
+<div class="page-footer">
+<a href="#" onclick="showPage('uikit');return false">← UI Kit</a>
+<a href="#" onclick="showPage('otherkit');return false">Далі: Інші фреймворки →</a>
+</div>
+`,
+
+otherkit: `
+<div class="breadcrumb">Spectacles <span>›</span> Фреймворки</div>
+<h1>Інші фреймворки</h1>
+<p class="subtitle">Додаткові інструменти від Snap для розширення можливостей Spectacles.</p>
+
+<h2>Auth Kit</h2>
+<p>Аутентифікація користувачів через їхній Snapchat акаунт. Дозволяє:</p>
+<ul>
+<li>Отримати ім'я та Bitmoji користувача</li>
+<li>Персоналізувати досвід</li>
+<li>Зберігати прогрес користувача</li>
+</ul>
+
+<h2>Navigation Kit</h2>
+<p>Система навігації між різними "екранами" або сценами у вашій Лінзі. Забезпечує:</p>
+<ul>
+<li>Переходи між станами додатку</li>
+<li>Анімовані transitions</li>
+<li>Стек навігації (назад/вперед)</li>
+</ul>
+
+<h2>Commerce Kit <span style="background:var(--orange);color:#fff;padding:2px 8px;border-radius:4px;font-size:.75rem;margin-left:8px">Закрита бета</span></h2>
+<p>Інтеграція покупок прямо в AR-досвід:</p>
+<ul>
+<li>Показ товарів у 3D</li>
+<li>Кошик та оплата</li>
+<li>Інтеграція з ecommerce платформами</li>
+</ul>
+
+<h2>Mobile Kit</h2>
+<p>Зв'язок між Spectacles та мобільним додатком користувача:</p>
+<ul>
+<li>Передача даних між окулярами та телефоном</li>
+<li>Використання телефону як додаткового екрану або контролера</li>
+<li>Companion App функціонал</li>
+</ul>
+
+<h2>WebXR</h2>
+<p>Spectacles також підтримують стандарт <strong>WebXR</strong>, що дозволяє запускати AR-досвіди через веб-браузер. Це відкриває можливість крос-платформного розповсюдження без необхідності створювати окремі Лінзи.</p>
+
+<div class="page-footer">
+<a href="#" onclick="showPage('synckit');return false">← Sync Kit</a>
+<a href="#" onclick="showPage('buttons');return false">Далі: Кнопки →</a>
+</div>
+`,
+
+permissions: `
+<div class="breadcrumb">Spectacles <span>›</span> Ресурси</div>
+<h1>Дозволи та приватність</h1>
+<p class="subtitle">Правила доступу до функцій пристрою та захист приватності користувачів.</p>
+
+<h2>Система дозволів</h2>
+<p>Spectacles мають систему дозволів, подібну до мобільних ОС. Деякі API потребують явного дозволу від користувача.</p>
+
+<h2>Типи дозволів</h2>
+<table>
+<tr><th>Дозвіл</th><th>Для чого</th><th>Тип</th></tr>
+<tr><td><strong>Camera</strong></td><td>Доступ до камер пристрою</td><td>Прозорий</td></tr>
+<tr><td><strong>Microphone</strong></td><td>Запис звуку</td><td>Прозорий</td></tr>
+<tr><td><strong>Location</strong></td><td>GPS координати</td><td>Прозорий</td></tr>
+<tr><td><strong>Storage</strong></td><td>Збереження файлів</td><td>Автоматичний</td></tr>
+<tr><td><strong>Network</strong></td><td>Доступ до інтернету</td><td>Автоматичний</td></tr>
+</table>
+
+<h3>Прозорий дозвіл (Transparent Permission)</h3>
+<p>Для чутливих даних (камера, мікрофон, геолокація) користувач має чітко бачити і підтвердити, що Лінза використовує ці дані. Snap забезпечує UI для цього автоматично.</p>
+
+<h2>Експериментальні API</h2>
+<div class="callout callout-warn"><span class="callout-icon">⚠️</span><p>Деякі API Spectacles позначені як <strong>Experimental</strong>. Вони можуть змінитись або бути видалені в майбутніх версіях. Використовуйте їх обережно у продакшн Лінзах.</p></div>
+
+<h2>Найкращі практики</h2>
+<ul>
+<li>Запитуйте дозволи тільки коли вони потрібні, не при запуску</li>
+<li>Пояснюйте користувачу навіщо потрібен дозвіл</li>
+<li>Не зберігайте чутливі дані без необхідності</li>
+<li>Слідкуйте за гайдлайнами Snap щодо приватності</li>
+</ul>
+
+<div class="page-footer">
+<a href="#" onclick="showPage('events');return false">← Довідник подій</a>
+<a href="#" onclick="showPage('links');return false">Далі: Корисні посилання →</a>
+</div>
+`,
+
+links: `
+<div class="breadcrumb">Spectacles <span>›</span> Ресурси</div>
+<h1>Корисні посилання</h1>
+<p class="subtitle">Офіційні ресурси, спільнота та документація від Snap.</p>
+
+<h2>Офіційна документація</h2>
+<table>
+<tr><th>Ресурс</th><th>Посилання</th></tr>
+<tr><td>Головна сторінка Spectacles</td><td><a href="https://developers.snap.com/spectacles/home" target="_blank">developers.snap.com/spectacles</a></td></tr>
+<tr><td>Spectacles Features</td><td><a href="https://developers.snap.com/spectacles/spectacles-features/overview" target="_blank">Огляд можливостей</a></td></tr>
+<tr><td>Interaction Kit</td><td><a href="https://developers.snap.com/spectacles/spectacles-frameworks/spectacles-interaction-kit/getting-started" target="_blank">SIK Getting Started</a></td></tr>
+<tr><td>UI Elements (SIK)</td><td><a href="https://developers.snap.com/spectacles/spectacles-frameworks/spectacles-interaction-kit/features/ui-elements" target="_blank">PinchButton, ToggleButton, Slider</a></td></tr>
+<tr><td>UI Composites (SIK)</td><td><a href="https://developers.snap.com/spectacles/spectacles-frameworks/spectacles-interaction-kit/features/ui-composites" target="_blank">ScrollView, Container</a></td></tr>
+<tr><td>UI Kit</td><td><a href="https://developers.snap.com/spectacles/spectacles-frameworks/spectacles-ui-kit" target="_blank">SpectaclesUIKit</a></td></tr>
+<tr><td>Compatibility List</td><td><a href="https://developers.snap.com/spectacles/spectacles-features/compatibility-list" target="_blank">Що працює на Spectacles</a></td></tr>
+<tr><td>Design Guidelines</td><td><a href="https://developers.snap.com/spectacles/best-practices/design-for-spectacles" target="_blank">Дизайн для Spectacles</a></td></tr>
+<tr><td>Performance</td><td><a href="https://developers.snap.com/spectacles/best-practices/performance-optimization" target="_blank">Оптимізація</a></td></tr>
+</table>
+
+<h2>Завантаження</h2>
+<table>
+<tr><th>Що</th><th>Посилання</th></tr>
+<tr><td>Lens Studio 5</td><td><a href="https://ar.snap.com/lens-studio" target="_blank">Завантажити</a></td></tr>
+<tr><td>GitHub Sample Projects</td><td><a href="https://developers.snap.com/spectacles/get-started/github-sample-projects" target="_blank">Зразки проєктів</a></td></tr>
+<tr><td>Asset Library</td><td><a href="https://developers.snap.com/spectacles/spectacles-features/asset-library" target="_blank">Бібліотека ассетів</a></td></tr>
+</table>
+
+<h2>Спільнота</h2>
+<table>
+<tr><th>Платформа</th><th>Посилання</th></tr>
+<tr><td>Reddit</td><td><a href="https://reddit.com/r/Spectacles" target="_blank">r/Spectacles</a> — офіційний subreddit</td></tr>
+<tr><td>Spectacles Website</td><td><a href="https://www.spectacles.com" target="_blank">spectacles.com</a></td></tr>
+</table>
+
+<div class="callout callout-tip"><span class="callout-icon">💡</span><p>Потрібна допомога? Задайте питання на <a href="https://reddit.com/r/Spectacles" target="_blank">r/Spectacles</a> — це офіційний канал підтримки від Snap.</p></div>
+
+<div class="page-footer">
+<a href="#" onclick="showPage('permissions');return false">← Дозволи та приватність</a>
+<a href="#" onclick="showPage('notes');return false">Далі: Нотатки →</a>
 </div>
 `
 };
