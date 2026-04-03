@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FND-11919 Railway Mainline — Project Notes</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0d1117;--surface:#161b22;--surface2:#21262d;--border:#30363d;
+  --text:#e6edf3;--text2:#8b949e;--accent:#58a6ff;--accent2:#1f6feb;
+  --green:#3fb950;--red:#f85149;--yellow:#d29922;--radius:12px;
+}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;
+  background:var(--bg);color:var(--text);min-height:100vh;line-height:1.6}
+button{cursor:pointer;font-family:inherit;font-size:inherit}
+input,textarea,select{font-family:inherit;font-size:inherit}
+
+/* PASSWORD GATE */
+#gate{display:flex;align-items:center;justify-content:center;min-height:100vh;
+  background:linear-gradient(135deg,#0d1117 0%,#161b22 50%,#0d1117 100%)}
+.gate-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;
+  padding:48px;max-width:400px;width:90%;text-align:center;
+  box-shadow:0 16px 48px rgba(0,0,0,.4)}
+.gate-card h1{font-size:1.4rem;margin-bottom:8px;font-weight:600}
+.gate-card p{color:var(--text2);margin-bottom:24px;font-size:.9rem}
+.gate-card .logo{font-size:2.4rem;margin-bottom:16px;display:block}
+.gate-input{width:100%;padding:12px 16px;background:var(--bg);border:1px solid var(--border);
+  border-radius:8px;color:var(--text);font-size:1rem;outline:none;transition:.2s}
+.gate-input:focus{border-color:var(--accent)}
+.gate-btn{width:100%;padding:12px;background:var(--accent2);color:#fff;border:none;
+  border-radius:8px;font-size:1rem;font-weight:600;margin-top:12px;transition:.2s}
+.gate-btn:hover{background:var(--accent)}
+.gate-error{color:var(--red);font-size:.85rem;margin-top:8px;display:none}
+
+/* APP LAYOUT */
+#app{display:none;height:100vh;overflow:hidden}
+.topbar{display:flex;align-items:center;gap:16px;padding:12px 24px;
+  background:var(--surface);border-bottom:1px solid var(--border);flex-shrink:0}
+.topbar h1{font-size:1.1rem;font-weight:600;flex:1}
+.topbar-actions{display:flex;gap:8px}
+.btn{padding:8px 16px;border-radius:8px;border:1px solid var(--border);
+  background:var(--surface2);color:var(--text);font-size:.85rem;transition:.15s}
+.btn:hover{border-color:var(--accent);color:var(--accent)}
+.btn.primary{background:var(--accent2);border-color:var(--accent2);color:#fff}
+.btn.primary:hover{background:var(--accent)}
+.btn.danger{color:var(--red);border-color:transparent}
+.btn.danger:hover{background:rgba(248,81,73,.1);border-color:var(--red)}
+.btn.small{padding:4px 10px;font-size:.8rem}
+
+.main{display:flex;flex:1;overflow:hidden}
+
+/* SIDEBAR */
+.sidebar{width:280px;background:var(--surface);border-right:1px solid var(--border);
+  display:flex;flex-direction:column;flex-shrink:0}
+.sidebar-header{padding:16px;border-bottom:1px solid var(--border);display:flex;gap:8px}
+.sidebar-search{flex:1;padding:8px 12px;background:var(--bg);border:1px solid var(--border);
+  border-radius:8px;color:var(--text);outline:none;font-size:.85rem}
+.sidebar-search:focus{border-color:var(--accent)}
+.sidebar-list{flex:1;overflow-y:auto;padding:8px}
+.sidebar-list::-webkit-scrollbar{width:6px}
+.sidebar-list::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
+.note-item{padding:12px;border-radius:8px;cursor:pointer;transition:.15s;margin-bottom:2px}
+.note-item:hover{background:var(--surface2)}
+.note-item.active{background:var(--surface2);border-left:3px solid var(--accent)}
+.note-item h3{font-size:.9rem;font-weight:600;margin-bottom:2px;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.note-item .meta{font-size:.75rem;color:var(--text2);display:flex;gap:8px;align-items:center}
+.note-item .category-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+
+/* EDITOR */
+.editor-area{flex:1;display:flex;flex-direction:column;overflow:hidden}
+.editor-toolbar{padding:12px 24px;border-bottom:1px solid var(--border);
+  display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.editor-title{flex:1;padding:8px 0;background:transparent;border:none;
+  color:var(--text);font-size:1.2rem;font-weight:600;outline:none;min-width:200px}
+.editor-title::placeholder{color:var(--text2)}
+.category-select{padding:6px 12px;background:var(--bg);border:1px solid var(--border);
+  border-radius:6px;color:var(--text);outline:none}
+.editor-content{flex:1;padding:24px;overflow-y:auto}
+.editor-content textarea{width:100%;height:100%;background:transparent;border:none;
+  color:var(--text);font-size:.95rem;line-height:1.8;outline:none;resize:none}
+.editor-content textarea::placeholder{color:var(--text2)}
+
+/* EMPTY STATE */
+.empty-state{flex:1;display:flex;align-items:center;justify-content:center;
+  flex-direction:column;color:var(--text2)}
+.empty-state .icon{font-size:3rem;margin-bottom:16px;opacity:.5}
+.empty-state p{font-size:.95rem}
+
+/* MODAL */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;
+  align-items:center;justify-content:center;z-index:100}
+.modal-overlay.show{display:flex}
+.modal{background:var(--surface);border:1px solid var(--border);border-radius:16px;
+  padding:32px;max-width:480px;width:90%;box-shadow:0 16px 48px rgba(0,0,0,.5)}
+.modal h2{font-size:1.1rem;margin-bottom:16px}
+.modal textarea{width:100%;height:200px;background:var(--bg);border:1px solid var(--border);
+  border-radius:8px;color:var(--text);padding:12px;outline:none;resize:vertical;font-size:.85rem}
+.modal .btn-row{display:flex;gap:8px;margin-top:16px;justify-content:flex-end}
+
+/* CATEGORIES */
+.cat-general{background:#58a6ff}.cat-ui{background:#d29922}
+.cat-scripting{background:#3fb950}.cat-bug{background:#f85149}
+.cat-idea{background:#bc8cff}.cat-asset{background:#f78166}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .sidebar{width:100%;position:absolute;z-index:50;height:calc(100vh - 52px);
+    transform:translateX(-100%);transition:.3s}
+  .sidebar.open{transform:translateX(0)}
+  .topbar .menu-toggle{display:block}
+}
+@media(min-width:769px){.topbar .menu-toggle{display:none}}
+</style>
+</head>
+<body>
+
+<!-- PASSWORD GATE -->
+<div id="gate">
+  <div class="gate-card">
+    <span class="logo">🚂</span>
+    <h1>Railway Mainline</h1>
+    <p>Project notes — enter password to continue</p>
+    <input type="password" class="gate-input" id="pwInput" placeholder="Password" autofocus>
+    <button class="gate-btn" id="pwBtn">Enter</button>
+    <div class="gate-error" id="pwError">Wrong password</div>
+  </div>
+</div>
+
+<!-- MAIN APP -->
+<div id="app">
+  <div class="topbar">
+    <button class="btn menu-toggle" onclick="toggleSidebar()">☰</button>
+    <h1>🚂 Railway Mainline Notes</h1>
+    <div class="topbar-actions">
+      <button class="btn" onclick="exportNotes()" title="Export">↓ Export</button>
+      <button class="btn" onclick="showImport()" title="Import">↑ Import</button>
+      <button class="btn danger" onclick="logout()">Logout</button>
+    </div>
+  </div>
+
+  <div class="main">
+    <div class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <input type="text" class="sidebar-search" id="searchInput" placeholder="Search notes...">
+        <button class="btn primary small" onclick="createNote()">+</button>
+      </div>
+      <div class="sidebar-list" id="notesList"></div>
+    </div>
+
+    <div class="editor-area" id="editorArea">
+      <div class="empty-state" id="emptyState">
+        <div class="icon">📝</div>
+        <p>Select a note or create a new one</p>
+      </div>
+
+      <div id="editorWrap" style="display:none;flex:1;display:none;flex-direction:column">
+        <div class="editor-toolbar">
+          <input type="text" class="editor-title" id="noteTitle" placeholder="Note title...">
+          <select class="category-select" id="noteCategory">
+            <option value="general">General</option>
+            <option value="ui">UI / Design</option>
+            <option value="scripting">Scripting</option>
+            <option value="bug">Bug</option>
+            <option value="idea">Idea</option>
+            <option value="asset">Asset</option>
+          </select>
+          <button class="btn danger small" onclick="deleteNote()">Delete</button>
+        </div>
+        <div class="editor-content">
+          <textarea id="noteBody" placeholder="Write your notes here..."></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- IMPORT MODAL -->
+<div class="modal-overlay" id="importModal">
+  <div class="modal">
+    <h2>Import Notes (JSON)</h2>
+    <textarea id="importData" placeholder='Paste exported JSON here...'></textarea>
+    <div class="btn-row">
+      <button class="btn" onclick="closeImport()">Cancel</button>
+      <button class="btn primary" onclick="importNotes()">Import</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const STORAGE_KEY = 'railway_notes';
+const SESSION_KEY = 'railway_auth';
+const PW_HASH = '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8'; // "password"
+
+let notes = [];
+let activeId = null;
+
+// --- AUTH ---
+async function sha256(str) {
+  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
+  return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
+}
+
+async function checkPassword() {
+  const pw = document.getElementById('pwInput').value;
+  const hash = await sha256(pw);
+  if (hash === PW_HASH) {
+    sessionStorage.setItem(SESSION_KEY, '1');
+    showApp();
+  } else {
+    document.getElementById('pwError').style.display = 'block';
+  }
+}
+
+function showApp() {
+  document.getElementById('gate').style.display = 'none';
+  document.getElementById('app').style.display = 'flex';
+  document.getElementById('app').style.flexDirection = 'column';
+  loadNotes();
+  renderList();
+}
+
+function logout() {
+  sessionStorage.removeItem(SESSION_KEY);
+  location.reload();
+}
+
+document.getElementById('pwBtn').onclick = checkPassword;
+document.getElementById('pwInput').onkeydown = e => { if (e.key === 'Enter') checkPassword(); };
+
+if (sessionStorage.getItem(SESSION_KEY)) showApp();
+
+// --- NOTES CRUD ---
+function loadNotes() {
+  try { notes = JSON.parse(localStorage.getItem(STORAGE_KEY)) || []; } catch { notes = []; }
+}
+
+function saveNotes() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(notes));
+}
+
+function createNote() {
+  const note = {
+    id: Date.now().toString(36) + Math.random().toString(36).slice(2, 6),
+    title: 'New Note',
+    body: '',
+    category: 'general',
+    created: new Date().toISOString(),
+    updated: new Date().toISOString()
+  };
+  notes.unshift(note);
+  saveNotes();
+  renderList();
+  selectNote(note.id);
+}
+
+function deleteNote() {
+  if (!activeId) return;
+  if (!confirm('Delete this note?')) return;
+  notes = notes.filter(n => n.id !== activeId);
+  activeId = null;
+  saveNotes();
+  renderList();
+  showEmpty();
+}
+
+function selectNote(id) {
+  activeId = id;
+  const note = notes.find(n => n.id === id);
+  if (!note) return;
+  document.getElementById('emptyState').style.display = 'none';
+  const wrap = document.getElementById('editorWrap');
+  wrap.style.display = 'flex';
+  document.getElementById('noteTitle').value = note.title;
+  document.getElementById('noteBody').value = note.body;
+  document.getElementById('noteCategory').value = note.category;
+  renderList();
+}
+
+function showEmpty() {
+  document.getElementById('emptyState').style.display = 'flex';
+  document.getElementById('editorWrap').style.display = 'none';
+}
+
+function updateActive() {
+  if (!activeId) return;
+  const note = notes.find(n => n.id === activeId);
+  if (!note) return;
+  note.title = document.getElementById('noteTitle').value || 'Untitled';
+  note.body = document.getElementById('noteBody').value;
+  note.category = document.getElementById('noteCategory').value;
+  note.updated = new Date().toISOString();
+  saveNotes();
+  renderList();
+}
+
+// --- RENDER ---
+function renderList() {
+  const q = document.getElementById('searchInput').value.toLowerCase();
+  const list = document.getElementById('notesList');
+  const filtered = notes.filter(n =>
+    n.title.toLowerCase().includes(q) || n.body.toLowerCase().includes(q)
+  );
+  list.innerHTML = filtered.map(n => `
+    <div class="note-item${n.id === activeId ? ' active' : ''}" onclick="selectNote('${n.id}')">
+      <h3>${esc(n.title)}</h3>
+      <div class="meta">
+        <span class="category-dot cat-${n.category}"></span>
+        <span>${catLabel(n.category)}</span>
+        <span>· ${timeAgo(n.updated)}</span>
+      </div>
+    </div>
+  `).join('');
+}
+
+function esc(s) { const d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
+
+function catLabel(c) {
+  return {general:'General',ui:'UI/Design',scripting:'Scripting',bug:'Bug',idea:'Idea',asset:'Asset'}[c] || c;
+}
+
+function timeAgo(iso) {
+  const d = Math.floor((Date.now() - new Date(iso)) / 1000);
+  if (d < 60) return 'just now';
+  if (d < 3600) return Math.floor(d/60) + 'm ago';
+  if (d < 86400) return Math.floor(d/3600) + 'h ago';
+  return Math.floor(d/86400) + 'd ago';
+}
+
+// --- EXPORT / IMPORT ---
+function exportNotes() {
+  const blob = new Blob([JSON.stringify(notes, null, 2)], {type: 'application/json'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'railway-notes-' + new Date().toISOString().slice(0,10) + '.json';
+  a.click();
+}
+
+function showImport() { document.getElementById('importModal').classList.add('show'); }
+function closeImport() { document.getElementById('importModal').classList.remove('show'); }
+
+function importNotes() {
+  try {
+    const data = JSON.parse(document.getElementById('importData').value);
+    if (!Array.isArray(data)) throw new Error();
+    const existingIds = new Set(notes.map(n => n.id));
+    let added = 0;
+    data.forEach(n => {
+      if (n.id && n.title && !existingIds.has(n.id)) {
+        notes.unshift(n);
+        added++;
+      }
+    });
+    saveNotes();
+    renderList();
+    closeImport();
+    alert(`Imported ${added} new note(s)`);
+  } catch {
+    alert('Invalid JSON format');
+  }
+}
+
+// --- SIDEBAR MOBILE ---
+function toggleSidebar() { document.getElementById('sidebar').classList.toggle('open'); }
+
+// --- AUTOSAVE ---
+let saveTimer;
+document.getElementById('noteTitle').oninput =
+document.getElementById('noteBody').oninput =
+document.getElementById('noteCategory').onchange = () => {
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(updateActive, 300);
+};
+document.getElementById('searchInput').oninput = renderList;
+</script>
+</body>
+</html>
