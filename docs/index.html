@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FND-11919 Railway Mainline — Project Notes</title>
+<title>SpectaclesUIKit — Project Notes</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 :root{
@@ -119,8 +119,8 @@ input,textarea,select{font-family:inherit;font-size:inherit}
 <!-- PASSWORD GATE -->
 <div id="gate">
   <div class="gate-card">
-    <span class="logo">🚂</span>
-    <h1>Railway Mainline</h1>
+    <span class="logo">👓</span>
+    <h1>SpectaclesUIKit</h1>
     <p>Project notes — enter password to continue</p>
     <input type="password" class="gate-input" id="pwInput" placeholder="Password" autofocus>
     <button class="gate-btn" id="pwBtn">Enter</button>
@@ -132,7 +132,7 @@ input,textarea,select{font-family:inherit;font-size:inherit}
 <div id="app">
   <div class="topbar">
     <button class="btn menu-toggle" onclick="toggleSidebar()">☰</button>
-    <h1>🚂 Railway Mainline Notes</h1>
+    <h1>👓 SpectaclesUIKit Notes</h1>
     <div class="topbar-actions">
       <button class="btn" onclick="exportNotes()" title="Export">↓ Export</button>
       <button class="btn" onclick="showImport()" title="Import">↑ Import</button>
@@ -231,9 +231,121 @@ document.getElementById('pwInput').onkeydown = e => { if (e.key === 'Enter') che
 
 if (sessionStorage.getItem(SESSION_KEY)) showApp();
 
+// --- DEFAULT NOTES ---
+const DEFAULT_NOTES = [
+  {
+    id: 'spawn-cube-001',
+    title: 'SpawnCubeOnPress — Script + Instructions',
+    body: `=== CODE: SpawnCubeOnPress.ts ===
+
+@component
+export class SpawnCubeOnPress extends BaseScriptComponent {
+  @input
+  cubePrefab: ObjectPrefab
+
+  @input
+  parentObject: SceneObject
+
+  spawnCube() {
+    const cube = this.cubePrefab.instantiate(this.parentObject)
+    cube.getTransform().setLocalPosition(new vec3(0, 0, -50))
+    cube.getTransform().setLocalScale(new vec3(5, 5, 5))
+    print("Cube spawned!")
+  }
+}
+
+=== INSTRUCTIONS ===
+
+1. Create the script:
+   - Create a new TypeScript file in Assets: SpawnCubeOnPress.ts
+   - Paste the code above
+
+2. Create a Box Prefab:
+   - In Lens Studio, add a Box mesh to the scene (+ > Mesh > Box)
+   - Customize material if needed
+   - Drag the Box from Scene Hierarchy into the Resources panel to create a .prefab
+   - Delete the original Box from the scene
+
+3. Add the script to the scene:
+   - Create an empty SceneObject (or use an existing one)
+   - Add Component > Script > SpawnCubeOnPress
+   - In Inspector, set:
+     * Cube Prefab = your Box .prefab file from Resources
+     * Parent Object = the SceneObject where cubes should appear
+
+4. Connect to a button:
+   - Select your UIKit button in the scene (RoundButton, CapsuleButton, etc.)
+   - In Inspector on the button component, enable "Add Callbacks"
+   - In "On Trigger Up Callbacks", click +
+   - Script = drag the SpawnCubeOnPress component
+   - Function Name = spawnCube
+
+5. Test:
+   - Press Play in Lens Studio
+   - Pinch/click the button
+   - A cube should appear and "Cube spawned!" prints in Logger
+
+=== NOTES ===
+- localPosition(0, 0, -50) places the cube 50 units in front
+- localScale(5, 5, 5) sets the cube size
+- Change these values to adjust position and size
+- To spawn different objects, swap the prefab in the Inspector`,
+    category: 'scripting',
+    created: '2026-04-03T12:00:00.000Z',
+    updated: '2026-04-03T12:00:00.000Z'
+  },
+  {
+    id: 'button-events-002',
+    title: 'UIKit Button Events Reference',
+    body: `=== BUTTON EVENTS (SpectaclesUIKit) ===
+
+All buttons (RoundButton, CapsuleButton, RectangleButton) inherit from BaseButton > Element.
+
+Available events:
+  onTriggerDown  — fires when pinch/press starts
+  onTriggerUp    — fires when pinch/press ends (main "click" event)
+  onValueChange  — fires on toggle state change (1 or 0)
+  onFinished     — fires when state animation completes
+
+=== TWO WAYS TO CONNECT ===
+
+Method 1: Inspector Callbacks (no code needed)
+  - On the button component, enable "Add Callbacks"
+  - Add entries to On Trigger Up / On Trigger Down Callbacks
+  - Each entry: Script component reference + function name string
+
+Method 2: Code subscription
+  import {RoundButton} from "SpectaclesUIKit.lspkg/Scripts/Components/Button/RoundButton"
+
+  const btn = someObject.getComponent(RoundButton.getTypeName()) as RoundButton
+  btn.onTriggerUp.add(() => {
+    print("Button pressed!")
+  })
+
+=== BUTTON STYLES ===
+
+5 visual styles defined in RectangleButtonParameters.ts:
+  PrimaryNeutral — dark gray, yellow border on trigger
+  Primary        — yellow gradient
+  Secondary      — warm gray
+  Special        — red (destructive actions)
+  Ghost          — fully transparent, border only on hover/trigger
+
+Colors are defined in Colors.ts using HSVtoRGB(H, S, V, Alpha).
+Alpha = 1 means opaque, Alpha = 0 means transparent.`,
+    category: 'ui',
+    created: '2026-04-03T12:00:00.000Z',
+    updated: '2026-04-03T12:00:00.000Z'
+  }
+];
+
 // --- NOTES CRUD ---
 function loadNotes() {
   try { notes = JSON.parse(localStorage.getItem(STORAGE_KEY)) || []; } catch { notes = []; }
+  if (notes.length === 0) {
+    notes = DEFAULT_NOTES.map(n => ({...n}));
+    saveNotes();
+  }
 }
 
 function saveNotes() {
