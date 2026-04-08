@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Spectacles UI — Презентація</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.0.4/dist/reset.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.0.4/dist/reveal.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.0.4/dist/theme/black.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --r-background-color: #0d1117;
+  --r-main-font: 'Inter', sans-serif;
+  --r-heading-font: 'Inter', sans-serif;
+  --r-main-color: #e6edf3;
+  --r-heading-color: #FFFC00;
+  --r-link-color: #58a6ff;
+  --r-selection-background-color: #FFFC00;
+  --r-selection-color: #000;
+}
+.reveal {
+  font-size: 32px;
+}
+.reveal h1 {
+  font-size: 2.5em;
+  color: #FFFC00;
+  text-transform: none;
+  margin-bottom: 0.5em;
+}
+.reveal h2 {
+  font-size: 1.8em;
+  color: #FFFC00;
+  text-transform: none;
+  margin-top: 1em;
+}
+.reveal h3 {
+  font-size: 1.3em;
+  color: #8b949e;
+  text-transform: none;
+}
+.reveal code {
+  font-family: 'JetBrains Mono', monospace;
+  background: #161b22;
+  padding: 2px 8px;
+  border-radius: 4px;
+  color: #79c0ff;
+}
+.reveal pre {
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 8px;
+  margin: 1em 0;
+}
+.reveal pre code {
+  background: transparent;
+  padding: 0;
+  max-height: 500px;
+}
+.reveal ul {
+  margin: 1em 0;
+}
+.reveal li {
+  margin: 0.5em 0;
+}
+.reveal strong {
+  color: #FFFC00;
+}
+.tag {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 0.6em;
+  font-weight: 600;
+  margin: 0.5em 0;
+}
+.tag-easy { background: #3fb95033; color: #3fb950; }
+.tag-medium { background: #d2992233; color: #d29922; }
+.tag-hard { background: #f8514933; color: #f85149; }
+.subtitle {
+  color: #8b949e;
+  font-size: 0.8em;
+  margin-top: -0.5em;
+}
+.num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: #FFFC00;
+  color: #000;
+  border-radius: 10px;
+  font-weight: 700;
+  margin-right: 12px;
+}
+table {
+  font-size: 0.7em;
+  margin: 1em auto;
+}
+table th {
+  background: #21262d;
+  padding: 8px 12px;
+}
+table td {
+  padding: 8px 12px;
+  border-bottom: 1px solid #30363d;
+}
+.reveal section img {
+  border: none;
+  box-shadow: none;
+}
+</style>
+</head>
+<body>
+
+<div class="reveal">
+<div class="slides">
+
+<!-- Титульний слайд -->
+<section>
+  <h1>🥽 Spectacles UI</h1>
+  <p class="subtitle">Навчальний курс з розробки меню для AR окулярів</p>
+  <p style="margin-top: 2em; color: #8b949e;">9 уроків + 2 проєкти</p>
+</section>
+
+<!-- Overview -->
+<section>
+  <h2>Навчальний план</h2>
+  <p class="subtitle">Від найпростішої кнопки до повноцінного AR-меню</p>
+  <table>
+    <tr>
+      <th>#</th>
+      <th>Тема</th>
+      <th>Складність</th>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>Кнопка + Logger</td>
+      <td><span class="tag tag-easy">Легко</span></td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Toggle об'єкта</td>
+      <td><span class="tag tag-easy">Легко</span></td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>Спавн об'єктів</td>
+      <td><span class="tag tag-easy">Легко</span></td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>Toggle + Slider</td>
+      <td><span class="tag tag-medium">Середньо</span></td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>Меню з кнопками</td>
+      <td><span class="tag tag-medium">Середньо</span></td>
+    </tr>
+  </table>
+</section>
+
+<section>
+  <table>
+    <tr>
+      <th>#</th>
+      <th>Тема</th>
+      <th>Складність</th>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>Переходи між меню</td>
+      <td><span class="tag tag-medium">Середньо</span></td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>Спавн + Видалення</td>
+      <td><span class="tag tag-medium">Середньо</span></td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td>Фільтри в меню</td>
+      <td><span class="tag tag-hard">Складно</span></td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td>Динамічні слайдери</td>
+      <td><span class="tag tag-hard">Складно</span></td>
+    </tr>
+    <tr style="border-top: 2px solid #FFFC00;">
+      <td>🎮</td>
+      <td>Проєкт: Game Menu</td>
+      <td><span class="tag tag-hard">Складно</span></td>
+    </tr>
+  </table>
+</section>
+
+<!-- Основні концепції -->
+<section>
+  <h2>Основні концепції</h2>
+  <ul>
+    <li><strong>PinchButton</strong> — основа всіх інтерактивних кнопок</li>
+    <li><strong>ToggleButton</strong> — перемикач стану on/off</li>
+    <li><strong>Slider</strong> — повзунок для змінних значень</li>
+    <li><strong>@input</strong> — зв'язок скрипта зі сценою</li>
+    <li><strong>SceneObject</strong> — будь-який об'єкт на сцені</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Система компонентів</h2>
+  <ul>
+    <li><strong>Component</strong> — базовий клас (Transform, Script, RenderMeshVisual...)</li>
+    <li><strong>ObjectPrefab</strong> — шаблон для клонування</li>
+    <li><strong>instantiate()</strong> — створити копію prefab'а</li>
+    <li><strong>getComponent()</strong> — отримати компонент об'єкта</li>
+  </ul>
+</section>
+
+<!-- Урок 1 -->
+<section>
+  <section>
+    <h1><span class="num">1</span>Кнопка + Logger</h1>
+    <p class="subtitle">Найпростіша інтеракція — кнопка виводить текст у консоль</p>
+    <span class="tag tag-easy">Легко</span>
+  </section>
+
+  <section>
+    <h2>Що вивчаємо</h2>
+    <ul>
+      <li>Тип <code>PinchButton</code> — інтерактивна кнопка для Spectacles</li>
+      <li>Callback <code>onButtonPinched.add(callback)</code></li>
+      <li>Функція <code>print()</code> для виводу в консоль</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Код</h2>
+    <pre><code class="language-typescript">// @input Component.PinchButton myButton
+
+script.myButton.onButtonPinched.add(function() {
+  print("Кнопка натиснута!");
+});
+</code></pre>
+  </section>
+
+  <section>
+    <h2>Як працює</h2>
+    <ol>
+      <li><code>@input</code> створює зв'язок зі сценою</li>
+      <li>Користувач робить pinch жест над кнопкою</li>
+      <li>Викликається функція-callback</li>
+      <li><code>print()</code> виводить текст у Lens Studio Logger</li>
+    </ol>
+  </section>
+</section>
+
+<!-- Урок 2 -->
+<section>
+  <section>
+    <h1><span class="num">2</span>Toggle об'єкта</h1>
+    <p class="subtitle">Кнопка показує/ховає об'єкт на сцені</p>
+    <span class="tag tag-easy">Легко</span>
+  </section>
+
+  <section>
+    <h2>Що нового</h2>
+    <ul>
+      <li>Тип <code>@input SceneObject</code></li>
+      <li>Властивість <code>enabled</code> — видимість об'єкта</li>
+      <li>Логіка toggle (вкл/викл)</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Код</h2>
+    <pre><code class="language-typescript">// @input Component.PinchButton toggleButton
+// @input SceneObject targetObject
+
+script.toggleButton.onButtonPinched.add(function() {
+  script.targetObject.enabled = !script.targetObject.enabled;
+  print("Об'єкт: " + script.targetObject.enabled);
+});
+</code></pre>
+  </section>
+</section>
+
+<!-- Урок 3 -->
+<section>
+  <section>
+    <h1><span class="num">3</span>Спавн об'єктів</h1>
+    <p class="subtitle">Кнопка створює копії prefab'а і розставляє їх у сітку</p>
+    <span class="tag tag-easy">Легко</span>
+  </section>
+
+  <section>
+    <h2>Що нового</h2>
+    <ul>
+      <li><code>ObjectPrefab</code> — шаблон для клонування</li>
+      <li><code>instantiate(parent)</code> — створити копію</li>
+      <li><code>setLocalPosition()</code> і <code>setLocalScale()</code></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Код</h2>
+    <pre><code class="language-typescript">// @input Component.PinchButton spawnButton
+// @input Asset.ObjectPrefab cubePrefab
+// @input SceneObject container
+
+script.spawnButton.onButtonPinched.add(function() {
+  for (var i = 0; i < 5; i++) {
+    var obj = script.cubePrefab.instantiate(script.container);
+    obj.getTransform().setLocalPosition(new vec3(i * 20, 0, 0));
+  }
+  print("Створено 5 кубів");
+});
+</code></pre>
+  </section>
+</section>
+
+<!-- Урок 4 -->
+<section>
+  <section>
+    <h1><span class="num">4</span>Toggle + Slider</h1>
+    <p class="subtitle">Перемикач показує меню зі слайдером масштабу</p>
+    <span class="tag tag-medium">Середньо</span>
+  </section>
+
+  <section>
+    <h2>Що нового</h2>
+    <ul>
+      <li><code>ToggleButton</code> — перемикач on/off</li>
+      <li><code>Slider</code> — повзунок (0..1)</li>
+      <li><code>onValueUpdate</code> — callback при зміні значення</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Код: Toggle</h2>
+    <pre><code class="language-typescript">// @input Component.ToggleButton menuToggle
+// @input SceneObject menuFrame
+
+script.menuToggle.onButtonPinched.add(function() {
+  script.menuFrame.enabled = !script.menuFrame.enabled;
+});
+</code></pre>
+  </section>
+
+  <section>
+    <h2>Код: Slider</h2>
+    <pre><code class="language-typescript">// @input Component.Slider scaleSlider
+// @input SceneObject target
+
+script.scaleSlider.onValueUpdate.add(function(value) {
+  var scale = 0.5 + value * 2; // 0.5..2.5
+  script.target.getTransform().setLocalScale(
+    new vec3(scale, scale, scale)
+  );
+});
+</code></pre>
+  </section>
+</section>
+
+<!-- Урок 5 -->
+<section>
+  <section>
+    <h1><span class="num">5</span>Меню з кнопками</h1>
+    <p class="subtitle">Frame з трьома кнопками для зміни кольору об'єкта</p>
+    <span class="tag tag-medium">Середньо</span>
+  </section>
+
+  <section>
+    <h2>Що нового</h2>
+    <ul>
+      <li><code>Frame</code> — контейнер UI елементів</li>
+      <li>Робота з кількома кнопками</li>
+      <li>Зміна кольору матеріалу через <code>mainPass.baseColor</code></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Структура сцени</h2>
+    <pre style="font-size: 0.6em;"><code>Frame (Container)
+├─ RedButton (PinchButton)
+├─ GreenButton (PinchButton)
+└─ BlueButton (PinchButton)
+
+TargetCube (має матеріал Material)
+</code></pre>
+  </section>
+
+  <section>
+    <h2>Код</h2>
+    <pre><code class="language-typescript">// @input Component.PinchButton redBtn
+// @input Component.PinchButton greenBtn
+// @input Component.PinchButton blueBtn
+// @input Asset.Material targetMaterial
+
+script.redBtn.onButtonPinched.add(function() {
+  script.targetMaterial.mainPass.baseColor = 
+    new vec4(1, 0, 0, 1);
+});
+</code></pre>
+  </section>
+</section>
+
+<!-- Урок 6 -->
+<section>
+  <section>
+    <h1><span class="num">6</span>Переходи між меню</h1>
+    <p class="subtitle">Два Frame — головне меню і підменю з навігацією</p>
+    <span class="tag tag-medium">Середньо</span>
+  </section>
+
+  <section>
+    <h2>Що нового</h2>
+    <ul>
+      <li>Кілька <code>Frame</code> (MainMenu, SubMenu)</li>
+      <li>Навігація вперед/назад</li>
+      <li>Функції <code>showMain()</code> і <code>showSub()</code></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Код</h2>
+    <pre><code class="language-typescript">// @input SceneObject mainMenu
+// @input SceneObject subMenu
+// @input Component.PinchButton openSubBtn
+// @input Component.PinchButton backBtn
+
+script.openSubBtn.onButtonPinched.add(function() {
+  script.mainMenu.enabled = false;
+  script.subMenu.enabled = true;
+});
+
+script.backBtn.onButtonPinched.add(function() {
+  script.subMenu.enabled = false;
+  script.mainMenu.enabled = true;
+});
+</code></pre>
+  </section>
+</section>
+
+<!-- Урок 7 -->
+<section>
+  <section>
+    <h1><span class="num">7</span>Спавн + Видалення</h1>
+    <p class="subtitle">Створюємо об'єкти і видаляємо їх кнопкою Clear</p>
+    <span class="tag tag-medium">Середньо</span>
+  </section>
+
+  <section>
+    <h2>Що нового</h2>
+    <ul>
+      <li>Масив <code>spawnedObjects[]</code> для зберігання посилань</li>
+      <li>Метод <code>destroy()</code> — видалити об'єкт</li>
+      <li>Очищення масиву після видалення</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Код: Спавн</h2>
+    <pre><code class="language-typescript">var spawnedObjects = [];
+
+script.spawnBtn.onButtonPinched.add(function() {
+  var obj = script.prefab.instantiate(script.container);
+  spawnedObjects.push(obj);
+  print("Створено. Всього: " + spawnedObjects.length);
+});
+</code></pre>
+  </section>
+
+  <section>
+    <h2>Код: Видалення</h2>
+    <pre><code class="language-typescript">script.clearBtn.onButtonPinched.add(function() {
+  for (var i = 0; i < spawnedObjects.length; i++) {
+    spawnedObjects[i].destroy();
+  }
+  spawnedObjects = [];
+  print("Всі об'єкти видалено");
+});
+</code></pre>
+  </section>
+</section>
+
+<!-- Урок 8 -->
+<section>
+  <section>
+    <h1><span class="num">8</span>Фільтри в меню</h1>
+    <p class="subtitle">Кнопки-категорії показують різні типи об'єктів</p>
+    <span class="tag tag-hard">Складно</span>
+  </section>
+
+  <section>
+    <h2>Що нового</h2>
+    <ul>
+      <li>Масив prefab'ів <code>categories[]</code></li>
+      <li>Змінна стану <code>currentCategory</code></li>
+      <li>Функція <code>showCategory(index)</code></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Код</h2>
+    <pre><code class="language-typescript">// @input Asset.ObjectPrefab[] categories
+// @input Component.PinchButton[] categoryBtns
+
+var currentCategory = 0;
+
+function showCategory(index) {
+  // Очистити контейнер
+  // Заспавнити prefab з categories[index]
+  currentCategory = index;
+}
+
+for (var i = 0; i < script.categoryBtns.length; i++) {
+  (function(idx) {
+    script.categoryBtns[idx].onButtonPinched.add(
+      function() { showCategory(idx); }
+    );
+  })(i);
+}
+</code></pre>
+  </section>
+</section>
+
+<!-- Урок 9 -->
+<section>
+  <section>
+    <h1><span class="num">9</span>Динамічні слайдери</h2>
+    <p class="subtitle">Слайдери змінюють різні властивості: scale, rotation, opacity</p>
+    <span class="tag tag-hard">Складно</span>
+  </section>
+
+  <section>
+    <h2>Що нового</h2>
+    <ul>
+      <li>Кілька слайдерів для різних властивостей</li>
+      <li>Робота з <code>Transform</code> (position, rotation, scale)</li>
+      <li>Зміна прозорості матеріалу</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Код: Scale</h2>
+    <pre><code class="language-typescript">script.scaleSlider.onValueUpdate.add(function(value) {
+  var scale = 0.3 + value * 2.7; // 0.3..3.0
+  script.target.getTransform().setLocalScale(
+    new vec3(scale, scale, scale)
+  );
+});
+</code></pre>
+  </section>
+
+  <section>
+    <h2>Код: Rotation</h2>
+    <pre><code class="language-typescript">script.rotationSlider.onValueUpdate.add(function(value) {
+  var angle = value * 360; // 0..360°
+  script.target.getTransform().setLocalRotation(
+    quat.fromEulerAngles(0, angle * Math.PI / 180, 0)
+  );
+});
+</code></pre>
+  </section>
+
+  <section>
+    <h2>Код: Opacity</h2>
+    <pre><code class="language-typescript">script.opacitySlider.onValueUpdate.add(function(value) {
+  var col = script.material.mainPass.baseColor;
+  script.material.mainPass.baseColor = 
+    new vec4(col.r, col.g, col.b, value);
+});
+</code></pre>
+  </section>
+</section>
+
+<!-- Проєкт: Game Menu -->
+<section>
+  <section>
+    <h1>🎮 Проєкт: Game Menu</h1>
+    <p class="subtitle">Повноцінне ігрове меню з навігацією та функціоналом</p>
+    <span class="tag tag-hard">Складно</span>
+  </section>
+
+  <section>
+    <h2>Функції</h2>
+    <ul>
+      <li>Головне меню (Play, Settings, Exit)</li>
+      <li>Підменю Settings (Volume, Graphics)</li>
+      <li>Спавн ігрових об'єктів</li>
+      <li>Pause меню під час гри</li>
+      <li>Система станів (MainMenu, InGame, Paused)</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Архітектура</h2>
+    <pre style="font-size: 0.55em;"><code>MenuController
+├─ currentState: string
+├─ showMainMenu()
+├─ startGame()
+├─ pauseGame()
+├─ resumeGame()
+└─ exitGame()
+
+UI Structure:
+├─ MainMenuFrame
+│  ├─ PlayButton
+│  ├─ SettingsButton
+│  └─ ExitButton
+├─ SettingsFrame
+│  ├─ VolumeSlider
+│  └─ BackButton
+└─ PauseFrame
+   ├─ ResumeButton
+   └─ QuitButton
+</code></pre>
+  </section>
+
+  <section>
+    <h2>Ключові концепції</h2>
+    <ul>
+      <li><strong>State Machine</strong> — керування станами меню</li>
+      <li><strong>Singleton</strong> — глобальний доступ через <code>global.menuController</code></li>
+      <li><strong>Callbacks</strong> — події для комунікації між скриптами</li>
+      <li><strong>Lazy Loading</strong> — підвантаження підменю</li>
+    </ul>
+  </section>
+</section>
+
+<!-- Проєкт: Follow Camera -->
+<section>
+  <section>
+    <h1>📷 Проєкт: Follow Camera</h1>
+    <p class="subtitle">Камера плавно слідує за об'єктом</p>
+    <span class="tag tag-medium">Середньо</span>
+  </section>
+
+  <section>
+    <h2>Що робить</h2>
+    <ul>
+      <li>Камера слідує за target об'єктом</li>
+      <li>Плавне переміщення через <code>lerp()</code></li>
+      <li>Offset — зсув відносно target</li>
+      <li>Smooth factor — швидкість слідування</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Код</h2>
+    <pre><code class="language-typescript">// @input SceneObject target
+// @input float smoothFactor = 0.1
+// @input vec3 offset = {0, 5, -10}
+
+function onUpdate() {
+  var targetPos = script.target.getTransform()
+    .getWorldPosition().add(script.offset);
+  
+  var currentPos = script.getTransform().getWorldPosition();
+  
+  var newPos = vec3.lerp(
+    currentPos, 
+    targetPos, 
+    script.smoothFactor
+  );
+  
+  script.getTransform().setWorldPosition(newPos);
+}
+
+var updateEvent = script.createEvent("UpdateEvent");
+updateEvent.bind(onUpdate);
+</code></pre>
+  </section>
+</section>
+
+<!-- Підсумок -->
+<section>
+  <h2>🎯 Підсумок</h2>
+  <ul>
+    <li><strong>9 уроків</strong> — від базових кнопок до складних меню</li>
+    <li><strong>2 проєкти</strong> — реальні кейси застосування</li>
+    <li><strong>Всі компоненти SIK</strong> — PinchButton, Toggle, Slider</li>
+    <li><strong>Best practices</strong> — архітектура, state management</li>
+  </ul>
+  <p style="margin-top: 2em; color: #8b949e;">Тепер ви можете створити будь-яке UI для Spectacles! 🚀</p>
+</section>
+
+<!-- Фінальний слайд -->
+<section>
+  <h1>Дякую! 🥽</h1>
+  <p style="margin-top: 2em; color: #8b949e;">Питання?</p>
+</section>
+
+</div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.0.4/dist/reveal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.0.4/plugin/notes/notes.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.0.4/plugin/highlight/highlight.js"></script>
+<script>
+Reveal.initialize({
+  hash: true,
+  transition: 'slide',
+  controls: true,
+  progress: true,
+  center: true,
+  slideNumber: true,
+  mouseWheel: false,
+  plugins: [ RevealHighlight ]
+});
+</script>
+
+</body>
+</html>
