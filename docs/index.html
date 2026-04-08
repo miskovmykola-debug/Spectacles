@@ -3,106 +3,125 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SpectaclesUIKit — Документація</title>
+<title>Spectacles UI — Навчальні приклади</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 :root{
-  --bg:#fff;--bg2:#f6f8fa;--bg3:#f0f2f5;--surface:#fff;
-  --border:#e1e4e8;--border2:#d0d7de;
-  --text:#1f2328;--text2:#656d76;--text3:#8b949e;
-  --accent:#FFFC00;--accent-dark:#e6e300;--accent-bg:rgba(255,252,0,.08);
-  --snap-yellow:#FFFC00;--snap-black:#1c1c1c;
-  --code-bg:#f6f8fa;--code-border:#e1e4e8;
-  --green:#1a7f37;--blue:#0969da;--purple:#8250df;--orange:#bc4c00;
-  --red:#cf222e;
-  --sidebar-w:280px;--topbar-h:56px;--radius:8px;
+  --bg:#0d1117;--bg2:#161b22;--bg3:#1c2128;--surface:#21262d;
+  --border:#30363d;--border2:#484f58;
+  --text:#e6edf3;--text2:#8b949e;--text3:#6e7681;
+  --accent:#FFFC00;--accent-dim:rgba(255,252,0,.15);
+  --green:#3fb950;--blue:#58a6ff;--purple:#bc8cff;--orange:#d29922;--red:#f85149;
+  --code-bg:#161b22;--code-border:#30363d;
+  --sidebar-w:260px;--topbar-h:52px;--radius:8px;
 }
-body{font-family:'Inter',system-ui,-apple-system,sans-serif;color:var(--text);
-  line-height:1.7;font-size:15px;background:var(--bg)}
+body{font-family:'Inter',system-ui,sans-serif;color:var(--text);line-height:1.7;font-size:15px;background:var(--bg)}
 a{color:var(--blue);text-decoration:none}
 a:hover{text-decoration:underline}
 button{cursor:pointer;font-family:inherit}
-code{font-family:'JetBrains Mono',monospace;font-size:0.88em}
-#gate{display:flex;align-items:center;justify-content:center;min-height:100vh;background:var(--snap-black)}
-.gate-card{background:#fff;border-radius:16px;padding:48px 40px;max-width:380px;width:90%;text-align:center;box-shadow:0 24px 80px rgba(0,0,0,.3)}
-.gate-logo{width:64px;height:64px;background:var(--snap-yellow);border-radius:16px;display:inline-flex;align-items:center;justify-content:center;font-size:1.8rem;margin-bottom:20px}
-.gate-card h1{font-size:1.3rem;font-weight:700;margin-bottom:4px;color:var(--snap-black)}
+code{font-family:'JetBrains Mono',monospace;font-size:.88em}
+::selection{background:var(--accent);color:#000}
+::-webkit-scrollbar{width:6px;height:6px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
+
+#gate{display:flex;align-items:center;justify-content:center;min-height:100vh;background:var(--bg)}
+.gate-card{background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:48px 40px;max-width:380px;width:90%;text-align:center}
+.gate-logo{width:64px;height:64px;background:var(--accent);border-radius:16px;display:inline-flex;align-items:center;justify-content:center;font-size:1.8rem;margin-bottom:20px}
+.gate-card h1{font-size:1.3rem;font-weight:700;margin-bottom:4px}
 .gate-card p{color:var(--text2);font-size:.9rem;margin-bottom:24px}
-.gate-input{width:100%;padding:12px 16px;border:2px solid var(--border);border-radius:10px;font-size:1rem;outline:none;transition:.2s;text-align:center;letter-spacing:2px}
-.gate-input:focus{border-color:var(--snap-black)}
-.gate-btn{width:100%;padding:12px;background:var(--snap-black);color:#fff;border:none;border-radius:10px;font-size:.95rem;font-weight:600;margin-top:12px;transition:.15s}
-.gate-btn:hover{background:#333}
+.gate-input{width:100%;padding:12px 16px;border:1px solid var(--border);border-radius:10px;font-size:1rem;outline:none;transition:.2s;text-align:center;letter-spacing:2px;background:var(--bg3);color:var(--text)}
+.gate-input:focus{border-color:var(--accent)}
+.gate-btn{width:100%;padding:12px;background:var(--accent);color:#000;border:none;border-radius:10px;font-size:.95rem;font-weight:700;margin-top:12px;transition:.15s}
+.gate-btn:hover{filter:brightness(1.1)}
 .gate-error{color:var(--red);font-size:.85rem;margin-top:10px;display:none}
+
 #app{display:none}
-.topbar{position:fixed;top:0;left:0;right:0;height:var(--topbar-h);background:var(--snap-black);display:flex;align-items:center;padding:0 24px;z-index:100;gap:16px}
-.topbar-logo{display:flex;align-items:center;gap:10px;color:#fff;font-weight:700;font-size:1rem}
-.topbar-logo .logo-icon{width:32px;height:32px;background:var(--snap-yellow);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.95rem}
-.topbar-nav{display:flex;gap:4px;margin-left:32px}
-.topbar-nav a{color:rgba(255,255,255,.7);padding:8px 14px;border-radius:6px;font-size:.85rem;font-weight:500;transition:.15s;text-decoration:none}
-.topbar-nav a:hover,.topbar-nav a.active{color:#fff;background:rgba(255,255,255,.1)}
-.topbar-right{margin-left:auto;display:flex;align-items:center;gap:12px}
-.topbar-badge{background:var(--snap-yellow);color:var(--snap-black);padding:3px 10px;border-radius:20px;font-size:.75rem;font-weight:600}
-.topbar-logout{color:rgba(255,255,255,.5);background:none;border:none;font-size:.8rem;padding:6px 12px;border-radius:6px;transition:.15s}
-.topbar-logout:hover{color:#fff;background:rgba(255,255,255,.1)}
-.menu-toggle{display:none;color:#fff;background:none;border:none;font-size:1.3rem;padding:4px 8px}
+.topbar{position:fixed;top:0;left:0;right:0;height:var(--topbar-h);background:var(--bg2);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 20px;z-index:100;gap:12px}
+.topbar-logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:.95rem}
+.topbar-logo .icon{width:28px;height:28px;background:var(--accent);border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:.85rem}
+.topbar-right{margin-left:auto;display:flex;align-items:center;gap:10px}
+.topbar-badge{background:var(--accent-dim);color:var(--accent);padding:3px 10px;border-radius:20px;font-size:.72rem;font-weight:600}
+.lang-switcher{display:flex;gap:4px;background:var(--bg3);border-radius:8px;padding:2px}
+.lang-btn{padding:4px 8px;border:none;background:transparent;color:var(--text2);font-size:.75rem;font-weight:600;border-radius:6px;transition:.15s;cursor:pointer}
+.lang-btn:hover{color:var(--text);background:var(--bg)}
+.lang-btn.active{background:var(--accent);color:#000}
+.topbar-logout{color:var(--text3);background:none;border:none;font-size:.8rem;padding:6px 10px;border-radius:6px;transition:.15s}
+.topbar-logout:hover{color:var(--text);background:var(--bg3)}
+.menu-toggle{display:none;color:var(--text);background:none;border:none;font-size:1.2rem;padding:4px 8px}
+
 .layout{display:flex;margin-top:var(--topbar-h)}
-.sidebar{width:var(--sidebar-w);height:calc(100vh - var(--topbar-h));position:fixed;top:var(--topbar-h);left:0;overflow-y:auto;background:var(--bg2);border-right:1px solid var(--border);padding:20px 0;flex-shrink:0;z-index:50}
-.sidebar::-webkit-scrollbar{width:5px}
-.sidebar::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
-.sidebar-section{margin-bottom:8px}
-.sidebar-title{font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--text3);padding:8px 20px 4px;user-select:none}
-.sidebar-link{display:flex;align-items:center;gap:8px;padding:7px 20px 7px 28px;font-size:.87rem;color:var(--text2);cursor:pointer;transition:.1s;border-left:3px solid transparent;text-decoration:none;line-height:1.4}
+.sidebar{width:var(--sidebar-w);height:calc(100vh - var(--topbar-h));position:fixed;top:var(--topbar-h);left:0;overflow-y:auto;background:var(--bg2);border-right:1px solid var(--border);padding:12px 0;z-index:50}
+.sidebar-section{margin-bottom:4px}
+.sidebar-title{font-size:.68rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--text3);padding:12px 16px 4px;user-select:none}
+.sidebar-link{display:flex;align-items:center;gap:8px;padding:6px 16px 6px 20px;font-size:.84rem;color:var(--text2);cursor:pointer;transition:.1s;border-left:3px solid transparent;text-decoration:none;line-height:1.4}
 .sidebar-link:hover{color:var(--text);background:var(--bg3);text-decoration:none}
-.sidebar-link.active{color:var(--text);font-weight:600;border-left-color:var(--snap-yellow);background:var(--accent-bg)}
-.sidebar-link .dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
-.dot-green{background:var(--green)}.dot-blue{background:var(--blue)}.dot-purple{background:var(--purple)}.dot-orange{background:var(--orange)}.dot-red{background:var(--red)}
-.content{margin-left:var(--sidebar-w);flex:1;min-height:calc(100vh - var(--topbar-h));padding:40px 48px 80px}
-.content-inner{max-width:820px}
-.breadcrumb{font-size:.82rem;color:var(--text3);margin-bottom:8px;display:flex;gap:6px;align-items:center}
-.breadcrumb span{color:var(--text2)}
-h1{font-size:2rem;font-weight:700;margin-bottom:8px;letter-spacing:-.02em;line-height:1.2}
-h2{font-size:1.4rem;font-weight:700;margin:40px 0 16px;padding-bottom:8px;border-bottom:1px solid var(--border)}
-h3{font-size:1.1rem;font-weight:600;margin:28px 0 12px}
-.subtitle{font-size:1.05rem;color:var(--text2);margin-bottom:32px;line-height:1.6}
-p{margin-bottom:16px}
-ul,ol{margin-bottom:16px;padding-left:24px}
-li{margin-bottom:6px}
+.sidebar-link.active{color:var(--accent);font-weight:600;border-left-color:var(--accent);background:var(--accent-dim)}
+.sidebar-link .num{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:5px;font-size:.7rem;font-weight:700;flex-shrink:0}
+.num-1{background:#3fb95030;color:var(--green)}
+.num-2{background:#58a6ff30;color:var(--blue)}
+.num-3{background:#bc8cff30;color:var(--purple)}
+.num-4{background:#d2992230;color:var(--orange)}
+.num-5{background:#f8514930;color:var(--red)}
+.num-6{background:#3fb95030;color:var(--green)}
+.num-7{background:#58a6ff30;color:var(--blue)}
+.num-8{background:#bc8cff30;color:var(--purple)}
+.num-9{background:#d2992230;color:var(--orange)}
+
+.content{margin-left:var(--sidebar-w);flex:1;min-height:calc(100vh - var(--topbar-h));padding:32px 40px 80px}
+.content-inner{max-width:800px}
+h1{font-size:1.8rem;font-weight:800;margin-bottom:8px;letter-spacing:-.02em;line-height:1.2}
+h2{font-size:1.25rem;font-weight:700;margin:36px 0 14px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+h3{font-size:1.05rem;font-weight:600;margin:24px 0 10px;color:var(--text)}
+.subtitle{font-size:1rem;color:var(--text2);margin-bottom:28px;line-height:1.6}
+p{margin-bottom:14px}
+ul,ol{margin-bottom:14px;padding-left:24px}
+li{margin-bottom:5px}
 strong{font-weight:600}
-.code-block{background:var(--code-bg);border:1px solid var(--code-border);border-radius:var(--radius);margin:16px 0 24px;overflow:hidden}
-.code-header{display:flex;align-items:center;padding:8px 16px;background:var(--bg3);border-bottom:1px solid var(--code-border);gap:8px}
-.code-tab{padding:4px 12px;font-size:.78rem;font-weight:500;border-radius:5px;border:none;background:transparent;color:var(--text2);cursor:pointer}
-.code-tab.active{background:#fff;color:var(--text);box-shadow:0 1px 3px rgba(0,0,0,.08)}
-.code-copy{margin-left:auto;padding:4px 10px;font-size:.75rem;border:1px solid var(--border);border-radius:5px;background:#fff;color:var(--text2);cursor:pointer;transition:.15s}
+
+.tag{display:inline-block;padding:2px 8px;border-radius:4px;font-size:.72rem;font-weight:600;margin-left:6px}
+.tag-easy{background:#3fb95020;color:var(--green)}
+.tag-medium{background:#d2992220;color:var(--orange)}
+.tag-hard{background:#f8514920;color:var(--red)}
+
+.code-block{background:var(--code-bg);border:1px solid var(--code-border);border-radius:var(--radius);margin:14px 0 20px;overflow:hidden}
+.code-header{display:flex;align-items:center;padding:8px 14px;background:var(--bg3);border-bottom:1px solid var(--code-border);gap:8px}
+.code-filename{font-size:.78rem;font-weight:600;color:var(--text2);font-family:'JetBrains Mono',monospace}
+.code-copy{margin-left:auto;padding:4px 10px;font-size:.72rem;border:1px solid var(--border);border-radius:5px;background:transparent;color:var(--text2);cursor:pointer;transition:.15s}
 .code-copy:hover{border-color:var(--text2);color:var(--text)}
-.code-body{padding:16px;overflow-x:auto;font-size:.85rem;line-height:1.7}
+.code-body{padding:14px;overflow-x:auto;font-size:.82rem;line-height:1.7}
 .code-body pre{margin:0;white-space:pre}
 .code-body code{color:var(--text)}
-:not(pre)>code{background:var(--code-bg);border:1px solid var(--code-border);padding:2px 6px;border-radius:4px;font-size:.85em}
-.callout{padding:16px 20px;border-radius:var(--radius);margin:20px 0;border-left:4px solid;display:flex;gap:12px}
-.callout-info{background:#ddf4ff;border-color:var(--blue)}
-.callout-warn{background:#fff8c5;border-color:var(--orange)}
-.callout-tip{background:#dafbe1;border-color:var(--green)}
-.callout-icon{font-size:1.1rem;flex-shrink:0;margin-top:1px}
-.callout p{margin:0;font-size:.9rem}
-table{width:100%;border-collapse:collapse;margin:16px 0 24px;font-size:.9rem}
-th{text-align:left;padding:10px 16px;background:var(--bg2);border:1px solid var(--border);font-weight:600;font-size:.82rem;text-transform:uppercase;letter-spacing:.04em;color:var(--text2)}
-td{padding:10px 16px;border:1px solid var(--border)}
-tr:hover td{background:var(--bg2)}
-.steps{counter-reset:step;list-style:none;padding-left:0;margin:20px 0}
-.steps li{counter-increment:step;position:relative;padding:12px 0 12px 48px;border-left:2px solid var(--border);margin-left:15px}
+:not(pre)>code{background:var(--bg3);border:1px solid var(--border);padding:1px 5px;border-radius:4px;font-size:.85em}
+
+.callout{padding:14px 18px;border-radius:var(--radius);margin:18px 0;border-left:4px solid;display:flex;gap:10px}
+.callout-info{background:#0d419d20;border-color:var(--blue)}
+.callout-warn{background:#d2992220;border-color:var(--orange)}
+.callout-tip{background:#23863620;border-color:var(--green)}
+.callout-icon{font-size:1rem;flex-shrink:0;margin-top:1px}
+.callout p{margin:0;font-size:.88rem}
+
+.steps{counter-reset:step;list-style:none;padding-left:0;margin:18px 0}
+.steps li{counter-increment:step;position:relative;padding:10px 0 10px 48px;border-left:2px solid var(--border);margin-left:15px}
 .steps li:last-child{border-left-color:transparent}
-.steps li::before{content:counter(step);position:absolute;left:-16px;top:10px;width:30px;height:30px;background:var(--snap-yellow);color:var(--snap-black);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem}
-.page-footer{margin-top:48px;padding-top:24px;border-top:1px solid var(--border);display:flex;justify-content:space-between;font-size:.85rem;color:var(--text3)}
-.page-footer a{color:var(--text2);text-decoration:none;display:flex;align-items:center;gap:4px}
-.page-footer a:hover{color:var(--blue)}
-@media(max-width:900px){
-  .sidebar{transform:translateX(-100%);transition:.3s;background:#fff}
-  .sidebar.open{transform:translateX(0);box-shadow:4px 0 20px rgba(0,0,0,.1)}
-  .content{margin-left:0;padding:24px 20px 60px}
+.steps li::before{content:counter(step);position:absolute;left:-16px;top:8px;width:30px;height:30px;background:var(--accent);color:#000;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.82rem}
+
+table{width:100%;border-collapse:collapse;margin:14px 0 20px;font-size:.88rem}
+th{text-align:left;padding:10px 14px;background:var(--bg3);border:1px solid var(--border);font-weight:600;font-size:.78rem;text-transform:uppercase;letter-spacing:.04em;color:var(--text2)}
+td{padding:10px 14px;border:1px solid var(--border)}
+tr:hover td{background:var(--bg3)}
+
+.nav-footer{margin-top:40px;padding-top:20px;border-top:1px solid var(--border);display:flex;justify-content:space-between;font-size:.85rem}
+.nav-footer a{color:var(--text2);text-decoration:none;display:flex;align-items:center;gap:4px;padding:8px 14px;border-radius:6px;border:1px solid var(--border);transition:.15s}
+.nav-footer a:hover{border-color:var(--accent);color:var(--accent)}
+
+@media(max-width:768px){
+  .sidebar{transform:translateX(-100%);transition:.3s;background:var(--bg2)}
+  .sidebar.open{transform:translateX(0);box-shadow:4px 0 20px rgba(0,0,0,.3)}
+  .content{margin-left:0;padding:20px 16px 60px}
   .menu-toggle{display:block}
-  .topbar-nav{display:none}
 }
 </style>
 </head>
@@ -111,8 +130,8 @@ tr:hover td{background:var(--bg2)}
 <div id="gate">
   <div class="gate-card">
     <div class="gate-logo">👓</div>
-    <h1>SpectaclesUIKit</h1>
-    <p>Внутрішня документація проєкту</p>
+    <h1>Spectacles UI</h1>
+    <p>Навчальні приклади — UI меню для Lens Studio</p>
     <input type="password" class="gate-input" id="pwInput" placeholder="••••••" autofocus>
     <button class="gate-btn" id="pwBtn">Увійти</button>
     <div class="gate-error" id="pwError">Невірний пароль</div>
@@ -123,17 +142,16 @@ tr:hover td{background:var(--bg2)}
   <div class="topbar">
     <button class="menu-toggle" onclick="document.querySelector('.sidebar').classList.toggle('open')">☰</button>
     <div class="topbar-logo">
-      <div class="logo-icon">👓</div>
-      <span>SpectaclesUIKit</span>
+      <div class="icon">👓</div>
+      <span>Spectacles UI Lessons</span>
     </div>
-    <nav class="topbar-nav">
-      <a href="#" class="active" onclick="showPage('overview');return false">Документація</a>
-      <a href="#" onclick="showPage('scripts');return false">Скрипти</a>
-      <a href="#" onclick="showPage('theming');return false">Теми</a>
-      <a href="#" onclick="showPage('notes');return false">Нотатки</a>
-    </nav>
     <div class="topbar-right">
-      <span class="topbar-badge">v0.1</span>
+      <div class="lang-switcher">
+        <button class="lang-btn active" onclick="setLanguage('uk')" data-lang="uk">🇺🇦</button>
+        <button class="lang-btn" onclick="setLanguage('en')" data-lang="en">🇬🇧</button>
+        <button class="lang-btn" onclick="setLanguage('nl')" data-lang="nl">🇳🇱</button>
+      </div>
+      <span class="topbar-badge">10 уроків</span>
       <button class="topbar-logout" onclick="logout()">Вийти</button>
     </div>
   </div>
@@ -141,45 +159,26 @@ tr:hover td{background:var(--bg2)}
   <div class="layout">
     <nav class="sidebar" id="sidebar">
       <div class="sidebar-section">
-        <div class="sidebar-title">Початок роботи</div>
-        <a class="sidebar-link active" onclick="showPage('overview')">Огляд</a>
-        <a class="sidebar-link" onclick="showPage('spectacles')">Що таке Spectacles</a>
-        <a class="sidebar-link" onclick="showPage('start')">Початок розробки</a>
-        <a class="sidebar-link" onclick="showPage('setup')">Структура проєкту</a>
+        <div class="sidebar-title">Огляд</div>
+        <a class="sidebar-link active" data-page="overview">Навчальний план</a>
+        <a class="sidebar-link" data-page="concepts">Базові концепти</a>
       </div>
       <div class="sidebar-section">
-        <div class="sidebar-title">Можливості Spectacles</div>
-        <a class="sidebar-link" onclick="showPage('features')">Огляд функцій</a>
-        <a class="sidebar-link" onclick="showPage('design')">Просторовий дизайн</a>
-        <a class="sidebar-link" onclick="showPage('performance')">Оптимізація</a>
+        <div class="sidebar-title">Уроки</div>
+        <a class="sidebar-link" data-page="lesson1"><span class="num num-1">1</span> Кнопка + Logger</a>
+        <a class="sidebar-link" data-page="lesson2"><span class="num num-2">2</span> Toggle об'єкта</a>
+        <a class="sidebar-link" data-page="lesson3"><span class="num num-3">3</span> Спавн об'єктів</a>
+        <a class="sidebar-link" data-page="lesson4"><span class="num num-4">4</span> Toggle + Slider</a>
+        <a class="sidebar-link" data-page="lesson5"><span class="num num-5">5</span> Меню з кнопками</a>
+        <a class="sidebar-link" data-page="lesson6"><span class="num num-6">6</span> Переходи між меню</a>
+        <a class="sidebar-link" data-page="lesson7"><span class="num num-7">7</span> Прокручуваний список</a>
+        <a class="sidebar-link" data-page="lesson8"><span class="num num-8">8</span> Вибір + Спавн</a>
+        <a class="sidebar-link" data-page="lesson9"><span class="num num-9">9</span> Фінальний проєкт</a>
       </div>
       <div class="sidebar-section">
-        <div class="sidebar-title">Фреймворки</div>
-        <a class="sidebar-link" onclick="showPage('sik')"><span class="dot dot-blue"></span>Interaction Kit</a>
-        <a class="sidebar-link" onclick="showPage('uikit')"><span class="dot dot-purple"></span>UI Kit</a>
-        <a class="sidebar-link" onclick="showPage('synckit')"><span class="dot dot-green"></span>Sync Kit</a>
-        <a class="sidebar-link" onclick="showPage('otherkit')"><span class="dot dot-orange"></span>Інші фреймворки</a>
-      </div>
-      <div class="sidebar-section">
-        <div class="sidebar-title">Компоненти</div>
-        <a class="sidebar-link" onclick="showPage('buttons')"><span class="dot dot-blue"></span>Кнопки</a>
-        <a class="sidebar-link" onclick="showPage('toggle')"><span class="dot dot-purple"></span>ToggleButton</a>
-        <a class="sidebar-link" onclick="showPage('slider')"><span class="dot dot-orange"></span>Slider</a>
-      </div>
-      <div class="sidebar-section">
-        <div class="sidebar-title">Скрипти</div>
-        <a class="sidebar-link" onclick="showPage('scripts')"><span class="dot dot-green"></span>SpawnCubeOnPress</a>
-      </div>
-      <div class="sidebar-section">
-        <div class="sidebar-title">Оформлення</div>
-        <a class="sidebar-link" onclick="showPage('theming')"><span class="dot dot-red"></span>Кольори та стилі</a>
-      </div>
-      <div class="sidebar-section">
-        <div class="sidebar-title">Ресурси</div>
-        <a class="sidebar-link" onclick="showPage('events')">Довідник подій</a>
-        <a class="sidebar-link" onclick="showPage('permissions')">Дозволи та приватність</a>
-        <a class="sidebar-link" onclick="showPage('links')">Корисні посилання</a>
-        <a class="sidebar-link" onclick="showPage('notes')">Нотатки проєкту</a>
+        <div class="sidebar-title">Проєкт</div>
+        <a class="sidebar-link" data-page="gamemenu"><span class="num" style="background:#FFFC0030;color:#FFFC00">G</span> Game Menu</a>
+        <a class="sidebar-link" data-page="followcam"><span class="num" style="background:#3fb95030;color:#3fb950">F</span> Follow Camera</a>
       </div>
     </nav>
 
@@ -190,1120 +189,1253 @@ tr:hover td{background:var(--bg2)}
 </div>
 
 <script>
-const PW_HASH = 'bdcc12a7a798dca1561aa689f730c868efc20177f622632abe814557e9465c6c';
-const SESSION_KEY = 'spectacles_auth';
+const PW_HASH='98df9a59f0641d0c4409c495b8f890581d4fa8a5b180e3358a691097c8ba8af7';
+const SK='spectacles_auth';
+const LANG_KEY='lang';
+let currentLang=localStorage.getItem(LANG_KEY)||'uk';
 
-async function sha256(str) {
-  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
-  return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
+function setLanguage(lang){
+  currentLang=lang;
+  localStorage.setItem(LANG_KEY,lang);
+  document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active',b.dataset.lang===lang));
 }
-async function checkPassword() {
-  const hash = await sha256(document.getElementById('pwInput').value);
-  if (hash === PW_HASH) { sessionStorage.setItem(SESSION_KEY, '1'); showApp(); }
-  else document.getElementById('pwError').style.display = 'block';
-}
-function showApp() {
-  document.getElementById('gate').style.display = 'none';
-  document.getElementById('app').style.display = 'block';
-  showPage('overview');
-}
-function logout() { sessionStorage.removeItem(SESSION_KEY); location.reload(); }
-document.getElementById('pwBtn').onclick = checkPassword;
-document.getElementById('pwInput').onkeydown = e => { if (e.key === 'Enter') checkPassword(); };
-if (sessionStorage.getItem(SESSION_KEY)) showApp();
 
-const pages = {
-overview: `
-<div class="breadcrumb">SpectaclesUIKit <span>›</span> Початок роботи</div>
-<h1>Огляд</h1>
-<p class="subtitle">Внутрішня документація проєкту Railway Mainline для Spectacles. Довідник по компонентах, скриптах, темах та робочих нотатках.</p>
+async function sha256(s){const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(x=>x.toString(16).padStart(2,'0')).join('')}
+async function checkPw(){const h=await sha256(document.getElementById('pwInput').value);if(h===PW_HASH){sessionStorage.setItem(SK,'1');showApp()}else document.getElementById('pwError').style.display='block'}
+function showApp(){document.getElementById('gate').style.display='none';document.getElementById('app').style.display='block';setLanguage(currentLang);showPage('overview')}
+function logout(){sessionStorage.removeItem(SK);location.reload()}
+document.getElementById('pwBtn').onclick=checkPw;
+document.getElementById('pwInput').onkeydown=e=>{if(e.key==='Enter')checkPw()};
+if(sessionStorage.getItem(SK))showApp();
 
-<div class="callout callout-tip"><span class="callout-icon">💡</span><p>Цей сайт захищений паролем. Поділіться посиланням та паролем з членами команди для спільного доступу.</p></div>
+const pages={
 
-<h2>Про проєкт</h2>
-<p><strong>FND-11919 Railway Mainline</strong> — AR-досвід для Snap Spectacles, який створюється в Lens Studio. Проєкт використовує просторовий інтерфейс з кнопками, контейнерами та інтерактивними 3D елементами, керованими жестами рук (pinch, drag, hover).</p>
-<p>Проєкт знаходиться у папці <code>studio/UI/Spectacles_v01/</code> і побудований на двох основних фреймворках від Snap.</p>
+overview:`
+<h1>Навчальний план: UI меню в Lens Studio</h1>
+<p class="subtitle">9 уроків — від найпростішої кнопки до повноцінного AR-меню з навігацією, спавном об'єктів і слайдерами.</p>
 
-<h2>Архітектура</h2>
-<p>Проєкт використовує два фреймворки, які працюють разом:</p>
+<h2>Чому саме так</h2>
+<p>Кожен урок додає <strong>одну нову концепцію</strong> поверх попередніх. До кінця ви матимете повне розуміння як побудувати будь-яке UI меню для Spectacles.</p>
+
+<h2>Карта уроків</h2>
 <table>
-<tr><th>Фреймворк</th><th>Призначення</th><th>Ключові компоненти</th></tr>
-<tr><td><strong>SpectaclesUIKit</strong></td><td>Візуальні UI компоненти — зовнішній вигляд кнопок, градієнти, теми</td><td>RoundButton, CapsuleButton, RectangleButton, Frame, Colors, Gradients</td></tr>
-<tr><td><strong>SpectaclesInteractionKit (SIK)</strong></td><td>Обробка введення — жести рук, натискання, перетягування</td><td>PinchButton, ToggleButton, Slider, ScrollView, Container, Interactable</td></tr>
+<tr><th>#</th><th>Тема</th><th>Що вивчаємо</th><th>Складність</th></tr>
+<tr><td>1</td><td><a data-page="lesson1">Кнопка + Logger</a></td><td>Callback система, <code>print()</code></td><td><span class="tag tag-easy">Легко</span></td></tr>
+<tr><td>2</td><td><a data-page="lesson2">Toggle об'єкта</a></td><td><code>@input</code>, <code>enabled</code>, видимість</td><td><span class="tag tag-easy">Легко</span></td></tr>
+<tr><td>3</td><td><a data-page="lesson3">Спавн об'єктів</a></td><td><code>ObjectPrefab</code>, <code>instantiate()</code>, позиціонування</td><td><span class="tag tag-easy">Легко</span></td></tr>
+<tr><td>4</td><td><a data-page="lesson4">Toggle + Slider</a></td><td>Два типи вводу, масштабування</td><td><span class="tag tag-medium">Середньо</span></td></tr>
+<tr><td>5</td><td><a data-page="lesson5">Меню з кнопками</a></td><td><code>Frame</code>, кілька кнопок, перемикання об'єктів</td><td><span class="tag tag-medium">Середньо</span></td></tr>
+<tr><td>6</td><td><a data-page="lesson6">Переходи між меню</a></td><td>Два <code>Frame</code>, <code>MenuSwitch</code></td><td><span class="tag tag-medium">Середньо</span></td></tr>
+<tr><td>7</td><td><a data-page="lesson7">Прокручуваний список</a></td><td><code>ScrollView</code>, вибір зі списку</td><td><span class="tag tag-medium">Середньо</span></td></tr>
+<tr><td>8</td><td><a data-page="lesson8">Вибір + Спавн</a></td><td>Комплексне меню, масив prefab'ів, очистка</td><td><span class="tag tag-hard">Складно</span></td></tr>
+<tr><td>9</td><td><a data-page="lesson9">Фінальний проєкт</a></td><td>Навігація + Builder + Settings + спавн + слайдер</td><td><span class="tag tag-hard">Складно</span></td></tr>
+<tr><td>G</td><td><a data-page="gamemenu">Game Menu</a></td><td>Snap OS стиль: sidebar + сітка карток + пошук + спавн</td><td><span class="tag tag-hard">Складно</span></td></tr>
 </table>
-<p>UIKit відповідає за те <strong>як виглядає</strong> кнопка (колір, градієнт, анімація станів), а SIK — за те <strong>як працює</strong> взаємодія (pinch пальцями, hover поглядом, drag рукою).</p>
-
-<h2>Що вже зроблено</h2>
-<ul>
-<li>Налаштовано сцену з UIKit кнопками (SIK Examples)</li>
-<li>Створено скрипт <a href="#" onclick="showPage('scripts');return false">SpawnCubeOnPress</a> — спавн кубика по натисканню кнопки через Callback систему</li>
-<li>Досліджено <a href="#" onclick="showPage('theming');return false">систему кольорів</a> — Colors.ts, градієнти, стилі кнопок, прозорість</li>
-<li>Вивчено <a href="#" onclick="showPage('events');return false">систему подій</a> — onTriggerUp/Down, onButtonPinched, onStateChanged</li>
-</ul>
-
-<h2>Швидкі посилання</h2>
-<table>
-<tr><th>Розділ</th><th>Опис</th></tr>
-<tr><td><a href="#" onclick="showPage('spectacles');return false">Що таке Spectacles</a></td><td>Огляд пристрою, його можливостей та архітектури розробки</td></tr>
-<tr><td><a href="#" onclick="showPage('start');return false">Початок розробки</a></td><td>Як створити новий проєкт, налаштувати Lens Studio, додати пакети</td></tr>
-<tr><td><a href="#" onclick="showPage('buttons');return false">Кнопки</a></td><td>Повний довідник UIKit та SIK кнопок, порівняння подій</td></tr>
-<tr><td><a href="#" onclick="showPage('scripts');return false">SpawnCubeOnPress</a></td><td>Готовий скрипт + покрокова інструкція підключення до кнопки</td></tr>
-<tr><td><a href="#" onclick="showPage('theming');return false">Кольори та стилі</a></td><td>HSVtoRGB формат, 5 стилів кнопок, прозорість, градієнти</td></tr>
-<tr><td><a href="#" onclick="showPage('events');return false">Довідник подій</a></td><td>Всі події UIKit, SIK Interactable та UI компонентів</td></tr>
-<tr><td><a href="#" onclick="showPage('sik');return false">Interaction Kit</a></td><td>Система взаємодії: руки, курсори, Interactable, Container</td></tr>
-<tr><td><a href="#" onclick="showPage('uikit');return false">UI Kit</a></td><td>Візуальні компоненти: кнопки, теми SnapOS 2.0, callback система</td></tr>
-<tr><td><a href="#" onclick="showPage('features');return false">Можливості Spectacles</a></td><td>Hand Tracking, Spatial Anchors, SnapML, Connected Lenses</td></tr>
-<tr><td><a href="#" onclick="showPage('links');return false">Корисні посилання</a></td><td>Офіційна документація Snap, GitHub зразки, спільнота</td></tr>
-</table>
-
-<div class="page-footer">
-<span></span>
-<a href="#" onclick="showPage('setup');return false">Далі: Структура проєкту →</a>
-</div>
-`,
-
-spectacles: `
-<div class="breadcrumb">SpectaclesUIKit <span>›</span> Початок роботи</div>
-<h1>Що таке Spectacles</h1>
-<p class="subtitle">Spectacles — це AR-окуляри від Snap, які дозволяють розробникам створювати просторові (spatial) досвіди за допомогою Lens Studio.</p>
-
-<h2>Основна ідея</h2>
-<p>Spectacles — це носимий пристрій з прозорими дисплеями, камерами та сенсорами. Розробники створюють для них <strong>Лінзи (Lenses)</strong> — AR-застосунки, які накладають цифровий контент на реальний світ. Все програмується в <strong>Lens Studio</strong> на TypeScript або JavaScript.</p>
-
-<div class="callout callout-info"><span class="callout-icon">ℹ️</span><p>Spectacles підтримують трекінг рук, голосові команди, просторові якорі та мультикористувацькі (Connected Lenses) сесії.</p></div>
-
-<h2>Що можуть Spectacles</h2>
-<table>
-<tr><th>Можливість</th><th>Опис</th></tr>
-<tr><td><strong>Hand Tracking</strong></td><td>Відслідковування рук та пальців — основний спосіб взаємодії (pinch, drag, hover)</td></tr>
-<tr><td><strong>Spatial Anchors</strong></td><td>Прив'язка об'єктів до реальних поверхонь та місць</td></tr>
-<tr><td><strong>Connected Lenses</strong></td><td>Кілька людей бачать та взаємодіють з одним і тим самим AR-контентом</td></tr>
-<tr><td><strong>SnapML</strong></td><td>Машинне навчання на пристрої для розпізнавання об'єктів, сегментації тощо</td></tr>
-<tr><td><strong>Audio</strong></td><td>Просторовий звук, прив'язаний до об'єктів у сцені</td></tr>
-<tr><td><strong>Snap Cloud</strong></td><td>Хмарне сховище для даних між сесіями</td></tr>
-<tr><td><strong>WebXR</strong></td><td>Підтримка веб-стандарту WebXR для крос-платформних AR-досвідів</td></tr>
-</table>
-
-<h2>Архітектура розробки</h2>
-<p>Snap надає кілька фреймворків, які працюють поверх Lens Studio:</p>
-<table>
-<tr><th>Фреймворк</th><th>Що робить</th></tr>
-<tr><td><a href="#" onclick="showPage('sik');return false">Spectacles Interaction Kit (SIK)</a></td><td>Система взаємодії: рук, курсорів, кнопок, слайдерів</td></tr>
-<tr><td><a href="#" onclick="showPage('uikit');return false">Spectacles UI Kit</a></td><td>Візуальні UI компоненти: кнопки з темами, градієнти</td></tr>
-<tr><td><a href="#" onclick="showPage('synckit');return false">Spectacles Sync Kit</a></td><td>Синхронізація між кількома користувачами</td></tr>
-<tr><td>Auth Kit</td><td>Аутентифікація користувачів через Snapchat</td></tr>
-<tr><td>Navigation Kit</td><td>Навігація та переходи між сценами</td></tr>
-<tr><td>Commerce Kit</td><td>Інтеграція покупок (закрита бета)</td></tr>
-<tr><td>Mobile Kit</td><td>Зв'язок між Spectacles та мобільним додатком</td></tr>
-</table>
-
-<div class="page-footer">
-<a href="#" onclick="showPage('overview');return false">← Огляд</a>
-<a href="#" onclick="showPage('start');return false">Далі: Початок розробки →</a>
-</div>
-`,
-
-start: `
-<div class="breadcrumb">SpectaclesUIKit <span>›</span> Початок роботи</div>
-<h1>Початок розробки</h1>
-<p class="subtitle">Як почати створювати Лінзи для Spectacles з нуля.</p>
 
 <h2>Що потрібно</h2>
-<ol class="steps">
-<li><strong>Завантажте Lens Studio 5</strong><br>Скачайте останню версію з <a href="https://developers.snap.com" target="_blank">developers.snap.com</a>. Spectacles потребують Lens Studio 5+.</li>
-<li><strong>Створіть новий проєкт</strong><br>При створенні проєкту оберіть шаблон <strong>Spectacles</strong>. Він вже включає SIK та базову сцену.</li>
-<li><strong>Додайте потрібні пакети</strong><br>Через Asset Library додайте <strong>SpectaclesInteractionKit</strong> та <strong>SpectaclesUIKit</strong> (якщо потрібні UI компоненти).</li>
-<li><strong>Налаштуйте сцену</strong><br>Додайте камеру, освітлення, та ваші 3D об'єкти. Для взаємодії через руки — додайте <code>Interactable</code> компонент на об'єкти.</li>
-<li><strong>Тестуйте</strong><br>Використовуйте Preview у Lens Studio. Для повного тестування — деплойте на реальні Spectacles через Snapchat.</li>
-</ol>
-
-<h2>Структура типового проєкту</h2>
-<div class="code-block"><div class="code-header"><span class="code-tab active">Типова структура</span></div>
-<div class="code-body"><pre><code>MyProject/
-├── Assets/
-│   ├── Scenes/
-│   │   └── MainScene.scene
-│   ├── Scripts/
-│   │   └── MyScript.ts
-│   ├── Materials/
-│   ├── Textures/
-│   ├── Prefabs/
-│   ├── SpectaclesInteractionKit.lspkg/   ← Взаємодія
-│   └── SpectaclesUIKit.lspkg/            ← UI компоненти
-├── tsconfig.json
-└── project.json</code></pre></div></div>
-
-<h2>Зразки проєктів</h2>
-<p>Snap надає офіційні зразки на GitHub:</p>
 <ul>
-<li><strong>Hand Tracking Demo</strong> — базова демонстрація трекінгу рук</li>
-<li><strong>UI Elements Sample</strong> — приклади кнопок, слайдерів, контейнерів</li>
-<li><strong>Connected Lenses</strong> — мультикористувацький AR-досвід</li>
-<li><strong>SnapML Sample</strong> — машинне навчання на Spectacles</li>
+<li><strong>Lens Studio 5+</strong> з шаблоном Spectacles</li>
+<li>Пакет <strong>SpectaclesInteractionKit (SIK)</strong></li>
+<li>Пакет <strong>SpectaclesUIKit</strong></li>
+<li>3 базових prefab: <strong>Box</strong>, <strong>Sphere</strong>, <strong>Cylinder</strong></li>
 </ul>
 
-<div class="callout callout-tip"><span class="callout-icon">💡</span><p>Найкраще почати з офіційного шаблону Spectacles в Lens Studio — він вже має правильно налаштовану сцену з камерою та SIK.</p></div>
-
-<div class="page-footer">
-<a href="#" onclick="showPage('spectacles');return false">← Що таке Spectacles</a>
-<a href="#" onclick="showPage('setup');return false">Далі: Структура проєкту →</a>
+<div class="nav-footer">
+<span></span>
+<a data-page="concepts">Далі: Базові концепти →</a>
 </div>
 `,
 
-setup: `
-<div class="breadcrumb">SpectaclesUIKit <span>›</span> Початок роботи</div>
-<h1>Структура проєкту</h1>
-<p class="subtitle">Розташування файлів та папок у проєкті Lens Studio та що за що відповідає.</p>
-
-<h2>Розташування проєкту</h2>
-<p>Проєкт знаходиться у Git репозиторії <code>studio/</code>, шлях до робочих файлів:</p>
-<div class="code-block"><div class="code-header"><span class="code-tab active">Шлях</span></div>
-<div class="code-body"><pre><code>studio/UI/Spectacles_v01/Assets/</code></pre></div></div>
-
-<h2>Ключові файли та папки</h2>
-<table>
-<tr><th>Файл / Папка</th><th>Що робить</th></tr>
-<tr><td><code>SpawnCubeOnPress.ts</code></td><td>Користувацький скрипт — спавнить кубик по натисканню кнопки</td></tr>
-<tr><td><code>SpectaclesUIKit.lspkg/</code></td><td>Пакет візуальних UI компонентів (кнопки, теми, градієнти)</td></tr>
-<tr><td><code>SpectaclesInteractionKit.lspkg/</code></td><td>Пакет взаємодії (руки, pinch, drag, Interactable)</td></tr>
-<tr><td><code>Colors.ts</code></td><td>Визначення кольорів для тем кнопок (HSVtoRGB)</td></tr>
-<tr><td><code>Gradients/</code></td><td>Градієнти для фону та бордерів кнопок у різних станах</td></tr>
-<tr><td><code>Styles/</code></td><td>Параметри стилів: RoundButton, CapsuleButton, RectangleButton</td></tr>
-<tr><td><code>BaseButton.ts</code></td><td>Базовий абстрактний клас для всіх UIKit кнопок</td></tr>
-<tr><td><code>Element.ts</code></td><td>Базовий клас для всіх інтерактивних елементів (події, стани)</td></tr>
-</table>
-
-<h2>Дерево файлів</h2>
-<div class="code-block"><div class="code-header"><span class="code-tab active">Структура проєкту</span></div>
-<div class="code-body"><pre><code>Assets/
-├── SpawnCubeOnPress.ts          ← Користувацький скрипт
-├── SpectaclesUIKit.lspkg/
-│   └── Scripts/
-│       ├── Components/
-│       │   └── Button/
-│       │       ├── BaseButton.ts
-│       │       ├── RoundButton.ts
-│       │       ├── CapsuleButton.ts
-│       │       └── RectangleButton.ts
-│       └── Themes/
-│           └── SnapOS-2.0/
-│               ├── Colors.ts            ← Визначення кольорів
-│               ├── Gradients/           ← Градієнти кнопок
-│               └── Styles/              ← Параметри кнопок
-└── SpectaclesInteractionKit.lspkg/
-    └── Components/UI/
-        ├── PinchButton/
-        ├── ToggleButton/
-        └── Slider/</code></pre></div></div>
-
-<div class="page-footer">
-<a href="#" onclick="showPage('overview');return false">← Огляд</a>
-<a href="#" onclick="showPage('buttons');return false">Далі: Кнопки →</a>
-</div>
-`,
-
-buttons: `
-<div class="breadcrumb">SpectaclesUIKit <span>›</span> Компоненти</div>
-<h1>Кнопки</h1>
-<p class="subtitle">У проєкті є дві системи кнопок: UIKit (візуальні) та SIK (взаємодія). Вони можуть працювати разом або окремо.</p>
-
-<h2>Коротко: яку кнопку обрати</h2>
-<table>
-<tr><th>Задача</th><th>Використовуйте</th></tr>
-<tr><td>Красива стилізована кнопка з темою SnapOS</td><td><strong>UIKit</strong> (RoundButton, CapsuleButton, RectangleButton)</td></tr>
-<tr><td>Проста кнопка "натиснув — спрацювало"</td><td><strong>SIK</strong> PinchButton</td></tr>
-<tr><td>Перемикач увімк/вимк</td><td><strong>SIK</strong> ToggleButton або <strong>UIKit</strong> з toggle режимом</td></tr>
-<tr><td>Регулятор значення (гучність, масштаб)</td><td><strong>SIK</strong> Slider</td></tr>
-<tr><td>Кнопка без коду (через Inspector)</td><td><strong>UIKit</strong> з Callback системою</td></tr>
-</table>
-
-<h2>Два способи підключення дій до кнопки</h2>
-<h3>Спосіб 1: Callback (без коду)</h3>
-<p>На UIKit кнопці увімкнути <strong>Add Callbacks</strong> в Inspector → вказати скрипт та функцію. Не потрібні імпорти, не потрібен код підписки.</p>
-
-<h3>Спосіб 2: Код (підписка на подію)</h3>
-<p>Отримати компонент кнопки через <code>getComponent()</code> та підписатись на подію через <code>.add()</code>. Дає більше контролю, але потребує імпорт типу.</p>
-
-<h2>UIKit Кнопки</h2>
-<p>Візуальні компоненти кнопок з градієнтними темами. Всі три типи мають однакові параметри та 5 візуальних стилів (<a href="#" onclick="showPage('theming');return false">детальніше про стилі</a>):</p>
-<table>
-<tr><th>Компонент</th><th>Форма</th><th>Файл</th></tr>
-<tr><td><code>RoundButton</code></td><td>Круг</td><td>Button/RoundButton.ts</td></tr>
-<tr><td><code>CapsuleButton</code></td><td>Капсула / округлений прямокутник</td><td>Button/CapsuleButton.ts</td></tr>
-<tr><td><code>RectangleButton</code></td><td>Прямокутник з округленими кутами</td><td>Button/RectangleButton.ts</td></tr>
-</table>
-
-<h3>Події UIKit кнопок</h3>
-<table>
-<tr><th>Подія</th><th>Коли спрацьовує</th></tr>
-<tr><td><code>onTriggerDown</code></td><td>Початок натискання (pinch)</td></tr>
-<tr><td><code>onTriggerUp</code></td><td>Завершення натискання — основний "клік"</td></tr>
-<tr><td><code>onValueChange</code></td><td>Зміна стану toggle (1 або 0)</td></tr>
-<tr><td><code>onFinished</code></td><td>Анімація зміни стану завершена</td></tr>
-</table>
-
-<h2>SIK Кнопки</h2>
-<p>Компоненти взаємодії зі SpectaclesInteractionKit:</p>
-<table>
-<tr><th>Компонент</th><th>Подія</th><th>Опис</th></tr>
-<tr><td><strong>PinchButton</strong></td><td><code>onButtonPinched</code></td><td>Проста кнопка — стиснув пальці і спрацювала</td></tr>
-<tr><td><strong>ToggleButton</strong></td><td><code>onStateChanged</code></td><td>Перемикач — запам'ятовує стан увімк/вимк</td></tr>
-<tr><td><strong>Slider</strong></td><td><code>onValueUpdate</code></td><td>Повзунок — тягнеш і отримуєш значення (0–1)</td></tr>
-</table>
-
-<h3>Приклад коду SIK</h3>
-<div class="code-block"><div class="code-header"><span class="code-tab active">TypeScript</span><button class="code-copy" onclick="copyCode(this)">Копіювати</button></div>
-<div class="code-body"><pre><code>import { PinchButton } from 'SpectaclesInteractionKit.lspkg/Components/UI/PinchButton/PinchButton'
-
-@component
-export class MyButtonHandler extends BaseScriptComponent {
-  onAwake() {
-    this.createEvent('OnStartEvent').bind(() =&gt; {
-      const btn = this.sceneObject.getComponent(
-        PinchButton.getTypeName()
-      )
-      btn.onButtonPinched.add(() =&gt; {
-        print("Кнопку натиснуто!")
-      })
-    })
-  }
-}</code></pre></div></div>
-
-<div class="page-footer">
-<a href="#" onclick="showPage('setup');return false">← Структура проєкту</a>
-<a href="#" onclick="showPage('scripts');return false">Далі: SpawnCubeOnPress →</a>
-</div>
-`,
-
-scripts: `
-<div class="breadcrumb">SpectaclesUIKit <span>›</span> Скрипти</div>
-<h1>SpawnCubeOnPress</h1>
-<p class="subtitle">Скрипт, який створює 3D кубик (prefab) при натисканні UIKit кнопки.</p>
-
-<h2>Вихідний код</h2>
-<div class="code-block"><div class="code-header"><span class="code-tab active">SpawnCubeOnPress.ts</span><button class="code-copy" onclick="copyCode(this)">Копіювати</button></div>
-<div class="code-body"><pre><code>@component
-export class SpawnCubeOnPress extends BaseScriptComponent {
-  @input
-  cubePrefab: ObjectPrefab
-
-  @input
-  parentObject: SceneObject
-
-  spawnCube() {
-    const cube = this.cubePrefab.instantiate(this.parentObject)
-    cube.getTransform().setLocalPosition(new vec3(0, 0, -50))
-    cube.getTransform().setLocalScale(new vec3(5, 5, 5))
-    print("Cube spawned!")
-  }
-}</code></pre></div></div>
-
-<h2>Інструкція з налаштування</h2>
-<ol class="steps">
-<li><strong>Створіть Box Prefab</strong><br>В Lens Studio: <code>+ &gt; Mesh &gt; Box</code>. Налаштуйте матеріал. Перетягніть з Scene Hierarchy у панель <strong>Resources</strong> щоб створити <code>.prefab</code>. Видаліть оригінал зі сцени.</li>
-<li><strong>Додайте скрипт</strong><br>Створіть файл <code>SpawnCubeOnPress.ts</code> в Assets. Вставте код вище.</li>
-<li><strong>Прикріпіть до SceneObject</strong><br>Додайте скрипт як компонент на будь-який SceneObject. В Inspector встановіть:<br>• <strong>Cube Prefab</strong> = ваш Box .prefab з Resources<br>• <strong>Parent Object</strong> = об'єкт, де мають з'являтись кубики</li>
-<li><strong>Підключіть до кнопки</strong><br>Виберіть UIKit кнопку. Увімкніть <strong>Add Callbacks</strong>. В <strong>On Trigger Up Callbacks</strong> натисніть <code>+</code>:<br>• <strong>Script</strong> = перетягніть компонент SpawnCubeOnPress<br>• <strong>Function Name</strong> = <code>spawnCube</code></li>
-<li><strong>Тестуйте</strong><br>Натисніть Play. Зробіть pinch/клік на кнопку. З'явиться кубик і в Logger буде <code>"Cube spawned!"</code>.</li>
-</ol>
-
-<div class="callout callout-info"><span class="callout-icon">ℹ️</span><p><code>localPosition(0, 0, -50)</code> розміщує кубик на 50 одиниць попереду. <code>localScale(5, 5, 5)</code> встановлює розмір. Змінюйте ці значення за потребою.</p></div>
-
-<h2>Чому без імпортів?</h2>
-<p>Цей скрипт не імпортує <code>RoundButton</code> з UIKit пакету, бо Lens Studio не завжди може резолвити крос-пакетні імпорти для користувацьких скриптів. Замість цього використовується вбудована система <strong>Callback</strong> кнопки — кнопка сама викликає <code>spawnCube()</code> напряму, без залежності від типу.</p>
-
-<div class="page-footer">
-<a href="#" onclick="showPage('buttons');return false">← Кнопки</a>
-<a href="#" onclick="showPage('theming');return false">Далі: Кольори та стилі →</a>
-</div>
-`,
-
-theming: `
-<div class="breadcrumb">SpectaclesUIKit <span>›</span> Оформлення</div>
-<h1>Кольори та стилі</h1>
-<p class="subtitle">Як визначаються кольори, градієнти та прозорість кнопок у файлі <code>Colors.ts</code>. Це головний файл, який контролює вигляд усіх UIKit кнопок.</p>
-
-<h2>Як влаштована система тем</h2>
-<p>Візуальна система UIKit складається з трьох рівнів:</p>
-<ol>
-<li><strong>Colors.ts</strong> — базові кольори як константи (HSVtoRGB)</li>
-<li><strong>Gradients/</strong> — градієнти, що використовують кольори для фону та бордерів у різних станах (default, hover, triggered)</li>
-<li><strong>Styles/</strong> — параметри кнопок, що посилаються на градієнти + визначають розмір бордеру, масштаб, позицію</li>
-</ol>
-<p>Щоб змінити вигляд кнопки — найпростіше змінити значення у <code>Colors.ts</code>. Зміна одного кольору автоматично оновить усі градієнти та стилі, які його використовують.</p>
-
-<h2>Формат кольорів</h2>
-<p>Всі кольори використовують <code>HSVtoRGB(Hue, Saturation, Value, Alpha)</code>:</p>
-<table>
-<tr><th>Параметр</th><th>Діапазон</th><th>Що контролює</th></tr>
-<tr><td>Hue (Відтінок)</td><td>0–360</td><td>Тон кольору (0=червоний, 50=жовтий, 120=зелений…)</td></tr>
-<tr><td>Saturation (Насиченість)</td><td>0–1</td><td>Інтенсивність кольору (0=сірий, 1=яскравий)</td></tr>
-<tr><td>Value (Яскравість)</td><td>0–1</td><td>Світлість (0=чорний, 1=яскравий)</td></tr>
-<tr><td><strong>Alpha (Прозорість)</strong></td><td>0–1</td><td><strong>Прозорість</strong> (0=невидимий, 1=суцільний)</td></tr>
-</table>
-
-<h2>Карта стилів кнопок</h2>
-<p>Визначено 5 візуальних стилів, кожен з градієнтними кольорами для кожного стану:</p>
-<table>
-<tr><th>Стиль</th><th>Вигляд</th><th>Використані кольори</th></tr>
-<tr><td><strong>PrimaryNeutral</strong></td><td>Темно-сірий, жовтий бордер при натисканні</td><td>DarkestGray → MediumGray + TriggeredBorderYellow</td></tr>
-<tr><td><strong>Primary</strong></td><td>Жовтий градієнт</td><td>DarkestYellow → BrightYellow</td></tr>
-<tr><td><strong>Secondary</strong></td><td>Теплий сірий</td><td>DarkWarmGray → MediumWarmGray</td></tr>
-<tr><td><strong>Special</strong></td><td>Червоний (деструктивні дії)</td><td>DarkRed → LightRed</td></tr>
-<tr><td><strong>Ghost</strong></td><td>Прозорий, тільки бордер</td><td>Transparent (alpha=0) + MediumGray/BrightYellow бордери</td></tr>
-</table>
-
-<div class="callout callout-warn"><span class="callout-icon">⚠️</span><p>Константа <strong>Transparent</strong> (рядок 34) — єдиний колір кнопки з <code>alpha &lt; 1</code>. Всі інші повністю непрозорі. Не використовуються кнопками: <code>TriggeredBorderClearGray</code> (рядок 12), <code>DarkerMediumYellow</code> (рядок 17), всі <code>Switch*</code> кольори (рядки 36–60).</p></div>
-
-<h2>Ключові рядки Colors.ts</h2>
-<div class="code-block"><div class="code-header"><span class="code-tab active">Colors.ts — кольори кнопок</span><button class="code-copy" onclick="copyCode(this)">Копіювати</button></div>
-<div class="code-body"><pre><code>// Сірі (PrimaryNeutral, Secondary)
-export const DarkestGray = HSVtoRGB(0, 0, 0.11, 1)       // рядок 3
-export const DarkerGray = HSVtoRGB(0, 0, 0.14, 1)        // рядок 4
-export const DarkGray = HSVtoRGB(0, 0, 0.2, 1)           // рядок 6
-export const MediumGray = HSVtoRGB(0, 0, 0.4, 1)         // рядок 8
-
-// Жовті (Primary)
-export const DarkestYellow = HSVtoRGB(50, 0.45, 0.18, 1) // рядок 14
-export const BrightYellow = HSVtoRGB(45, 0.62, 0.84, 1)  // рядок 21
-
-// Червоні (Special)
-export const DarkRed = HSVtoRGB(3, 0.65, 0.3, 1)         // рядок 27
-export const MediumRed = HSVtoRGB(0, 0.7, 0.42, 1)       // рядок 30
-
-// Прозорість (Ghost)
-export const Transparent = HSVtoRGB(0, 0, 0, 0)          // рядок 34
-//                                           ↑ alpha=0</code></pre></div></div>
-
-<div class="page-footer">
-<a href="#" onclick="showPage('scripts');return false">← SpawnCubeOnPress</a>
-<a href="#" onclick="showPage('events');return false">Далі: Довідник подій →</a>
-</div>
-`,
-
-toggle: `
-<div class="breadcrumb">SpectaclesUIKit <span>›</span> Компоненти</div>
-<h1>ToggleButton</h1>
-<p class="subtitle">Кнопка-перемикач, яка запам'ятовує свій стан увімк/вимк. Кожне натискання змінює стан на протилежний.</p>
-
-<h2>Як це працює</h2>
-<p>На відміну від <strong>PinchButton</strong> (одноразова дія), ToggleButton зберігає внутрішній стан. Як вимикач світла: натиснув — увімкнулось, натиснув ще раз — вимкнулось. Поточний стан передається через подію <code>onStateChanged</code> як <code>boolean</code> (true = увімкнено, false = вимкнено).</p>
-
-<h2>Порівняння з PinchButton</h2>
-<table>
-<tr><th></th><th>PinchButton</th><th>ToggleButton</th></tr>
-<tr><td><strong>Тип</strong></td><td>Одноразова дія</td><td>Перемикач зі станом</td></tr>
-<tr><td><strong>Аналогія</strong></td><td>Кнопка дзвінка — натиснув і забув</td><td>Вимикач світла — увімк/вимк</td></tr>
-<tr><td><strong>Подія</strong></td><td><code>onButtonPinched</code> (void)</td><td><code>onStateChanged</code> (boolean)</td></tr>
-<tr><td><strong>Стан</strong></td><td>Не зберігає</td><td>Зберігає true/false</td></tr>
-<tr><td><strong>Використання</strong></td><td>Відкрити меню, запустити анімацію</td><td>Увімкнути звук, показати/сховати об'єкт</td></tr>
-</table>
-
-<h2>Де використовувати</h2>
-<ul>
-<li><strong>Увімкнути/вимкнути звук</strong> — mute/unmute</li>
-<li><strong>Показати/сховати UI елемент</strong> — toggle visibility</li>
-<li><strong>Перемикання режимів</strong> — день/ніч, редагування/перегляд</li>
-<li><strong>Налаштування</strong> — будь-які on/off опції</li>
-</ul>
-
-<h2>Налаштування в Lens Studio</h2>
-<ol>
-<li>Додайте <code>ToggleButton</code> компонент на SceneObject (потрібен також <code>Interactable</code> та <code>Collider</code>)</li>
-<li>Або використайте готовий prefab з SpectaclesInteractionKit</li>
-<li>Підпишіться на подію <code>onStateChanged</code> у скрипті</li>
-</ol>
-
-<h3>Приклад коду</h3>
-<div class="code-block"><div class="code-header"><span class="code-tab active">TypeScript</span><button class="code-copy" onclick="copyCode(this)">Копіювати</button></div>
-<div class="code-body"><pre><code>import { ToggleButton } from 'SpectaclesInteractionKit.lspkg/Components/UI/ToggleButton/ToggleButton'
-
-@component
-export class ToggleExample extends BaseScriptComponent {
-  onAwake() {
-    this.createEvent('OnStartEvent').bind(() =&gt; {
-      const toggle = this.sceneObject.getComponent(
-        ToggleButton.getTypeName()
-      )
-      toggle.onStateChanged.add((isOn: boolean) =&gt; {
-        print("Перемикач: " + (isOn ? "УВІМК" : "ВИМК"))
-      })
-    })
-  }
-}</code></pre></div></div>
-
-<div class="page-footer">
-<a href="#" onclick="showPage('buttons');return false">← Кнопки</a>
-<a href="#" onclick="showPage('slider');return false">Далі: Slider →</a>
-</div>
-`,
-
-slider: `
-<div class="breadcrumb">SpectaclesUIKit <span>›</span> Компоненти</div>
-<h1>Slider</h1>
-<p class="subtitle">Повзунок, який передає значення від 0 до 1 при перетягуванні.</p>
-
-<h2>Як це працює</h2>
-<p>Slider дозволяє користувачу встановити значення, перетягуючи повзунок по доріжці. Подія <code>onValueUpdate</code> спрацьовує <strong>безперервно</strong> при кожному русі — не один раз, а десятки разів на секунду поки палець рухається.</p>
-
-<h2>Параметри</h2>
-<table>
-<tr><th>Параметр</th><th>Тип</th><th>Опис</th></tr>
-<tr><td><strong>value</strong></td><td>number</td><td>Поточне значення повзунка (від 0.0 до 1.0)</td></tr>
-<tr><td><strong>min / max</strong></td><td>number</td><td>Мінімальне та максимальне значення (за замовчуванням 0 і 1)</td></tr>
-<tr><td><strong>step</strong></td><td>number</td><td>Крок зміни (0 = плавний без кроків)</td></tr>
-</table>
-
-<h2>Де використовувати</h2>
-<ul>
-<li><strong>Гучність</strong> — плавне регулювання звуку</li>
-<li><strong>Яскравість / прозорість</strong> — зміна візуальних параметрів у реальному часі</li>
-<li><strong>Масштаб об'єкта</strong> — тягнеш повзунок — об'єкт збільшується/зменшується</li>
-<li><strong>Швидкість анімації</strong> — контроль швидкості відтворення</li>
-<li><strong>Колір</strong> — наприклад, Hue слайдер для вибору кольору</li>
-</ul>
-
-<h2>Різниця з ScrollBar</h2>
-<table>
-<tr><th></th><th>Slider</th><th>ScrollBar</th></tr>
-<tr><td><strong>Призначення</strong></td><td>Вибір значення (input)</td><td>Індикатор прокрутки (navigation)</td></tr>
-<tr><td><strong>Взаємодія</strong></td><td>Тягнеш повзунок</td><td>Тягнеш або клацаєш</td></tr>
-<tr><td><strong>Значення</strong></td><td>Повертає число (0–1)</td><td>Прив'язаний до ScrollView</td></tr>
-<tr><td><strong>Подія</strong></td><td><code>onValueUpdate</code></td><td>Автоматично через ScrollView</td></tr>
-</table>
-
-<h2>Налаштування в Lens Studio</h2>
-<ol>
-<li>Додайте <code>Slider</code> компонент на SceneObject (потрібен також <code>Interactable</code> та <code>Collider</code>)</li>
-<li>Або використайте готовий prefab з SpectaclesInteractionKit</li>
-<li>Налаштуйте початкове значення, мін/макс, крок в Inspector</li>
-<li>Підпишіться на <code>onValueUpdate</code> у скрипті для отримання значення</li>
-</ol>
-
-<h3>Приклад коду</h3>
-<div class="code-block"><div class="code-header"><span class="code-tab active">TypeScript</span><button class="code-copy" onclick="copyCode(this)">Копіювати</button></div>
-<div class="code-body"><pre><code>import { Slider } from 'SpectaclesInteractionKit.lspkg/Components/UI/Slider/Slider'
-
-@component
-export class SliderExample extends BaseScriptComponent {
-  onAwake() {
-    this.createEvent('OnStartEvent').bind(() =&gt; {
-      const slider = this.sceneObject.getComponent(
-        Slider.getTypeName()
-      )
-      slider.onValueUpdate.add((value: number) =&gt; {
-        print("Значення слайдера: " + value.toFixed(2))
-      })
-    })
-  }
-}</code></pre></div></div>
-
-<div class="page-footer">
-<a href="#" onclick="showPage('toggle');return false">← ToggleButton</a>
-<a href="#" onclick="showPage('events');return false">Далі: Довідник подій →</a>
-</div>
-`,
-
-events: `
-<div class="breadcrumb">SpectaclesUIKit <span>›</span> Ресурси</div>
-<h1>Довідник подій</h1>
-<p class="subtitle">Повний список подій, доступних на інтерактивних компонентах. Подія — це сигнал, який компонент надсилає коли щось відбувається.</p>
-
-<h2>Як працюють події</h2>
-<p>Кожна подія має <strong>PublicApi</strong> інтерфейс з двома основними методами:</p>
-<ul>
-<li><code>.add(callback)</code> — підписатись на подію. Повертає функцію для відписки</li>
-<li><code>.remove(callback)</code> — відписатись від події вручну</li>
-</ul>
-<p><strong>Payload</strong> — це дані, які передаються у callback. Наприклад, <code>boolean</code> для toggle стану або <code>number</code> для значення слайдера. <code>void</code> означає що дані не передаються — просто "подія відбулась".</p>
-
-<h2>Події UIKit кнопок (Element)</h2>
-<p>Ці події доступні на <strong>всіх</strong> UIKit компонентах (RoundButton, CapsuleButton, RectangleButton та інших), бо вони наслідуються від класу <code>Element</code>:</p>
-<table>
-<tr><th>Подія</th><th>Payload</th><th>Опис</th></tr>
-<tr><td><code>onTriggerDown</code></td><td>void</td><td>Початок взаємодії (pinch починається)</td></tr>
-<tr><td><code>onTriggerUp</code></td><td>void</td><td>Кінець взаємодії (pinch відпущено) — основний "клік"</td></tr>
-<tr><td><code>onHoverEnter</code></td><td>void</td><td>Рука/погляд входить в зону елемента</td></tr>
-<tr><td><code>onHoverExit</code></td><td>void</td><td>Рука/погляд виходить із зони елемента</td></tr>
-<tr><td><code>onValueChange</code></td><td>number</td><td>Перемикач: 1 = увімк, 0 = вимк</td></tr>
-<tr><td><code>onFinished</code></td><td>boolean</td><td>Анімація переходу стану завершена</td></tr>
-<tr><td><code>onStateChanged</code></td><td>StateEvent</td><td>Будь-яка зміна стану (default, hovered, triggered…)</td></tr>
-<tr><td><code>onInitialized</code></td><td>void</td><td>Компонент повністю ініціалізований</td></tr>
-</table>
-
-<h2>Події SIK Interactable</h2>
-<p>Низькорівневі події від <code>Interactable</code> компонента. Дають більше інформації через <code>InteractorEvent</code> — можна дізнатись яка рука, де саме торкнулись, тип інтерактора тощо:</p>
-<table>
-<tr><th>Подія</th><th>Payload</th><th>Опис</th></tr>
-<tr><td><code>onTriggerStart</code></td><td>InteractorEvent</td><td>Низькорівневий початок взаємодії</td></tr>
-<tr><td><code>onTriggerEnd</code></td><td>InteractorEvent</td><td>Низькорівневий кінець взаємодії</td></tr>
-<tr><td><code>onTriggerCanceled</code></td><td>InteractorEvent</td><td>Взаємодію скасовано (рука втрачена тощо)</td></tr>
-<tr><td><code>onHoverEnter</code></td><td>InteractorEvent</td><td>Інтерактор входить у зону hover</td></tr>
-<tr><td><code>onHoverExit</code></td><td>InteractorEvent</td><td>Інтерактор виходить із зони hover</td></tr>
-<tr><td><code>onDragStart</code></td><td>InteractorEvent</td><td>Початок перетягування</td></tr>
-</table>
-
-<h2>Події SIK UI компонентів</h2>
-<p>Спеціалізовані події конкретних UI компонентів — простіші за Interactable, підходять для більшості задач:</p>
-<table>
-<tr><th>Компонент</th><th>Подія</th><th>Payload</th></tr>
-<tr><td>PinchButton</td><td><code>onButtonPinched</code></td><td>void</td></tr>
-<tr><td>ToggleButton</td><td><code>onStateChanged</code></td><td>boolean</td></tr>
-<tr><td>Slider</td><td><code>onValueUpdate</code></td><td>number (0–1)</td></tr>
-</table>
-
-<h2>Підписка на події</h2>
-<div class="code-block"><div class="code-header"><span class="code-tab active">TypeScript</span><button class="code-copy" onclick="copyCode(this)">Копіювати</button></div>
-<div class="code-body"><pre><code>// Підписатись
-const unsub = button.onTriggerUp.add(() =&gt; {
-  print("натиснуто")
-})
-
-// Відписатись пізніше
-unsub()</code></pre></div></div>
-
-<div class="page-footer">
-<a href="#" onclick="showPage('theming');return false">← Кольори та стилі</a>
-<a href="#" onclick="showPage('notes');return false">Далі: Нотатки →</a>
-</div>
-`,
-
-notes: `
-<div class="breadcrumb">SpectaclesUIKit <span>›</span> Ресурси</div>
-<h1>Нотатки проєкту</h1>
-<p class="subtitle">Спільні нотатки для команди. Зберігаються в localStorage вашого браузера.</p>
-
-<div style="display:flex;gap:8px;margin-bottom:24px">
-<button class="code-copy" style="padding:8px 16px;font-size:.85rem" onclick="createNote()">+ Нова нотатка</button>
-<button class="code-copy" style="padding:8px 16px;font-size:.85rem" onclick="exportNotes()">↓ Експорт JSON</button>
-<button class="code-copy" style="padding:8px 16px;font-size:.85rem" onclick="showImportPrompt()">↑ Імпорт JSON</button>
-</div>
-
-<div id="notesContainer"></div>
-
-<div id="noteEditor" style="display:none;margin-top:24px;">
-<input type="text" id="noteTitle" placeholder="Назва нотатки..." style="width:100%;padding:10px 14px;border:2px solid var(--border);border-radius:8px;font-size:1rem;font-weight:600;margin-bottom:8px;outline:none">
-<select id="noteCategory" style="padding:8px 12px;border:1px solid var(--border);border-radius:6px;margin-bottom:8px;font-size:.85rem">
-<option value="general">Загальне</option><option value="ui">UI/Дизайн</option>
-<option value="scripting">Скрипти</option><option value="bug">Баг</option>
-<option value="idea">Ідея</option><option value="asset">Ассет</option>
-</select>
-<textarea id="noteBody" rows="12" placeholder="Пишіть нотатки тут..." style="width:100%;padding:14px;border:2px solid var(--border);border-radius:8px;font-size:.9rem;line-height:1.7;outline:none;resize:vertical;font-family:'JetBrains Mono',monospace"></textarea>
-<div style="display:flex;gap:8px;margin-top:8px">
-<button class="code-copy" style="padding:8px 16px;background:var(--snap-black);color:#fff;border:none;font-weight:600" onclick="saveCurrentNote()">Зберегти</button>
-<button class="code-copy" style="padding:8px 16px" onclick="cancelEdit()">Скасувати</button>
-<button class="code-copy" style="padding:8px 16px;color:var(--red);margin-left:auto" onclick="deleteCurrentNote()">Видалити</button>
-</div>
-</div>
-`,
-
-features: `
-<div class="breadcrumb">Spectacles <span>›</span> Можливості</div>
-<h1>Огляд функцій Spectacles</h1>
-<p class="subtitle">Повний перелік можливостей, доступних розробникам на платформі Spectacles.</p>
-
-<h2>Взаємодія</h2>
-<table>
-<tr><th>Функція</th><th>Опис</th></tr>
-<tr><td><strong>Hand Tracking</strong></td><td>Повний трекінг обох рук — 26 суглобів на руку. Підтримує pinch, grab, poke жести</td></tr>
-<tr><td><strong>Eye Tracking</strong></td><td>Відслідковування напрямку погляду для gaze-based взаємодії</td></tr>
-<tr><td><strong>Mobile Controller</strong></td><td>Використання телефону як контролера через Snapchat додаток</td></tr>
-<tr><td><strong>Voice Commands</strong></td><td>Голосові команди для hands-free управління</td></tr>
-</table>
-
-<h2>Просторові можливості</h2>
-<table>
-<tr><th>Функція</th><th>Опис</th></tr>
-<tr><td><strong>World Mesh</strong></td><td>3D сканування навколишнього середовища для розміщення об'єктів на поверхнях</td></tr>
-<tr><td><strong>Plane Detection</strong></td><td>Автоматичне розпізнавання підлог, стін, столів</td></tr>
-<tr><td><strong>Spatial Anchors</strong></td><td>Прив'язка віртуальних об'єктів до фіксованих місць у реальному світі</td></tr>
-<tr><td><strong>Spatial Audio</strong></td><td>Звук, який "живе" у 3D просторі — стає гучнішим при наближенні</td></tr>
-<tr><td><strong>Passthrough</strong></td><td>Камери передають зображення реального світу + накладають AR контент</td></tr>
-</table>
-
-<h2>Мережа та хмара</h2>
-<table>
-<tr><th>Функція</th><th>Опис</th></tr>
-<tr><td><strong>Connected Lenses</strong></td><td>Кілька людей в одному AR-просторі одночасно — бачать однакові об'єкти</td></tr>
-<tr><td><strong>Snap Cloud</strong></td><td>Хмарне сховище для збереження даних між сесіями</td></tr>
-<tr><td><strong>Auth Kit</strong></td><td>Аутентифікація через Snapchat акаунт</td></tr>
-</table>
-
-<h2>AI та ML</h2>
-<table>
-<tr><th>Функція</th><th>Опис</th></tr>
-<tr><td><strong>SnapML</strong></td><td>Запуск ML-моделей прямо на пристрої. Підтримує класифікацію, сегментацію, об'єктну детекцію</td></tr>
-<tr><td><strong>Custom Models</strong></td><td>Імпорт власних ONNX/TFLite моделей через Lens Studio</td></tr>
-</table>
-
-<h2>Сумісність</h2>
-<div class="callout callout-warn"><span class="callout-icon">⚠️</span><p>Не всі функції Lens Studio доступні на Spectacles. Перевіряйте <a href="https://developers.snap.com/spectacles/spectacles-features/compatibility-list" target="_blank">Compatibility List</a> перед використанням нових API.</p></div>
-
-<div class="page-footer">
-<a href="#" onclick="showPage('spectacles');return false">← Що таке Spectacles</a>
-<a href="#" onclick="showPage('design');return false">Далі: Просторовий дизайн →</a>
-</div>
-`,
-
-design: `
-<div class="breadcrumb">Spectacles <span>›</span> Можливості</div>
-<h1>Просторовий дизайн</h1>
-<p class="subtitle">Основні принципи дизайну AR-досвідів для реального світу.</p>
-
-<h2>Ключові принципи</h2>
-
-<h3>1. Контент у контексті</h3>
-<p>AR-об'єкти повинні виглядати так, ніби вони належать реальному середовищу. Використовуйте освітлення, тіні та масштаб, які відповідають оточенню.</p>
-
-<h3>2. Зона комфорту</h3>
-<p>Розміщуйте основний контент на відстані <strong>0.5–3 метри</strong> від користувача. Надто близькі об'єкти викликають дискомфорт, надто далекі — складно розрізнити.</p>
-
-<h3>3. Ergonomics рук</h3>
-<p>Не змушуйте тримати руки піднятими довго — це втомлює. Розміщуйте інтерактивні елементи на рівні грудей або нижче, в зручній зоні досяжності.</p>
-
-<h3>4. Читабельність</h3>
-<table>
-<tr><th>Параметр</th><th>Рекомендація</th></tr>
-<tr><td>Мінімальний розмір тексту</td><td>~1 см на відстані 1 м (приблизно 0.6° кутового розміру)</td></tr>
-<tr><td>Контраст</td><td>Високий контраст — AR-контент конкурує з реальним фоном</td></tr>
-<tr><td>Кількість тексту</td><td>Мінімум — переважайте іконки та візуальні елементи</td></tr>
-</table>
-
-<h3>5. Зворотній зв'язок</h3>
-<p>Кожна взаємодія повинна мати відповідь:</p>
-<ul>
-<li><strong>Hover</strong> — підсвічення при наведенні руки/погляду</li>
-<li><strong>Trigger</strong> — анімація та/або звук при натисканні</li>
-<li><strong>Completion</strong> — чіткий сигнал що дія завершена</li>
-</ul>
-
-<h3>6. Поступове відкриття</h3>
-<p>Не показуйте всі елементи одразу. Відкривайте інтерфейс поступово — спочатку основне, потім деталі при взаємодії.</p>
-
-<div class="callout callout-tip"><span class="callout-icon">💡</span><p>Більше деталей у офіційному гайді: <a href="https://developers.snap.com/spectacles/best-practices/design-for-spectacles" target="_blank">Design for Spectacles</a></p></div>
-
-<div class="page-footer">
-<a href="#" onclick="showPage('features');return false">← Огляд функцій</a>
-<a href="#" onclick="showPage('performance');return false">Далі: Оптимізація →</a>
-</div>
-`,
-
-performance: `
-<div class="breadcrumb">Spectacles <span>›</span> Можливості</div>
-<h1>Оптимізація продуктивності</h1>
-<p class="subtitle">Spectacles — мобільний пристрій з обмеженими ресурсами. Продуктивність критична для комфорту.</p>
-
-<h2>Чому це важливо</h2>
-<p>Низький FPS в AR = нудота та дискомфорт. Spectacles мають цільову частоту <strong>60 FPS</strong>. Кожен кадр = ~16.6 мс на весь пайплайн.</p>
-
-<h2>Рекомендації</h2>
-
-<h3>Геометрія</h3>
-<table>
-<tr><th>Метрика</th><th>Ліміт</th></tr>
-<tr><td>Полігони на сцену</td><td>Менше 100K трикутників</td></tr>
-<tr><td>Draw calls</td><td>Менше 50</td></tr>
-<tr><td>Кількість матеріалів</td><td>Мінімізувати — кожен унікальний матеріал = окремий draw call</td></tr>
-</table>
-
-<h3>Текстури</h3>
-<ul>
-<li>Максимальний розмір: <strong>1024x1024</strong> (2048 тільки якщо необхідно)</li>
-<li>Використовуйте стиснення (compressed textures)</li>
-<li>Атласи текстур замість багатьох окремих</li>
-</ul>
-
-<h3>Скрипти</h3>
-<ul>
-<li>Уникайте <code>getComponent()</code> у <code>update()</code> — кешуйте результат в <code>onAwake()</code></li>
-<li>Не створюйте нові об'єкти кожен кадр — використовуйте пули (object pooling)</li>
-<li>Замість <code>UpdateEvent</code> кожен кадр — використовуйте <code>DelayedCallbackEvent</code> де можливо</li>
-</ul>
-
-<h3>Шейдери</h3>
-<ul>
-<li>Уникайте прозорості (transparency) — вона дорога на мобільних GPU</li>
-<li>Використовуйте <strong>Unlit</strong> матеріали де можливо замість PBR</li>
-<li>Мінімізуйте кількість реал-тайм світла</li>
-</ul>
-
-<h2>Профайлінг</h2>
-<p>Lens Studio має вбудований <strong>Performance Panel</strong> — показує FPS, draw calls, трикутники, пам'ять. Використовуйте його перед деплоєм.</p>
-
-<div class="callout callout-warn"><span class="callout-icon">⚠️</span><p>Preview в Lens Studio на комп'ютері працює значно швидше ніж реальні Spectacles. Завжди тестуйте на реальному пристрої!</p></div>
-
-<div class="page-footer">
-<a href="#" onclick="showPage('design');return false">← Просторовий дизайн</a>
-<a href="#" onclick="showPage('sik');return false">Далі: Interaction Kit →</a>
-</div>
-`,
-
-sik: `
-<div class="breadcrumb">Spectacles <span>›</span> Фреймворки</div>
-<h1>Spectacles Interaction Kit (SIK)</h1>
-<p class="subtitle">Основний фреймворк для обробки взаємодії користувача з AR-контентом через руки, погляд та контролер.</p>
-
-<h2>Що входить</h2>
-<table>
-<tr><th>Модуль</th><th>Опис</th></tr>
-<tr><td><strong>Interaction System</strong></td><td>Ядро системи — зв'язує Interactor (руку/погляд) з Interactable (об'єктом)</td></tr>
-<tr><td><strong>Hand Tracking</strong></td><td>Трекінг рук, розпізнавання жестів (pinch, grab)</td></tr>
-<tr><td><strong>Mobile Controller</strong></td><td>Альтернативний ввід через телефон</td></tr>
-<tr><td><strong>Cursor</strong></td><td>Візуальний індикатор, куди "дивиться" рука/погляд</td></tr>
-<tr><td><strong>Hand Visualization</strong></td><td>Візуалізація рук (скелет, підсвічення пальців)</td></tr>
-<tr><td><strong>Anchor Dynamics</strong></td><td>Фізикоподібна поведінка для прив'язаних об'єктів</td></tr>
-</table>
-
-<h2>Ключові компоненти</h2>
-
-<h3>Interactable</h3>
-<p>Базовий компонент — робить будь-який SceneObject інтерактивним. Додайте його + Collider на об'єкт, і він почне реагувати на руки.</p>
-
-<h3>UI елементи</h3>
-<table>
-<tr><th>Компонент</th><th>Подія</th><th>Аналогія</th></tr>
-<tr><td><strong>PinchButton</strong></td><td><code>onButtonPinched</code></td><td>Звичайна кнопка — натиснув і спрацювала</td></tr>
-<tr><td><strong>ToggleButton</strong></td><td><code>onStateChanged</code></td><td>Вимикач світла — запам'ятовує стан</td></tr>
-<tr><td><strong>Slider</strong></td><td><code>onValueUpdate</code></td><td>Регулятор гучності — плавне значення</td></tr>
-<tr><td><strong>ScrollView</strong></td><td>—</td><td>Прокручуваний список (як у телефоні)</td></tr>
-<tr><td><strong>Container</strong></td><td>—</td><td>Плаваюче вікно в AR (переміщення, масштаб, закриття)</td></tr>
-</table>
-
-<h3>Приклад використання</h3>
-<div class="code-block"><div class="code-header"><span class="code-tab active">TypeScript</span><button class="code-copy" onclick="copyCode(this)">Копіювати</button></div>
-<div class="code-body"><pre><code>import { PinchButton } from 'SpectaclesInteractionKit.lspkg/Components/UI/PinchButton/PinchButton'
-
-@component
-export class MyInteraction extends BaseScriptComponent {
-  onAwake() {
-    this.createEvent('OnStartEvent').bind(() =&gt; {
-      const btn = this.sceneObject.getComponent(
-        PinchButton.getTypeName()
-      )
-      btn.onButtonPinched.add(() =&gt; {
-        print("Взаємодія!")
-      })
-    })
-  }
-}</code></pre></div></div>
-
-<div class="callout callout-info"><span class="callout-icon">ℹ️</span><p>Повна документація: <a href="https://developers.snap.com/spectacles/spectacles-frameworks/spectacles-interaction-kit/getting-started" target="_blank">SIK Getting Started</a></p></div>
-
-<div class="page-footer">
-<a href="#" onclick="showPage('performance');return false">← Оптимізація</a>
-<a href="#" onclick="showPage('uikit');return false">Далі: UI Kit →</a>
-</div>
-`,
-
-uikit: `
-<div class="breadcrumb">Spectacles <span>›</span> Фреймворки</div>
-<h1>Spectacles UI Kit</h1>
-<p class="subtitle">Візуальний фреймворк для створення стилізованих UI компонентів з темами та градієнтами.</p>
-
-<h2>Чим відрізняється від SIK</h2>
-<table>
-<tr><th></th><th>SIK</th><th>UI Kit</th></tr>
-<tr><td><strong>Фокус</strong></td><td>Взаємодія (input)</td><td>Візуал (output)</td></tr>
-<tr><td><strong>Кнопки</strong></td><td>PinchButton, ToggleButton</td><td>RoundButton, CapsuleButton, RectangleButton</td></tr>
-<tr><td><strong>Events</strong></td><td>onButtonPinched</td><td>onTriggerUp, onTriggerDown</td></tr>
-<tr><td><strong>Теми</strong></td><td>Немає</td><td>SnapOS 2.0 з градієнтами та станами</td></tr>
-<tr><td><strong>Стилі</strong></td><td>Базові</td><td>5 стилів: Primary, PrimaryNeutral, Secondary, Special, Ghost</td></tr>
-</table>
-
-<h2>Компоненти UI Kit</h2>
-<ul>
-<li><strong>BaseButton</strong> — базовий клас для всіх кнопок (abstract)</li>
-<li><strong>RoundButton</strong> — кругла кнопка</li>
-<li><strong>CapsuleButton</strong> — кнопка-капсула</li>
-<li><strong>RectangleButton</strong> — прямокутна кнопка</li>
-<li><strong>RadioButton</strong> — радіо-кнопка (вибір одного з групи)</li>
-<li><strong>Checkbox</strong> — прапорець</li>
-<li><strong>Frame</strong> — контейнер з можливістю переміщення та масштабування</li>
-</ul>
-
-<h2>Система тем</h2>
-<p>UI Kit використовує тему <strong>SnapOS 2.0</strong>. Кольори визначені в <code>Colors.ts</code>, градієнти — в папці <code>Gradients/</code>, параметри кнопок — в <code>Styles/</code>.</p>
-<p><a href="#" onclick="showPage('theming');return false">→ Детальніше про кольори та стилі</a></p>
+concepts:`
+<h1>Базові концепти</h1>
+<p class="subtitle">Терміни та принципи, які використовуються в усіх уроках.</p>
 
 <h2>Callback система</h2>
-<p>У кожної кнопки є опція <strong>Add Callbacks</strong> в Inspector. Це дозволяє підключати функції з інших скриптів без імпорту типів:</p>
-<ul>
-<li><strong>On Trigger Up Callbacks</strong> — при відпусканні (основний "клік")</li>
-<li><strong>On Trigger Down Callbacks</strong> — при натисканні</li>
-<li><strong>On Value Changed Callbacks</strong> — при зміні стану toggle</li>
-</ul>
-<p><a href="#" onclick="showPage('scripts');return false">→ Приклад: SpawnCubeOnPress</a></p>
-
-<div class="page-footer">
-<a href="#" onclick="showPage('sik');return false">← Interaction Kit</a>
-<a href="#" onclick="showPage('synckit');return false">Далі: Sync Kit →</a>
-</div>
-`,
-
-synckit: `
-<div class="breadcrumb">Spectacles <span>›</span> Фреймворки</div>
-<h1>Spectacles Sync Kit</h1>
-<p class="subtitle">Фреймворк для створення мультикористувацьких (multiplayer) AR-досвідів.</p>
-
-<h2>Що це</h2>
-<p>Sync Kit дозволяє кільком людям бачити та взаємодіяти з одним і тим самим AR-контентом одночасно. Наприклад: двоє людей в окулярах бачать однакову 3D модель на столі і можуть її разом переміщувати.</p>
-
-<h2>Як працює</h2>
-<table>
-<tr><th>Концепт</th><th>Опис</th></tr>
-<tr><td><strong>Connected Lenses</strong></td><td>Базова технологія Snap для мультикористувацьких Лінз</td></tr>
-<tr><td><strong>Session</strong></td><td>Спільна сесія, до якої підключаються всі учасники</td></tr>
-<tr><td><strong>Ownership</strong></td><td>Кожен об'єкт має "власника" — тільки він може його змінювати</td></tr>
-<tr><td><strong>State Sync</strong></td><td>Позиції, ротація, масштаб та кастомні дані синхронізуються між пристроями</td></tr>
-<tr><td><strong>Persistence</strong></td><td>Стан можна зберігати через Snap Cloud для відновлення між сесіями</td></tr>
-</table>
-
-<h2>Типовий сценарій</h2>
+<p>У кожної UIKit кнопки є секція <strong>Trigger Up Callbacks</strong> в Inspector. Це спосіб прив'язати функцію скрипта до натискання кнопки <strong>без написання коду підписки</strong>:</p>
 <ol>
-<li>Користувач A створює Лінзу та отримує код/посилання запрошення</li>
-<li>Користувач B приєднується через Snapchat</li>
-<li>Обидва бачать однакову AR-сцену, прив'язану до спільного просторового якоря</li>
-<li>Зміни одного автоматично відображаються у іншого</li>
+<li>На кнопці увімкніть <strong>Add Callbacks</strong></li>
+<li>У <strong>On Trigger Up Callbacks</strong> натисніть <code>+</code></li>
+<li>Перетягніть <strong>Script Component</strong> (не SceneObject!) зі скриптом</li>
+<li>Впишіть <strong>Function Name</strong> — ім'я функції яку викликати</li>
 </ol>
 
-<div class="callout callout-info"><span class="callout-icon">ℹ️</span><p>Sync Kit побудований поверх Connected Lenses API та потребує активне інтернет-з'єднання.</p></div>
+<h2>Декоратори</h2>
+<table>
+<tr><th>Декоратор</th><th>Що робить</th></tr>
+<tr><td><code>@component</code></td><td>Робить клас компонентом Lens Studio (з'являється в Inspector)</td></tr>
+<tr><td><code>@input</code></td><td>Створює поле вводу в Inspector — для об'єктів, prefab'ів, чисел</td></tr>
+<tr><td><code>@hint("текст")</code></td><td>Підказка біля поля в Inspector</td></tr>
+</table>
 
-<div class="page-footer">
-<a href="#" onclick="showPage('uikit');return false">← UI Kit</a>
-<a href="#" onclick="showPage('otherkit');return false">Далі: Інші фреймворки →</a>
+<h2>Основні типи</h2>
+<table>
+<tr><th>Тип</th><th>Що це</th></tr>
+<tr><td><code>SceneObject</code></td><td>Будь-який об'єкт у сцені (пустий, меш, камера тощо)</td></tr>
+<tr><td><code>ObjectPrefab</code></td><td>Заготовка об'єкта — шаблон для клонування</td></tr>
+<tr><td><code>vec3</code></td><td>3D вектор: <code>new vec3(x, y, z)</code></td></tr>
+<tr><td><code>BaseScriptComponent</code></td><td>Базовий клас для всіх TypeScript скриптів у Lens Studio</td></tr>
+</table>
+
+<h2>Часті патерни</h2>
+
+<h3>Показати/сховати об'єкт</h3>
+<div class="code-block"><div class="code-header"><span class="code-filename">pattern</span></div>
+<div class="code-body"><pre><code>this.target.enabled = !this.target.enabled</code></pre></div></div>
+
+<h3>Спавн prefab</h3>
+<div class="code-block"><div class="code-header"><span class="code-filename">pattern</span></div>
+<div class="code-body"><pre><code>const obj = this.prefab.instantiate(this.parent)
+obj.getTransform().setLocalPosition(new vec3(x, y, z))
+obj.getTransform().setLocalScale(new vec3(s, s, s))</code></pre></div></div>
+
+<h3>Видалити всіх дітей</h3>
+<div class="code-block"><div class="code-header"><span class="code-filename">pattern</span></div>
+<div class="code-body"><pre><code>const count = this.parent.getChildrenCount()
+for (let i = count - 1; i >= 0; i--) {
+  this.parent.getChild(i).destroy()
+}</code></pre></div></div>
+
+<div class="nav-footer">
+<a data-page="overview">← Навчальний план</a>
+<a data-page="lesson1">Далі: Урок 1 →</a>
 </div>
 `,
 
-otherkit: `
-<div class="breadcrumb">Spectacles <span>›</span> Фреймворки</div>
-<h1>Інші фреймворки</h1>
-<p class="subtitle">Додаткові інструменти від Snap для розширення можливостей Spectacles.</p>
+lesson1:`
+<h1><span class="num num-1" style="width:28px;height:28px;font-size:.85rem;border-radius:7px;margin-right:8px">1</span> Кнопка + Logger</h1>
+<p class="subtitle">Найпростіший приклад — натискаємо кнопку, бачимо повідомлення в Logger.</p>
 
-<h2>Auth Kit</h2>
-<p>Аутентифікація користувачів через їхній Snapchat акаунт. Дозволяє:</p>
+<span class="tag tag-easy">Легко</span>
+
+<h2>Що вивчаємо</h2>
 <ul>
-<li>Отримати ім'я та Bitmoji користувача</li>
-<li>Персоналізувати досвід</li>
-<li>Зберігати прогрес користувача</li>
+<li>Створення TypeScript скрипта</li>
+<li>Декоратор <code>@component</code></li>
+<li>Функція <code>print()</code> для виводу в Logger</li>
+<li>Callback система UIKit кнопки</li>
 </ul>
 
-<h2>Navigation Kit</h2>
-<p>Система навігації між різними "екранами" або сценами у вашій Лінзі. Забезпечує:</p>
-<ul>
-<li>Переходи між станами додатку</li>
-<li>Анімовані transitions</li>
-<li>Стек навігації (назад/вперед)</li>
-</ul>
+<h2>Скрипт</h2>
+<div class="code-block"><div class="code-header"><span class="code-filename">Lesson1_Hello.ts</span><button class="code-copy" onclick="copyCode(this)">Копіювати</button></div>
+<div class="code-body"><pre><code>@component
+export class Lesson1_Hello extends BaseScriptComponent {
+  sayHello() {
+    print("Hello! Кнопка працює!")
+  }
+}</code></pre></div></div>
 
-<h2>Commerce Kit <span style="background:var(--orange);color:#fff;padding:2px 8px;border-radius:4px;font-size:.75rem;margin-left:8px">Закрита бета</span></h2>
-<p>Інтеграція покупок прямо в AR-досвід:</p>
-<ul>
-<li>Показ товарів у 3D</li>
-<li>Кошик та оплата</li>
-<li>Інтеграція з ecommerce платформами</li>
-</ul>
+<h2>Налаштування в Lens Studio</h2>
+<ol class="steps">
+<li><strong>Створіть скрипт</strong><br>Assets → New → Script → TypeScript. Назвіть <code>Lesson1_Hello.ts</code>. Вставте код.</li>
+<li><strong>Створіть порожній SceneObject</strong><br>Назвіть його <code>Lesson1Logic</code>. Додайте на нього компонент <code>Lesson1_Hello</code>.</li>
+<li><strong>Додайте кнопку</strong><br>З Asset Browser перетягніть <strong>RectangleButton</strong> (або CapsuleButton) у сцену.</li>
+<li><strong>Підключіть Callback</strong><br>Виберіть кнопку → Inspector → <strong>Add Callbacks</strong> → увімкнути → у <strong>Trigger Up Callbacks</strong> натисніть <code>+</code>:<br>
+• <strong>Script Component</strong> = перетягніть компонент <code>Lesson1_Hello</code> з <code>Lesson1Logic</code><br>
+• <strong>Function Name</strong> = <code>sayHello</code></li>
+<li><strong>Тест</strong><br>Play → натисніть кнопку → в Logger з'явиться: <code>Hello! Кнопка працює!</code></li>
+</ol>
 
-<h2>Mobile Kit</h2>
-<p>Зв'язок між Spectacles та мобільним додатком користувача:</p>
-<ul>
-<li>Передача даних між окулярами та телефоном</li>
-<li>Використання телефону як додаткового екрану або контролера</li>
-<li>Companion App функціонал</li>
-</ul>
+<div class="callout callout-tip"><span class="callout-icon">💡</span><p>Це найпростіший скрипт — без <code>@input</code>, без імпортів. Тільки функція, яку кнопка викликає через Callback.</p></div>
 
-<h2>WebXR</h2>
-<p>Spectacles також підтримують стандарт <strong>WebXR</strong>, що дозволяє запускати AR-досвіди через веб-браузер. Це відкриває можливість крос-платформного розповсюдження без необхідності створювати окремі Лінзи.</p>
-
-<div class="page-footer">
-<a href="#" onclick="showPage('synckit');return false">← Sync Kit</a>
-<a href="#" onclick="showPage('buttons');return false">Далі: Кнопки →</a>
+<div class="nav-footer">
+<a data-page="concepts">← Базові концепти</a>
+<a data-page="lesson2">Далі: Урок 2 →</a>
 </div>
 `,
 
-permissions: `
-<div class="breadcrumb">Spectacles <span>›</span> Ресурси</div>
-<h1>Дозволи та приватність</h1>
-<p class="subtitle">Правила доступу до функцій пристрою та захист приватності користувачів.</p>
+lesson2:`
+<h1><span class="num num-2" style="width:28px;height:28px;font-size:.85rem;border-radius:7px;margin-right:8px">2</span> Toggle об'єкта</h1>
+<p class="subtitle">Кнопка вмикає та вимикає видимість 3D об'єкта в сцені.</p>
 
-<h2>Система дозволів</h2>
-<p>Spectacles мають систему дозволів, подібну до мобільних ОС. Деякі API потребують явного дозволу від користувача.</p>
+<span class="tag tag-easy">Легко</span>
 
-<h2>Типи дозволів</h2>
-<table>
-<tr><th>Дозвіл</th><th>Для чого</th><th>Тип</th></tr>
-<tr><td><strong>Camera</strong></td><td>Доступ до камер пристрою</td><td>Прозорий</td></tr>
-<tr><td><strong>Microphone</strong></td><td>Запис звуку</td><td>Прозорий</td></tr>
-<tr><td><strong>Location</strong></td><td>GPS координати</td><td>Прозорий</td></tr>
-<tr><td><strong>Storage</strong></td><td>Збереження файлів</td><td>Автоматичний</td></tr>
-<tr><td><strong>Network</strong></td><td>Доступ до інтернету</td><td>Автоматичний</td></tr>
-</table>
-
-<h3>Прозорий дозвіл (Transparent Permission)</h3>
-<p>Для чутливих даних (камера, мікрофон, геолокація) користувач має чітко бачити і підтвердити, що Лінза використовує ці дані. Snap забезпечує UI для цього автоматично.</p>
-
-<h2>Експериментальні API</h2>
-<div class="callout callout-warn"><span class="callout-icon">⚠️</span><p>Деякі API Spectacles позначені як <strong>Experimental</strong>. Вони можуть змінитись або бути видалені в майбутніх версіях. Використовуйте їх обережно у продакшн Лінзах.</p></div>
-
-<h2>Найкращі практики</h2>
+<h2>Що нового</h2>
 <ul>
-<li>Запитуйте дозволи тільки коли вони потрібні, не при запуску</li>
-<li>Пояснюйте користувачу навіщо потрібен дозвіл</li>
-<li>Не зберігайте чутливі дані без необхідності</li>
-<li>Слідкуйте за гайдлайнами Snap щодо приватності</li>
+<li>Декоратор <code>@input</code> — поле в Inspector</li>
+<li>Тип <code>SceneObject</code> — посилання на об'єкт у сцені</li>
+<li>Властивість <code>.enabled</code> — видимість об'єкта</li>
 </ul>
 
-<div class="page-footer">
-<a href="#" onclick="showPage('events');return false">← Довідник подій</a>
-<a href="#" onclick="showPage('links');return false">Далі: Корисні посилання →</a>
+<h2>Скрипт</h2>
+<div class="code-block"><div class="code-header"><span class="code-filename">Lesson2_ToggleObject.ts</span><button class="code-copy" onclick="copyCode(this)">Копіювати</button></div>
+<div class="code-body"><pre><code>@component
+export class Lesson2_ToggleObject extends BaseScriptComponent {
+  @input
+  target: SceneObject
+
+  toggle() {
+    this.target.enabled = !this.target.enabled
+    print("Object is now: " + (this.target.enabled ? "VISIBLE" : "HIDDEN"))
+  }
+}</code></pre></div></div>
+
+<h2>Налаштування</h2>
+<ol class="steps">
+<li><strong>Створіть скрипт</strong> <code>Lesson2_ToggleObject.ts</code> і додайте на <code>Lesson2Logic</code> SceneObject.</li>
+<li><strong>Створіть 3D об'єкт</strong><br><code>+ → Mesh → Box</code>. Назвіть <code>MyCube</code>.</li>
+<li><strong>Підключіть target</strong><br>В Inspector компонента <code>Lesson2_ToggleObject</code> перетягніть <code>MyCube</code> у поле <strong>Target</strong>.</li>
+<li><strong>Підключіть кнопку</strong><br>Кнопка → Callbacks → Script = <code>Lesson2_ToggleObject</code>, Function = <code>toggle</code></li>
+<li><strong>Тест</strong><br>Play → натисніть кнопку → куб зникає → натисніть ще раз → куб з'являється.</li>
+</ol>
+
+<div class="callout callout-info"><span class="callout-icon">ℹ️</span><p><code>@input</code> створює поле в Inspector, куди можна перетягнути об'єкт зі сцени. Тип поля визначає що можна перетягнути — <code>SceneObject</code>, <code>ObjectPrefab</code>, <code>number</code> тощо.</p></div>
+
+<div class="nav-footer">
+<a data-page="lesson1">← Урок 1</a>
+<a data-page="lesson3">Далі: Урок 3 →</a>
 </div>
 `,
 
-links: `
-<div class="breadcrumb">Spectacles <span>›</span> Ресурси</div>
-<h1>Корисні посилання</h1>
-<p class="subtitle">Офіційні ресурси, спільнота та документація від Snap.</p>
+lesson3:`
+<h1><span class="num num-3" style="width:28px;height:28px;font-size:.85rem;border-radius:7px;margin-right:8px">3</span> Спавн об'єктів</h1>
+<p class="subtitle">Кнопка створює копії prefab'а і розставляє їх у сітку.</p>
 
-<h2>Офіційна документація</h2>
+<span class="tag tag-easy">Легко</span>
+
+<h2>Що нового</h2>
+<ul>
+<li>Тип <code>ObjectPrefab</code> — шаблон для клонування</li>
+<li>Метод <code>instantiate(parent)</code> — створити копію</li>
+<li><code>setLocalPosition()</code> і <code>setLocalScale()</code> — позиція і масштаб</li>
+<li>Лічильник <code>count</code> для розташування в сітку</li>
+</ul>
+
+<h2>Скрипт</h2>
+<div class="code-block"><div class="code-header"><span class="code-filename">Lesson3_SpawnObject.ts</span><button class="code-copy" onclick="copyCode(this)">Копіювати</button></div>
+<div class="code-body"><pre><code>@component
+export class Lesson3_SpawnObject extends BaseScriptComponent {
+  @input
+  prefab: ObjectPrefab
+
+  @input
+  parent: SceneObject
+
+  private count: number = 0
+
+  spawn() {
+    const obj = this.prefab.instantiate(this.parent)
+
+    const x = (this.count % 5) * 8 - 16
+    const y = Math.floor(this.count / 5) * 8
+
+    obj.getTransform().setLocalPosition(new vec3(x, y, 0))
+    obj.getTransform().setLocalScale(new vec3(3, 3, 3))
+
+    this.count++
+    print("Spawned #" + this.count + " at (" + x + ", " + y + ")")
+  }
+}</code></pre></div></div>
+
+<h2>Як працює розташування</h2>
+<p>Об'єкти ставляться в сітку 5 колонок:</p>
+<div class="code-block"><div class="code-header"><span class="code-filename">Формула сітки</span></div>
+<div class="code-body"><pre><code>x = (count % 5) * 8 - 16   // стовпець: -16, -8, 0, 8, 16
+y = floor(count / 5) * 8    // рядок: 0, 8, 16, ...</code></pre></div></div>
+
+<h2>Налаштування</h2>
+<ol class="steps">
+<li><strong>Створіть prefab</strong><br><code>+ → Mesh → Box</code>. Перетягніть зі сцени в <strong>Resources</strong> → створився <code>.prefab</code>. Видаліть оригінал зі сцени.</li>
+<li><strong>Створіть parent</strong><br>Порожній <code>SceneObject</code> з назвою <code>SpawnArea</code>.</li>
+<li><strong>Скрипт</strong><br>Створіть <code>Lesson3_SpawnObject.ts</code> → додайте на <code>Lesson3Logic</code>. В Inspector: <strong>Prefab</strong> = ваш .prefab, <strong>Parent</strong> = SpawnArea.</li>
+<li><strong>Кнопка</strong><br>Callback → Script = <code>Lesson3_SpawnObject</code>, Function = <code>spawn</code></li>
+<li><strong>Тест</strong><br>Кожне натискання створює новий куб, вони шикуються в сітку.</li>
+</ol>
+
+<div class="nav-footer">
+<a data-page="lesson2">← Урок 2</a>
+<a data-page="lesson4">Далі: Урок 4 →</a>
+</div>
+`,
+
+lesson4:`
+<h1><span class="num num-4" style="width:28px;height:28px;font-size:.85rem;border-radius:7px;margin-right:8px">4</span> Toggle + Slider</h1>
+<p class="subtitle">Два типи вводу: кнопка-перемикач і слайдер для масштабування.</p>
+
+<span class="tag tag-medium">Середньо</span>
+
+<h2>Що нового</h2>
+<ul>
+<li><strong>ToggleButton</strong> (SIK) — перемикач зі станом</li>
+<li><strong>Slider</strong> (SIK) — повзунок з значенням 0–1</li>
+<li>Декоратор <code>@hint()</code> — підказка в Inspector</li>
+<li>Функція з параметром <code>value: number</code></li>
+</ul>
+
+<h2>Скрипт</h2>
+<div class="code-block"><div class="code-header"><span class="code-filename">Lesson4_Controls.ts</span><button class="code-copy" onclick="copyCode(this)">Копіювати</button></div>
+<div class="code-body"><pre><code>@component
+export class Lesson4_Controls extends BaseScriptComponent {
+  @input
+  target: SceneObject
+
+  @input
+  @hint("Min scale when slider is at 0")
+  minScale: number = 1
+
+  @input
+  @hint("Max scale when slider is at 1")
+  maxScale: number = 15
+
+  toggle() {
+    this.target.enabled = !this.target.enabled
+    print("Toggle: " + (this.target.enabled ? "ON" : "OFF"))
+  }
+
+  onSlider(value: number) {
+    const scale = this.minScale + value * (this.maxScale - this.minScale)
+    this.target.getTransform().setLocalScale(new vec3(scale, scale, scale))
+    print("Scale: " + scale.toFixed(1))
+  }
+}</code></pre></div></div>
+
+<h2>Як формула слайдера працює</h2>
+<p>Slider дає значення від <code>0</code> до <code>1</code>. Ми конвертуємо в діапазон <code>minScale...maxScale</code>:</p>
+<div class="code-block"><div class="code-header"><span class="code-filename">Формула</span></div>
+<div class="code-body"><pre><code>scale = minScale + value * (maxScale - minScale)
+// value=0 → scale=1  (мінімальний)
+// value=0.5 → scale=8 (середній)
+// value=1 → scale=15 (максимальний)</code></pre></div></div>
+
+<h2>Налаштування</h2>
+<ol class="steps">
+<li><strong>Скрипт</strong><br><code>Lesson4_Controls.ts</code> → на <code>Lesson4Logic</code>. Target = 3D об'єкт (куб).</li>
+<li><strong>ToggleButton</strong><br>Додайте з SIK → Callback → Script = <code>Lesson4_Controls</code>, Function = <code>toggle</code></li>
+<li><strong>Slider</strong><br>Додайте з SIK → Callback → Script = <code>Lesson4_Controls</code>, Function = <code>onSlider</code></li>
+</ol>
+
+<div class="callout callout-warn"><span class="callout-icon">⚠️</span><p>Для Slider Callback використовуйте <strong>On Slide Callbacks</strong> (або On Value Update), а не Trigger Up — слайдер передає значення безперервно під час руху.</p></div>
+
+<div class="nav-footer">
+<a data-page="lesson3">← Урок 3</a>
+<a data-page="lesson5">Далі: Урок 5 →</a>
+</div>
+`,
+
+lesson5:`
+<h1><span class="num num-5" style="width:28px;height:28px;font-size:.85rem;border-radius:7px;margin-right:8px">5</span> Меню з кнопками</h1>
+<p class="subtitle">Перше справжнє меню — Frame з трьома кнопками для перемикання між об'єктами.</p>
+
+<span class="tag tag-medium">Середньо</span>
+
+<h2>Що нового</h2>
+<ul>
+<li>Компонент <strong>Frame</strong> — візуальний контейнер (UIKit)</li>
+<li>Кілька кнопок в одному меню</li>
+<li>Патерн "показати один, сховати решту"</li>
+</ul>
+
+<h2>Скрипт</h2>
+<div class="code-block"><div class="code-header"><span class="code-filename">Lesson5_MenuActions.ts</span><button class="code-copy" onclick="copyCode(this)">Копіювати</button></div>
+<div class="code-body"><pre><code>@component
+export class Lesson5_MenuActions extends BaseScriptComponent {
+  @input
+  cube: SceneObject
+
+  @input
+  sphere: SceneObject
+
+  @input
+  cylinder: SceneObject
+
+  showCube() {
+    this.hideAll()
+    this.cube.enabled = true
+    print("Showing: Cube")
+  }
+
+  showSphere() {
+    this.hideAll()
+    this.sphere.enabled = true
+    print("Showing: Sphere")
+  }
+
+  showCylinder() {
+    this.hideAll()
+    this.cylinder.enabled = true
+    print("Showing: Cylinder")
+  }
+
+  private hideAll() {
+    this.cube.enabled = false
+    this.sphere.enabled = false
+    this.cylinder.enabled = false
+  }
+}</code></pre></div></div>
+
+<h2>Ієрархія сцени</h2>
+<div class="code-block"><div class="code-header"><span class="code-filename">Scene Hierarchy</span></div>
+<div class="code-body"><pre><code>MenuLesson/
+├── Frame                    ← UIKit Frame контейнер
+│   ├── BtnCube              ← RectangleButton → showCube
+│   ├── BtnSphere            ← RectangleButton → showSphere
+│   └── BtnCylinder          ← RectangleButton → showCylinder
+├── Lesson5Logic             ← Script Component
+├── Cube                     ← Mesh Box
+├── Sphere                   ← Mesh Sphere
+└── Cylinder                 ← Mesh Cylinder</code></pre></div></div>
+
+<h2>Налаштування</h2>
+<ol class="steps">
+<li><strong>Створіть Frame</strong><br>Перетягніть <strong>Frame</strong> з UIKit Asset Browser у сцену.</li>
+<li><strong>Додайте 3 кнопки</strong><br>Всередину Frame перетягніть 3 <code>RectangleButton</code>. Розташуйте вручну по Y: 4, 0, -4.</li>
+<li><strong>Створіть 3 об'єкти</strong><br>Box, Sphere, Cylinder — поруч з меню. Sphere і Cylinder вимкніть (<code>Enabled = false</code>).</li>
+<li><strong>Скрипт</strong><br><code>Lesson5_MenuActions.ts</code> → на <code>Lesson5Logic</code>. Підключіть cube/sphere/cylinder.</li>
+<li><strong>Callbacks</strong><br>Кожна кнопка → Script = <code>Lesson5_MenuActions</code>, Functions: <code>showCube</code>, <code>showSphere</code>, <code>showCylinder</code>.</li>
+</ol>
+
+<div class="nav-footer">
+<a data-page="lesson4">← Урок 4</a>
+<a data-page="lesson6">Далі: Урок 6 →</a>
+</div>
+`,
+
+lesson6:`
+<h1><span class="num num-6" style="width:28px;height:28px;font-size:.85rem;border-radius:7px;margin-right:8px">6</span> Переходи між меню</h1>
+<p class="subtitle">Два меню (Frame) з кнопками для переходу між ними.</p>
+
+<span class="tag tag-medium">Середньо</span>
+
+<h2>Що нового</h2>
+<ul>
+<li>Окремий скрипт <code>MenuSwitch</code> — перевикористовуваний</li>
+<li>Концепція "одне показуємо, інше ховаємо"</li>
+<li>Початковий стан: друге меню вимкнене</li>
+</ul>
+
+<h2>Скрипт</h2>
+<div class="code-block"><div class="code-header"><span class="code-filename">MenuSwitch.ts</span><button class="code-copy" onclick="copyCode(this)">Копіювати</button></div>
+<div class="code-body"><pre><code>@component
+export class MenuSwitch extends BaseScriptComponent {
+  @input
+  @hint("Menu to show when triggered")
+  showMenu: SceneObject
+
+  @input
+  @hint("Menu to hide when triggered")
+  hideMenu: SceneObject
+
+  switchMenu() {
+    if (this.hideMenu) this.hideMenu.enabled = false
+    if (this.showMenu) this.showMenu.enabled = true
+    print("Switched menu")
+  }
+}</code></pre></div></div>
+
+<h2>Ієрархія</h2>
+<div class="code-block"><div class="code-header"><span class="code-filename">Scene Hierarchy</span></div>
+<div class="code-body"><pre><code>MenuTransitions/
+├── MainMenu (Frame)         ← Enabled = true
+│   ├── BtnGoToSettings      ← RectangleButton
+│   └── SwitchToSettings     ← MenuSwitch (showMenu=SettingsMenu, hideMenu=MainMenu)
+│
+├── SettingsMenu (Frame)     ← Enabled = false (!)
+│   ├── BtnGoBack            ← RectangleButton
+│   └── SwitchToMain         ← MenuSwitch (showMenu=MainMenu, hideMenu=SettingsMenu)</code></pre></div></div>
+
+<h2>Налаштування</h2>
+<ol class="steps">
+<li><strong>Два Frame</strong><br>Створіть <code>MainMenu</code> (Frame) і <code>SettingsMenu</code> (Frame). Поставте в однакову позицію. <strong>SettingsMenu → Enabled = false</strong>.</li>
+<li><strong>Кнопки</strong><br>В MainMenu додайте <code>BtnGoToSettings</code>. В SettingsMenu додайте <code>BtnGoBack</code>.</li>
+<li><strong>MenuSwitch для "вперед"</strong><br>Створіть SceneObject <code>SwitchToSettings</code> всередині MainMenu. Додайте <code>MenuSwitch</code>. Inputs: showMenu = SettingsMenu, hideMenu = MainMenu.</li>
+<li><strong>MenuSwitch для "назад"</strong><br>Аналогічно <code>SwitchToMain</code> в SettingsMenu: showMenu = MainMenu, hideMenu = SettingsMenu.</li>
+<li><strong>Callbacks</strong><br>BtnGoToSettings → Script = SwitchToSettings, Function = <code>switchMenu</code><br>BtnGoBack → Script = SwitchToMain, Function = <code>switchMenu</code></li>
+</ol>
+
+<div class="callout callout-tip"><span class="callout-icon">💡</span><p><code>MenuSwitch</code> — перевикористовуваний скрипт. Його можна ставити на будь-яку кількість переходів, міняючи тільки inputs.</p></div>
+
+<div class="nav-footer">
+<a data-page="lesson5">← Урок 5</a>
+<a data-page="lesson7">Далі: Урок 7 →</a>
+</div>
+`,
+
+lesson7:`
+<h1><span class="num num-7" style="width:28px;height:28px;font-size:.85rem;border-radius:7px;margin-right:8px">7</span> Прокручуваний список</h1>
+<p class="subtitle">ScrollView зі списком елементів та кнопкою підтвердження вибору.</p>
+
+<span class="tag tag-medium">Середньо</span>
+
+<h2>Що нового</h2>
+<ul>
+<li><strong>ScrollView</strong> (SIK) — прокручуваний контейнер</li>
+<li>Вибір елемента зі списку</li>
+<li>Окрема кнопка "Підтвердити"</li>
+</ul>
+
+<h2>Скрипт</h2>
+<div class="code-block"><div class="code-header"><span class="code-filename">Lesson7_ScrollList.ts</span><button class="code-copy" onclick="copyCode(this)">Копіювати</button></div>
+<div class="code-body"><pre><code>@component
+export class Lesson7_ScrollList extends BaseScriptComponent {
+  private selectedIndex: number = -1
+
+  select(index: number) {
+    this.selectedIndex = index
+    print("Selected item #" + index)
+  }
+
+  select0() { this.select(0) }
+  select1() { this.select(1) }
+  select2() { this.select(2) }
+  select3() { this.select(3) }
+  select4() { this.select(4) }
+  select5() { this.select(5) }
+
+  confirm() {
+    if (this.selectedIndex < 0) {
+      print("Nothing selected!")
+      return
+    }
+    print("Confirmed item #" + this.selectedIndex)
+  }
+}</code></pre></div></div>
+
+<h2>Чому окремі функції select0..select5?</h2>
+<p>Callback система UIKit не передає аргументів. Тому для кожної кнопки потрібна окрема функція, яка всередині викликає <code>select(index)</code> з правильним номером.</p>
+
+<h2>Ієрархія</h2>
+<div class="code-block"><div class="code-header"><span class="code-filename">Scene Hierarchy</span></div>
+<div class="code-body"><pre><code>ScrollLesson/
+├── ScrollView               ← SIK ScrollView
+│   ├── Btn_Item0            ← CapsuleButton → select0
+│   ├── Btn_Item1            ← CapsuleButton → select1
+│   ├── Btn_Item2            ← CapsuleButton → select2
+│   ├── Btn_Item3            ← CapsuleButton → select3
+│   ├── Btn_Item4            ← CapsuleButton → select4
+│   └── Btn_Item5            ← CapsuleButton → select5
+├── BtnConfirm               ← RectangleButton → confirm
+└── Lesson7Logic             ← Lesson7_ScrollList</code></pre></div></div>
+
+<h2>Налаштування</h2>
+<ol class="steps">
+<li><strong>ScrollView</strong><br>Додайте <code>ScrollView</code> з SIK Asset Browser. Це контейнер, який прокручується.</li>
+<li><strong>Елементи списку</strong><br>Всередину ScrollView додайте 6 кнопок (CapsuleButton). Розставте вручну по Y.</li>
+<li><strong>Кнопка підтвердження</strong><br><code>BtnConfirm</code> — за межами ScrollView (щоб не прокручувалась).</li>
+<li><strong>Callbacks</strong><br>Кожна кнопка зі списку → <code>select0</code>...<code>select5</code>. BtnConfirm → <code>confirm</code>.</li>
+</ol>
+
+<div class="nav-footer">
+<a data-page="lesson6">← Урок 6</a>
+<a data-page="lesson8">Далі: Урок 8 →</a>
+</div>
+`,
+
+lesson8:`
+<h1><span class="num num-8" style="width:28px;height:28px;font-size:.85rem;border-radius:7px;margin-right:8px">8</span> Вибір + Спавн</h1>
+<p class="subtitle">Комплексне меню: вибери тип об'єкта → підтверди → він з'явиться в сцені. Плюс кнопка очистки.</p>
+
+<span class="tag tag-hard">Складно</span>
+
+<h2>Що нового</h2>
+<ul>
+<li>Масив prefab'ів: <code>ObjectPrefab[]</code></li>
+<li>Вибір → підтвердження → дія (двокроковий flow)</li>
+<li>Очистка всіх спавнених об'єктів</li>
+</ul>
+
+<h2>Скрипт</h2>
+<div class="code-block"><div class="code-header"><span class="code-filename">Lesson8_SpawnPicker.ts</span><button class="code-copy" onclick="copyCode(this)">Копіювати</button></div>
+<div class="code-body"><pre><code>@component
+export class Lesson8_SpawnPicker extends BaseScriptComponent {
+  @input
+  @hint("Array of prefabs: Cube, Sphere, Cylinder")
+  prefabs: ObjectPrefab[]
+
+  @input
+  @hint("Parent object where spawned items appear")
+  spawnParent: SceneObject
+
+  private selectedIndex: number = -1
+  private spawnCount: number = 0
+
+  select0() {
+    this.selectedIndex = 0
+    print("Selected: Cube")
+  }
+
+  select1() {
+    this.selectedIndex = 1
+    print("Selected: Sphere")
+  }
+
+  select2() {
+    this.selectedIndex = 2
+    print("Selected: Cylinder")
+  }
+
+  confirm() {
+    if (this.selectedIndex < 0) {
+      print("Nothing selected!")
+      return
+    }
+
+    if (!this.prefabs || this.selectedIndex >= this.prefabs.length) {
+      print("Prefab not found at index " + this.selectedIndex)
+      return
+    }
+
+    const obj = this.prefabs[this.selectedIndex].instantiate(this.spawnParent)
+
+    const x = (this.spawnCount % 4) * 10 - 15
+    const y = Math.floor(this.spawnCount / 4) * 10
+    obj.getTransform().setLocalPosition(new vec3(x, y, 0))
+    obj.getTransform().setLocalScale(new vec3(3, 3, 3))
+
+    this.spawnCount++
+    const names = ["Cube", "Sphere", "Cylinder"]
+    print("Spawned " + names[this.selectedIndex] + " #" + this.spawnCount)
+  }
+
+  clearAll() {
+    if (!this.spawnParent) return
+    const count = this.spawnParent.getChildrenCount()
+    for (let i = count - 1; i >= 0; i--) {
+      this.spawnParent.getChild(i).destroy()
+    }
+    this.spawnCount = 0
+    this.selectedIndex = -1
+    print("Cleared all spawned objects")
+  }
+}</code></pre></div></div>
+
+<h2>Flow роботи</h2>
+<div class="code-block"><div class="code-header"><span class="code-filename">Послідовність</span></div>
+<div class="code-body"><pre><code>1. Натисни "Cube"    → selectedIndex = 0
+2. Натисни "Confirm" → prefabs[0].instantiate() → куб з'являється
+3. Натисни "Sphere"  → selectedIndex = 1
+4. Натисни "Confirm" → prefabs[1].instantiate() → сфера з'являється
+5. Натисни "Clear"   → всі діти spawnParent знищені</code></pre></div></div>
+
+<h2>Налаштування</h2>
+<ol class="steps">
+<li><strong>3 prefab'и</strong><br>Box, Sphere, Cylinder → перетягніть в Resources для створення <code>.prefab</code> файлів.</li>
+<li><strong>SpawnArea</strong><br>Порожній SceneObject де з'являтимуться об'єкти.</li>
+<li><strong>Скрипт</strong><br><code>Lesson8_SpawnPicker.ts</code> → Inspector: <strong>Prefabs</strong> = [Box.prefab, Sphere.prefab, Cylinder.prefab], <strong>SpawnParent</strong> = SpawnArea.</li>
+<li><strong>Кнопки вибору</strong><br>3 кнопки → <code>select0</code>, <code>select1</code>, <code>select2</code></li>
+<li><strong>Confirm + Clear</strong><br><code>BtnConfirm</code> → <code>confirm</code>, <code>BtnClear</code> → <code>clearAll</code></li>
+</ol>
+
+<div class="callout callout-warn"><span class="callout-icon">⚠️</span><p>Порядок prefab'ів в масиві <strong>Prefabs</strong> має відповідати select функціям: [0]=Cube, [1]=Sphere, [2]=Cylinder.</p></div>
+
+<div class="nav-footer">
+<a data-page="lesson7">← Урок 7</a>
+<a data-page="lesson9">Далі: Урок 9 →</a>
+</div>
+`,
+
+lesson9:`
+<h1><span class="num num-9" style="width:28px;height:28px;font-size:.85rem;border-radius:7px;margin-right:8px">9</span> Фінальний проєкт</h1>
+<p class="subtitle">Повне AR-меню: навігація між 3 екранами, вибір об'єкта, слайдер масштабу, спавн і очистка.</p>
+
+<span class="tag tag-hard">Складно</span>
+
+<h2>Що поєднуємо</h2>
+<ul>
+<li>3 меню з навігацією (Уроки 5-6)</li>
+<li>Вибір + спавн об'єктів (Урок 8)</li>
+<li>Слайдер масштабу (Урок 4)</li>
+<li>Toggle видимості (Урок 2)</li>
+<li>Очистка сцени (Урок 8)</li>
+</ul>
+
+<h2>Скрипт</h2>
+<div class="code-block"><div class="code-header"><span class="code-filename">Lesson9_FinalMenu.ts</span><button class="code-copy" onclick="copyCode(this)">Копіювати</button></div>
+<div class="code-body"><pre><code>@component
+export class Lesson9_FinalMenu extends BaseScriptComponent {
+  @input
+  prefabs: ObjectPrefab[]
+
+  @input
+  spawnParent: SceneObject
+
+  @input
+  mainMenu: SceneObject
+
+  @input
+  builderMenu: SceneObject
+
+  @input
+  settingsMenu: SceneObject
+
+  @input
+  @hint("Min scale when slider = 0")
+  minScale: number = 2
+
+  @input
+  @hint("Max scale when slider = 1")
+  maxScale: number = 15
+
+  private selectedIndex: number = -1
+  private spawnCount: number = 0
+  private currentScale: number = 5
+
+  // --- Menu navigation ---
+
+  goToBuilder() {
+    this.mainMenu.enabled = false
+    this.builderMenu.enabled = true
+    print("Opened: Builder")
+  }
+
+  goToSettings() {
+    this.mainMenu.enabled = false
+    this.settingsMenu.enabled = true
+    print("Opened: Settings")
+  }
+
+  goToMain() {
+    this.builderMenu.enabled = false
+    this.settingsMenu.enabled = false
+    this.mainMenu.enabled = true
+    print("Opened: Main Menu")
+  }
+
+  // --- Builder ---
+
+  select0() {
+    this.selectedIndex = 0
+    print("Selected: Cube")
+  }
+
+  select1() {
+    this.selectedIndex = 1
+    print("Selected: Sphere")
+  }
+
+  select2() {
+    this.selectedIndex = 2
+    print("Selected: Cylinder")
+  }
+
+  spawnSelected() {
+    if (this.selectedIndex < 0) {
+      print("Nothing selected!")
+      return
+    }
+    if (!this.prefabs || this.selectedIndex >= this.prefabs.length) {
+      print("Prefab not found")
+      return
+    }
+
+    const obj = this.prefabs[this.selectedIndex].instantiate(this.spawnParent)
+    const x = (this.spawnCount % 4) * 12 - 18
+    const y = Math.floor(this.spawnCount / 4) * 12
+    obj.getTransform().setLocalPosition(new vec3(x, y, 0))
+    obj.getTransform().setLocalScale(
+      new vec3(this.currentScale, this.currentScale, this.currentScale)
+    )
+
+    this.spawnCount++
+    const names = ["Cube", "Sphere", "Cylinder"]
+    print("Spawned " + names[this.selectedIndex]
+      + " #" + this.spawnCount
+      + " (scale: " + this.currentScale.toFixed(1) + ")")
+  }
+
+  // --- Settings ---
+
+  onScaleSlider(value: number) {
+    this.currentScale = this.minScale + value * (this.maxScale - this.minScale)
+    print("Scale: " + this.currentScale.toFixed(1))
+  }
+
+  toggleSpawnArea() {
+    if (!this.spawnParent) return
+    this.spawnParent.enabled = !this.spawnParent.enabled
+    print("Spawn area: " + (this.spawnParent.enabled ? "VISIBLE" : "HIDDEN"))
+  }
+
+  // --- Clear ---
+
+  clearAll() {
+    if (!this.spawnParent) return
+    const count = this.spawnParent.getChildrenCount()
+    for (let i = count - 1; i >= 0; i--) {
+      this.spawnParent.getChild(i).destroy()
+    }
+    this.spawnCount = 0
+    this.selectedIndex = -1
+    print("Cleared all objects")
+  }
+}</code></pre></div></div>
+
+<h2>Структура меню</h2>
+<div class="code-block"><div class="code-header"><span class="code-filename">3 екрани</span></div>
+<div class="code-body"><pre><code>┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
+│   MAIN MENU     │    │    BUILDER      │    │   SETTINGS      │
+│                 │    │                 │    │                 │
+│  [→ Builder]    │───→│  [Cube]         │    │  Scale: ═══●    │
+│  [→ Settings]   │───→│  [Sphere]       │    │  [Toggle Area]  │
+│  [Clear All]    │    │  [Cylinder]     │    │  [← Back]       │
+│                 │    │  [Spawn!]       │    │                 │
+│                 │    │  [← Back]       │    └─────────────────┘
+└─────────────────┘    └─────────────────┘</code></pre></div></div>
+
+<h2>Ієрархія сцени</h2>
+<div class="code-block"><div class="code-header"><span class="code-filename">Scene Hierarchy</span></div>
+<div class="code-body"><pre><code>FinalProject/
+├── Lesson9Logic              ← Lesson9_FinalMenu script
+├── MainMenu (Frame)          ← Enabled = true
+│   ├── BtnBuilder            → goToBuilder
+│   ├── BtnSettings           → goToSettings
+│   └── BtnClear              → clearAll
+│
+├── BuilderMenu (Frame)       ← Enabled = false
+│   ├── BtnCube               → select0
+│   ├── BtnSphere             → select1
+│   ├── BtnCylinder           → select2
+│   ├── BtnSpawn              → spawnSelected
+│   └── BtnBack               → goToMain
+│
+├── SettingsMenu (Frame)      ← Enabled = false
+│   ├── ScaleSlider            → onScaleSlider
+│   ├── BtnToggleArea          → toggleSpawnArea
+│   └── BtnBack                → goToMain
+│
+└── SpawnArea                 ← Порожній, сюди спавняться об'єкти</code></pre></div></div>
+
+<h2>Налаштування</h2>
+<ol class="steps">
+<li><strong>3 Frame</strong><br>MainMenu, BuilderMenu, SettingsMenu — в одній позиції. Builder і Settings вимкнені.</li>
+<li><strong>Скрипт</strong><br><code>Lesson9_FinalMenu.ts</code> → на Lesson9Logic. Підключіть всі inputs: prefabs, spawnParent, mainMenu, builderMenu, settingsMenu.</li>
+<li><strong>Кнопки навігації</strong><br>Кожна кнопка → Callback з відповідною функцією (див. таблицю вище).</li>
+<li><strong>Слайдер</strong><br>В SettingsMenu додайте Slider з SIK. Callback → <code>onScaleSlider</code>.</li>
+<li><strong>Тест</strong><br>Main → Builder → обери куб → Spawn → повернись → Settings → зміни scale → Builder → Spawn → новий об'єкт з іншим масштабом!</li>
+</ol>
+
+<div class="callout callout-tip"><span class="callout-icon">💡</span><p>Слайдер масштабу впливає на <strong>майбутні</strong> спавни, а не на вже створені. <code>currentScale</code> зберігається і використовується при наступному <code>spawnSelected()</code>.</p></div>
+
+<h2>Всі функції</h2>
 <table>
-<tr><th>Ресурс</th><th>Посилання</th></tr>
-<tr><td>Головна сторінка Spectacles</td><td><a href="https://developers.snap.com/spectacles/home" target="_blank">developers.snap.com/spectacles</a></td></tr>
-<tr><td>Spectacles Features</td><td><a href="https://developers.snap.com/spectacles/spectacles-features/overview" target="_blank">Огляд можливостей</a></td></tr>
-<tr><td>Interaction Kit</td><td><a href="https://developers.snap.com/spectacles/spectacles-frameworks/spectacles-interaction-kit/getting-started" target="_blank">SIK Getting Started</a></td></tr>
-<tr><td>UI Elements (SIK)</td><td><a href="https://developers.snap.com/spectacles/spectacles-frameworks/spectacles-interaction-kit/features/ui-elements" target="_blank">PinchButton, ToggleButton, Slider</a></td></tr>
-<tr><td>UI Composites (SIK)</td><td><a href="https://developers.snap.com/spectacles/spectacles-frameworks/spectacles-interaction-kit/features/ui-composites" target="_blank">ScrollView, Container</a></td></tr>
-<tr><td>UI Kit</td><td><a href="https://developers.snap.com/spectacles/spectacles-frameworks/spectacles-ui-kit" target="_blank">SpectaclesUIKit</a></td></tr>
-<tr><td>Compatibility List</td><td><a href="https://developers.snap.com/spectacles/spectacles-features/compatibility-list" target="_blank">Що працює на Spectacles</a></td></tr>
-<tr><td>Design Guidelines</td><td><a href="https://developers.snap.com/spectacles/best-practices/design-for-spectacles" target="_blank">Дизайн для Spectacles</a></td></tr>
-<tr><td>Performance</td><td><a href="https://developers.snap.com/spectacles/best-practices/performance-optimization" target="_blank">Оптимізація</a></td></tr>
+<tr><th>Функція</th><th>Кнопка</th><th>Що робить</th></tr>
+<tr><td><code>goToBuilder</code></td><td>BtnBuilder</td><td>Показує BuilderMenu, ховає MainMenu</td></tr>
+<tr><td><code>goToSettings</code></td><td>BtnSettings</td><td>Показує SettingsMenu, ховає MainMenu</td></tr>
+<tr><td><code>goToMain</code></td><td>BtnBack (обидва)</td><td>Показує MainMenu, ховає решту</td></tr>
+<tr><td><code>select0/1/2</code></td><td>BtnCube/Sphere/Cylinder</td><td>Вибирає тип об'єкта</td></tr>
+<tr><td><code>spawnSelected</code></td><td>BtnSpawn</td><td>Створює обраний об'єкт з поточним масштабом</td></tr>
+<tr><td><code>onScaleSlider</code></td><td>ScaleSlider</td><td>Змінює масштаб для наступних спавнів</td></tr>
+<tr><td><code>toggleSpawnArea</code></td><td>BtnToggleArea</td><td>Показує/ховає всі спавнені об'єкти</td></tr>
+<tr><td><code>clearAll</code></td><td>BtnClear</td><td>Видаляє всі спавнені об'єкти</td></tr>
 </table>
 
-<h2>Завантаження</h2>
+<div class="nav-footer">
+<a data-page="lesson8">← Урок 8</a>
+<a data-page="gamemenu">Далі: Game Menu →</a>
+</div>
+`,
+
+gamemenu:`
+<h1><span class="num" style="width:28px;height:28px;font-size:.85rem;border-radius:7px;margin-right:8px;background:#FFFC0030;color:#FFFC00">G</span> Game Menu (Snap OS Style)</h1>
+<p class="subtitle">Ігрове меню: sidebar з категоріями, сітка карток у SIK ScrollView з нативним скролом, фільтрація, спавн об'єктів.</p>
+
+<span class="tag tag-hard">Складно</span>
+
+<h2>Що будуємо</h2>
+<div class="code-block"><div class="code-header"><span class="code-filename">Макет меню</span></div>
+<div class="code-body"><pre><code>┌──────┬──────────────────────────┬──┐
+│  X   │                          │▓ │
+├──────┤ [Card1] [Card2] [Card3]  │▓ │ ScrollBar
+│All   │                          │  │
+│Items │ [Card4] [Card5] [Card6]  │  │
+│Cat 1 │                          │  │
+│Cat 2 │ [Card7] [Card8] [Card9]  │  │
+│Cat 3 │                          │  │
+│Cat 4 │ [Card10][Card11][Card12] │  │
+├──────┴──────────────────────────┴──┤
+│  Search         [Clear]  [A-Z]    │
+└────────────────────────────────────┘</code></pre></div></div>
+
+<h2>Що робить скрипт</h2>
 <table>
-<tr><th>Що</th><th>Посилання</th></tr>
-<tr><td>Lens Studio 5</td><td><a href="https://ar.snap.com/lens-studio" target="_blank">Завантажити</a></td></tr>
-<tr><td>GitHub Sample Projects</td><td><a href="https://developers.snap.com/spectacles/get-started/github-sample-projects" target="_blank">Зразки проєктів</a></td></tr>
-<tr><td>Asset Library</td><td><a href="https://developers.snap.com/spectacles/spectacles-features/asset-library" target="_blank">Бібліотека ассетів</a></td></tr>
+<tr><th>Функція</th><th>Опис</th></tr>
+<tr><td><strong>Sidebar</strong></td><td>5 категорій — клік підсвічує активну, фільтрує і розставляє картки</td></tr>
+<tr><td><strong>ScrollView (SIK)</strong></td><td>Нативний скрол рукою/пальцем з інерцією — скрипт НЕ керує скролом</td></tr>
+<tr><td><strong>ScrollBar (SIK)</strong></td><td>Автоматично синхронізується зі ScrollView</td></tr>
+<tr><td><strong>layoutCards()</strong></td><td>Розставляє ВСІ відфільтровані картки в сітку 3xN</td></tr>
+<tr><td><strong>Вибір + Спавн</strong></td><td>Натискання на картку → confirmCard() спавнить prefab</td></tr>
+<tr><td><strong>Open / Close</strong></td><td>Зовнішня кнопка відкриває, X закриває</td></tr>
 </table>
 
-<h2>Спільнота</h2>
+<h2>Скрипт</h2>
+<div class="code-block"><div class="code-header"><span class="code-filename">GameMenu.ts</span><button class="code-copy" data-action="copy">Копіювати</button></div>
+<div class="code-body"><pre><code>@component
+export class GameMenu extends BaseScriptComponent {
+  @input
+  @hint("Root object of the entire menu")
+  menuRoot: SceneObject
+
+  @input
+  @hint("Sidebar category buttons")
+  categories: SceneObject[]
+
+  @input
+  @hint("Highlight overlays for each category button")
+  categoryHighlights: SceneObject[]
+
+  @input
+  @hint("ALL card objects — each one you create manually")
+  cards: SceneObject[]
+
+  @input
+  @hint("Category for each card: 1, 2, 3, or 4")
+  cardCategory: number[]
+
+  @input
+  @hint("Prefab for each card (for spawning)")
+  cardPrefabs: ObjectPrefab[]
+
+  @input
+  @hint("Parent object where spawned items appear")
+  spawnParent: SceneObject
+
+  @input
+  @hint("Horizontal spacing between cards")
+  spacingX: number = 8
+
+  @input
+  @hint("Vertical spacing between cards")
+  spacingY: number = 8
+
+  @input
+  @hint("Columns in grid")
+  columns: number = 3
+
+  private activeCategory: number = 0
+  private filteredIndices: number[] = []
+  private selectedIndex: number = -1
+  private spawnCount: number = 0
+
+  onAwake() {
+    this.hideAllCards()
+    this.selectCategoryByIndex(0)
+  }
+
+  private hideAllCards() {
+    if (!this.cards) return
+    for (let i = 0; i &lt; this.cards.length; i++) {
+      this.cards[i].enabled = false
+    }
+  }
+
+  private selectCategoryByIndex(index: number) {
+    this.activeCategory = index
+    this.selectedIndex = -1
+    if (this.categoryHighlights) {
+      for (let i = 0; i &lt; this.categoryHighlights.length; i++) {
+        this.categoryHighlights[i].enabled = (i === index)
+      }
+    }
+    this.rebuildFilteredList()
+    this.layoutCards()
+    print("Category: " + index)
+  }
+
+  private rebuildFilteredList() {
+    this.filteredIndices = []
+    for (let i = 0; i &lt; this.cards.length; i++) {
+      if (this.activeCategory === 0
+          || this.cardCategory[i] === this.activeCategory) {
+        this.filteredIndices.push(i)
+      }
+    }
+  }
+
+  private layoutCards() {
+    this.hideAllCards()
+    for (let slot = 0; slot &lt; this.filteredIndices.length; slot++) {
+      const cardIndex = this.filteredIndices[slot]
+      const card = this.cards[cardIndex]
+      card.enabled = true
+      const col = slot % this.columns
+      const row = Math.floor(slot / this.columns)
+      const x = (col - 1) * this.spacingX
+      const y = -row * this.spacingY
+      card.getTransform().setLocalPosition(new vec3(x, y, 0))
+    }
+    print("Showing " + this.filteredIndices.length + " cards")
+  }
+
+  selectCategory0() { this.selectCategoryByIndex(0) }
+  selectCategory1() { this.selectCategoryByIndex(1) }
+  selectCategory2() { this.selectCategoryByIndex(2) }
+  selectCategory3() { this.selectCategoryByIndex(3) }
+  selectCategory4() { this.selectCategoryByIndex(4) }
+
+  private selectCardByGlobalIndex(cardIndex: number) {
+    this.selectedIndex = cardIndex
+    print("Selected card #" + cardIndex)
+  }
+
+  selectCard0()  { this.selectCardByGlobalIndex(0) }
+  selectCard1()  { this.selectCardByGlobalIndex(1) }
+  selectCard2()  { this.selectCardByGlobalIndex(2) }
+  selectCard3()  { this.selectCardByGlobalIndex(3) }
+  selectCard4()  { this.selectCardByGlobalIndex(4) }
+  selectCard5()  { this.selectCardByGlobalIndex(5) }
+  selectCard6()  { this.selectCardByGlobalIndex(6) }
+  selectCard7()  { this.selectCardByGlobalIndex(7) }
+  selectCard8()  { this.selectCardByGlobalIndex(8) }
+  selectCard9()  { this.selectCardByGlobalIndex(9) }
+  selectCard10() { this.selectCardByGlobalIndex(10) }
+  selectCard11() { this.selectCardByGlobalIndex(11) }
+
+  confirmCard() {
+    if (this.selectedIndex &lt; 0) {
+      print("No card selected!"); return
+    }
+    if (!this.cardPrefabs
+        || this.selectedIndex &gt;= this.cardPrefabs.length) {
+      print("No prefab for card #" + this.selectedIndex); return
+    }
+    const obj = this.cardPrefabs[this.selectedIndex]
+      .instantiate(this.spawnParent)
+    const x = (this.spawnCount % 3) * 12 - 12
+    const y = Math.floor(this.spawnCount / 3) * 12
+    obj.getTransform().setLocalPosition(new vec3(x, y, 0))
+    obj.getTransform().setLocalScale(new vec3(5, 5, 5))
+    this.spawnCount++
+    print("Spawned card #" + this.selectedIndex)
+  }
+
+  clearSearch() { this.selectCategoryByIndex(0) }
+
+  toggleSort() {
+    this.filteredIndices.reverse()
+    this.layoutCards()
+    print("Sort reversed")
+  }
+
+  closeMenu() {
+    if (this.menuRoot) this.menuRoot.enabled = false
+  }
+
+  openMenu() {
+    if (this.menuRoot) {
+      this.menuRoot.enabled = true
+      this.selectCategoryByIndex(0)
+    }
+  }
+
+  clearSpawned() {
+    if (!this.spawnParent) return
+    for (let i = this.spawnParent.getChildrenCount() - 1;
+         i &gt;= 0; i--) {
+      this.spawnParent.getChild(i).destroy()
+    }
+    this.spawnCount = 0
+    this.selectedIndex = -1
+  }
+}</code></pre></div></div>
+
+<h2>Ієрархія сцени</h2>
+<div class="code-block"><div class="code-header"><span class="code-filename">Scene Hierarchy</span></div>
+<div class="code-body"><pre><code>MenuAnchor/                       ← FollowCamera.ts (слідує за камерою)
+|
+|-- MenuRoot/
+|   |-- BtnClose                  (RoundButton → closeMenu)
+|   |
+|   |-- Sidebar/
+|   |   |-- SidebarBG             (RoundedRectangle)
+|   |   |-- BtnCat0               (RectangleButton "All Items")
+|   |   |   |-- Highlight0        (enabled=true)
+|   |   |-- BtnCat1...BtnCat4
+|   |       |-- Highlight1...4    (enabled=false)
+|   |
+|   |-- ScrollViewCanvasExample/  ← SIK ScrollView (нативний скрол)
+|   |   |-- Content/              ← перша дитина ScrollView
+|   |   |   |-- Card_0...Card_11  (кожна картка: Image + Text)
+|   |   |-- ScrollBar             ← SIK ScrollBar (sibling Content)
+|   |
+|   |-- ContentBG                 (RoundedRectangle за ScrollView)
+|   |
+|   |-- SearchBar/
+|   |   |-- BtnClear              (CapsuleButton → clearSearch)
+|   |   |-- BtnSort               (CapsuleButton → toggleSort)
+|   |
+|   |-- GameMenuLogic             (GameMenu.ts)
+|
+|-- BtnOpenMenu                   (RoundButton → openMenu)
+|-- SpawnArea/                    (порожній, сюди спавняться об'єкти)</code></pre></div></div>
+
+<h2>Inspector — GameMenu inputs</h2>
 <table>
-<tr><th>Платформа</th><th>Посилання</th></tr>
-<tr><td>Reddit</td><td><a href="https://reddit.com/r/Spectacles" target="_blank">r/Spectacles</a> — офіційний subreddit</td></tr>
-<tr><td>Spectacles Website</td><td><a href="https://www.spectacles.com" target="_blank">spectacles.com</a></td></tr>
+<tr><th>Поле</th><th>Значення</th></tr>
+<tr><td><code>menuRoot</code></td><td>MenuRoot</td></tr>
+<tr><td><code>categories</code></td><td>[BtnCat0, BtnCat1, BtnCat2, BtnCat3, BtnCat4]</td></tr>
+<tr><td><code>categoryHighlights</code></td><td>[Highlight0, Highlight1, Highlight2, Highlight3, Highlight4]</td></tr>
+<tr><td><code>cards</code></td><td>[Card_0, Card_1, ... Card_11]</td></tr>
+<tr><td><code>cardCategory</code></td><td>[1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4]</td></tr>
+<tr><td><code>cardPrefabs</code></td><td>[Prefab_0, Prefab_1, ... Prefab_11]</td></tr>
+<tr><td><code>spawnParent</code></td><td>SpawnArea</td></tr>
+<tr><td><code>spacingX</code></td><td>8</td></tr>
+<tr><td><code>spacingY</code></td><td>8</td></tr>
+<tr><td><code>columns</code></td><td>3</td></tr>
 </table>
 
-<div class="callout callout-tip"><span class="callout-icon">💡</span><p>Потрібна допомога? Задайте питання на <a href="https://reddit.com/r/Spectacles" target="_blank">r/Spectacles</a> — це офіційний канал підтримки від Snap.</p></div>
+<h2>Callbacks</h2>
+<table>
+<tr><th>Кнопка</th><th>Function Name</th></tr>
+<tr><td><code>BtnClose</code></td><td><code>closeMenu</code></td></tr>
+<tr><td><code>BtnOpenMenu</code></td><td><code>openMenu</code></td></tr>
+<tr><td><code>BtnCat0...BtnCat4</code></td><td><code>selectCategory0...selectCategory4</code></td></tr>
+<tr><td><code>Card_0...Card_11</code></td><td><code>selectCard0...selectCard11</code></td></tr>
+<tr><td><code>BtnClear</code></td><td><code>clearSearch</code></td></tr>
+<tr><td><code>BtnSort</code></td><td><code>toggleSort</code></td></tr>
+</table>
 
-<div class="page-footer">
-<a href="#" onclick="showPage('permissions');return false">← Дозволи та приватність</a>
-<a href="#" onclick="showPage('notes');return false">Далі: Нотатки →</a>
+<div class="callout callout-info"><span class="callout-icon">ℹ️</span><p>Скрол контенту повністю обробляється SIK <strong>ScrollView</strong> — скрипт лише показує/ховає та розставляє картки. Кнопки Next/Prev та Slider <strong>не потрібні</strong>.</p></div>
+
+<div class="callout callout-tip"><span class="callout-icon">💡</span><p><strong>BtnOpenMenu</strong> має бути <strong>поза MenuRoot</strong> (sibling, а не child) — інакше він зникне коли меню закрите.</p></div>
+
+<div class="nav-footer">
+<a data-page="lesson9">← Урок 9</a>
+<a data-page="followcam">Далі: Follow Camera →</a>
+</div>
+`,
+
+followcam:`
+<h1><span class="num" style="width:28px;height:28px;font-size:.85rem;border-radius:7px;margin-right:8px;background:#3fb95030;color:#3fb950">F</span> Follow Camera</h1>
+<p class="subtitle">Меню плавно слідує за поглядом — завжди перед очима, як tag-along UI.</p>
+
+<span class="tag tag-easy">Легко</span>
+
+<h2>Скрипт</h2>
+<div class="code-block"><div class="code-header"><span class="code-filename">FollowCamera.ts</span><button class="code-copy" data-action="copy">Копіювати</button></div>
+<div class="code-body"><pre><code>@component
+export class FollowCamera extends BaseScriptComponent {
+  @input
+  @hint("Distance in front of camera (cm)")
+  distance: number = 60
+
+  @input
+  @hint("Smoothing 0.02-0.5 (lower = smoother)")
+  smoothing: number = 0.1
+
+  private cam: Transform | null = null
+
+  onAwake() {
+    this.createEvent("OnStartEvent").bind(() =&gt; this.onStart())
+  }
+
+  private onStart() {
+    this.cam = this.findCameraTransform()
+    if (!this.cam) { print("FollowCamera: camera not found"); return }
+    this.snapToTarget()
+    this.createEvent("UpdateEvent").bind(() =&gt; this.onUpdate())
+  }
+
+  private findCameraTransform(): Transform | null {
+    const count = global.scene.getRootObjectsCount()
+    for (let i = 0; i &lt; count; i++) {
+      const result = this.searchCamera(global.scene.getRootObject(i))
+      if (result) return result
+    }
+    return null
+  }
+
+  private searchCamera(obj: SceneObject): Transform | null {
+    const comp = obj.getComponent("Component.Camera") as Camera
+    if (comp &amp;&amp; comp.type === Camera.Type.Perspective) {
+      return obj.getTransform()
+    }
+    for (let i = 0; i &lt; obj.getChildrenCount(); i++) {
+      const result = this.searchCamera(obj.getChild(i))
+      if (result) return result
+    }
+    return null
+  }
+
+  private snapToTarget() {
+    if (!this.cam) return
+    const pos = this.cam.getWorldPosition()
+    const fwd = this.cam.forward
+    const myT = this.getSceneObject().getTransform()
+    myT.setWorldPosition(new vec3(
+      pos.x + fwd.x * this.distance,
+      pos.y + fwd.y * this.distance,
+      pos.z + fwd.z * this.distance
+    ))
+    myT.setWorldRotation(this.cam.getWorldRotation())
+  }
+
+  private onUpdate() {
+    if (!this.cam) return
+    const pos = this.cam.getWorldPosition()
+    const fwd = this.cam.forward
+    const tx = pos.x + fwd.x * this.distance
+    const ty = pos.y + fwd.y * this.distance
+    const tz = pos.z + fwd.z * this.distance
+    const myT = this.getSceneObject().getTransform()
+    const cur = myT.getWorldPosition()
+    const s = this.smoothing
+    myT.setWorldPosition(new vec3(
+      cur.x + (tx - cur.x) * s,
+      cur.y + (ty - cur.y) * s,
+      cur.z + (tz - cur.z) * s
+    ))
+    myT.setWorldRotation(this.cam.getWorldRotation())
+  }
+}</code></pre></div></div>
+
+<h2>Як підключити</h2>
+<ol class="steps">
+<li><strong>MenuAnchor</strong><br>Створіть порожній SceneObject <code>MenuAnchor</code> в корені сцени.</li>
+<li><strong>Перемістіть MenuRoot і BtnOpenMenu</strong><br>Зробіть їх дочірніми об'єктами <code>MenuAnchor</code>.</li>
+<li><strong>Додайте скрипт</strong><br>На <code>MenuAnchor</code> додайте компонент <code>FollowCamera</code>.</li>
+<li><strong>Налаштуйте</strong><br>
+• <strong>Distance</strong> = 60 (підлаштуйте)<br>
+• <strong>Smoothing</strong> = 0.1 (менше = плавніше, більше = швидше)</li>
+</ol>
+
+<div class="callout callout-info"><span class="callout-icon">ℹ️</span><p>Скрипт автоматично знаходить камеру в сцені — не потрібно вказувати вручну. Використовує той самий підхід як SIK BillboardController.</p></div>
+
+<div class="callout callout-tip"><span class="callout-icon">💡</span><p><strong>Альтернатива без скрипта:</strong> зробіть MenuAnchor дочірнім об'єктом Camera і встановіть позицію Z=60. Це дасть жорстке (head-locked) кріплення без плавності.</p></div>
+
+<div class="nav-footer">
+<a data-page="gamemenu">← Game Menu</a>
+<a data-page="overview">← На початок</a>
 </div>
 `
+
 };
 
-function showPage(id) {
-  document.getElementById('pageContent').innerHTML = pages[id] || pages.overview;
-  document.querySelectorAll('.sidebar-link').forEach(l => l.classList.remove('active'));
-  document.querySelectorAll('.sidebar-link').forEach(l => {
-    if (l.getAttribute('onclick')?.includes("'" + id + "'")) l.classList.add('active');
+function showPage(id){
+  var el=document.getElementById('pageContent');
+  if(!el)return;
+  el.innerHTML=pages[id]||pages.overview;
+  document.querySelectorAll('.sidebar-link').forEach(function(l){l.classList.remove('active')});
+  document.querySelectorAll('.sidebar-link[data-page]').forEach(function(l){
+    if(l.getAttribute('data-page')===id)l.classList.add('active');
   });
-  document.querySelectorAll('.topbar-nav a').forEach(a => a.classList.remove('active'));
-  document.querySelector('.sidebar')?.classList.remove('open');
-  window.scrollTo(0, 0);
-  if (id === 'notes') renderNotes();
+  var sb=document.querySelector('.sidebar');
+  if(sb)sb.classList.remove('open');
+  window.scrollTo(0,0);
 }
 
-function copyCode(btn) {
-  const code = btn.closest('.code-block').querySelector('code').textContent;
-  navigator.clipboard.writeText(code);
-  btn.textContent = 'Скопійовано!';
-  setTimeout(() => btn.textContent = 'Копіювати', 1500);
-}
-
-const NOTES_KEY = 'spectacles_notes';
-let projectNotes = [];
-let editingNoteId = null;
-
-function loadProjectNotes() {
-  try { projectNotes = JSON.parse(localStorage.getItem(NOTES_KEY)) || []; } catch { projectNotes = []; }
-}
-function saveProjectNotes() { localStorage.setItem(NOTES_KEY, JSON.stringify(projectNotes)); }
-
-function renderNotes() {
-  loadProjectNotes();
-  const c = document.getElementById('notesContainer');
-  if (!c) return;
-  if (projectNotes.length === 0) {
-    c.innerHTML = '<div class="callout callout-info"><span class="callout-icon">📝</span><p>Нотаток ще немає. Натисніть <strong>+ Нова нотатка</strong> щоб створити.</p></div>';
-    return;
+document.addEventListener('click',function(e){
+  var target=e.target;
+  while(target&&target!==document){
+    if(target.hasAttribute&&target.hasAttribute('data-page')){
+      e.preventDefault();
+      e.stopPropagation();
+      showPage(target.getAttribute('data-page'));
+      return;
+    }
+    if(target.hasAttribute&&target.hasAttribute('data-action')&&target.getAttribute('data-action')==='copy'){
+      e.preventDefault();
+      var block=target.closest('.code-block');
+      if(block){
+        var code=block.querySelector('code');
+        if(code){
+          navigator.clipboard.writeText(code.textContent).catch(function(){});
+          target.textContent='Скопійовано!';
+          setTimeout(function(){target.textContent='Копіювати'},1500);
+        }
+      }
+      return;
+    }
+    target=target.parentElement;
   }
-  c.innerHTML = projectNotes.map(n => `
-    <div style="padding:16px;border:1px solid var(--border);border-radius:8px;margin-bottom:8px;cursor:pointer;transition:.15s" onmouseover="this.style.borderColor='var(--border2)'" onmouseout="this.style.borderColor='var(--border)'" onclick="editNote('${n.id}')">
-      <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">
-        <strong>${esc(n.title)}</strong>
-        <span style="font-size:.75rem;background:var(--bg2);padding:2px 8px;border-radius:4px;color:var(--text2)">${n.category}</span>
-      </div>
-      <div style="font-size:.82rem;color:var(--text3)">${timeAgo(n.updated)}</div>
-    </div>
-  `).join('');
-}
-
-function createNote() {
-  const n = {id: Date.now().toString(36), title:'', body:'', category:'general',
-    created:new Date().toISOString(), updated:new Date().toISOString()};
-  loadProjectNotes(); projectNotes.unshift(n); saveProjectNotes(); editNote(n.id);
-}
-function editNote(id) {
-  loadProjectNotes();
-  const n = projectNotes.find(x => x.id === id);
-  if (!n) return;
-  editingNoteId = id;
-  document.getElementById('noteEditor').style.display = 'block';
-  document.getElementById('noteTitle').value = n.title;
-  document.getElementById('noteBody').value = n.body;
-  document.getElementById('noteCategory').value = n.category;
-}
-function saveCurrentNote() {
-  const n = projectNotes.find(x => x.id === editingNoteId);
-  if (!n) return;
-  n.title = document.getElementById('noteTitle').value || 'Без назви';
-  n.body = document.getElementById('noteBody').value;
-  n.category = document.getElementById('noteCategory').value;
-  n.updated = new Date().toISOString();
-  saveProjectNotes(); cancelEdit(); renderNotes();
-}
-function cancelEdit() { editingNoteId = null; document.getElementById('noteEditor').style.display = 'none'; }
-function deleteCurrentNote() {
-  if (!confirm('Видалити цю нотатку?')) return;
-  projectNotes = projectNotes.filter(n => n.id !== editingNoteId);
-  saveProjectNotes(); cancelEdit(); renderNotes();
-}
-function exportNotes() {
-  loadProjectNotes();
-  const blob = new Blob([JSON.stringify(projectNotes, null, 2)], {type:'application/json'});
-  const a = document.createElement('a'); a.href = URL.createObjectURL(blob);
-  a.download = 'spectacles-notes-' + new Date().toISOString().slice(0,10) + '.json'; a.click();
-}
-function showImportPrompt() {
-  const json = prompt('Вставте експортований JSON:');
-  if (!json) return;
-  try {
-    const data = JSON.parse(json);
-    if (!Array.isArray(data)) throw 0;
-    loadProjectNotes();
-    const ids = new Set(projectNotes.map(n => n.id));
-    let added = 0;
-    data.forEach(n => { if (n.id && !ids.has(n.id)) { projectNotes.unshift(n); added++; }});
-    saveProjectNotes(); renderNotes();
-    alert('Імпортовано ' + added + ' нотаток');
-  } catch { alert('Невірний JSON формат'); }
-}
-function esc(s) { const d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
-function timeAgo(iso) {
-  const d = Math.floor((Date.now() - new Date(iso)) / 1000);
-  if (d < 60) return 'щойно'; if (d < 3600) return Math.floor(d/60) + ' хв тому';
-  if (d < 86400) return Math.floor(d/3600) + ' год тому'; return Math.floor(d/86400) + ' дн тому';
-}
+});
 </script>
 </body>
 </html>
